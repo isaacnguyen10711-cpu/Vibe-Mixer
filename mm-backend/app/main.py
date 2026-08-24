@@ -1,12 +1,10 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from app.database import create_db_and_tables, engine
+from app.database import engine
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    #Create the database tables if they don't exist.
-    await create_db_and_tables()
     yield
     #close the database connection when the application shuts down.
     await engine.dispose()

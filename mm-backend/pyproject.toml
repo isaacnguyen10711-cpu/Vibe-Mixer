@@ -8,3 +8,8 @@ dependencies = [
     "pydantic-settings>=2.15.0",
     "sqlmodel>=0.0.39",
 ]
+
+[dependency-groups]
+dev = [
+    "alembic>=1.19.1",
+]
