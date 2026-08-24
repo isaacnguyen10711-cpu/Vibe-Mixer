@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pwdlib import PasswordHash
 from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST
 from app.dependencies import DatabaseSession
-from app.models.user import UserCreateRequest, UserResponse, User
+from app.models.user import UserRequest, UserResponse, TokenResponse, User
 from sqlmodel import select
 
 router = APIRouter(
@@ -14,7 +14,7 @@ router = APIRouter(
 password_hasher = PasswordHash.recommended()
 
 @router.post("/register", response_model=UserResponse, status_code=HTTP_201_CREATED)
-async def register(request: UserCreateRequest, db: DatabaseSession):
+async def register(request: UserRequest, db: DatabaseSession):
     #Check if email or username already exists in the database.
     query = select(User).where((User.email == request.email) | (User.username == request.username))
     existing_user = await db.exec(query)

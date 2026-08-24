@@ -2,8 +2,8 @@ from sqlmodel import SQLModel, Field
 from typing import ClassVar
 from datetime import UTC, datetime
 
-class User (SQLModel, table=True):
-    __tablename__: ClassVar[str ]= "users"
+class User(SQLModel, table=True):
+    __tablename__: ClassVar[str] = "users"
     
     #Generate columns for the users table in the database.
     id: int | None = Field(default=None, primary_key=True)
@@ -13,7 +13,7 @@ class User (SQLModel, table=True):
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
 
-class UserCreateRequest(SQLModel):
+class UserRequest(SQLModel):
     username: str = Field(max_length=50)
     email: str = Field(max_length=100)
     password: str = Field(min_length=8, max_length=128)
@@ -23,5 +23,10 @@ class UserResponse(SQLModel):
     username: str
     email: str
     created_at: datetime
-    
+
+
+#For login response
+class TokenResponse(SQLModel):
+    access_token: str
+    token_type: str
      
