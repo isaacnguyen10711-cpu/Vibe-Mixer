@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.database import engine
+from app.routers import authentication_router
 
 
 @asynccontextmanager
@@ -11,3 +12,6 @@ async def lifespan(app: FastAPI):
 
 # The application instance imported and the lifespan function is passed to the FastAPI constructor to manage the application's lifespan events.
 app = FastAPI(title="Mood Mixer API", lifespan=lifespan)
+
+app.include_router(authentication_router.router)
+

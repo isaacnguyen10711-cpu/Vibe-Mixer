@@ -13,4 +13,6 @@ class Songs(SQLModel, table=True):
     album: str | None = Field(default=None, max_length=100)
     genre: str | None = Field(default=None, max_length=50)
     duration: int | None = Field(default=None, ge=0)
+    youtube_url: str | None = Field(default=None, max_length=255)
+    thumbnail_url: str | None = Field(default=None, max_length=255)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
