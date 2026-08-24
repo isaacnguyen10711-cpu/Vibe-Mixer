@@ -1,9 +1,10 @@
 from fastapi import APIRouter, HTTPException
 from pwdlib import PasswordHash
-from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST
+from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from app.dependencies import DatabaseSession
-from app.models.user import UserRequest, UserResponse, TokenResponse, User
+from app.models.user import UserRegistrationRequest, UserLoginRequest, UserResponse, TokenResponse, User
 from sqlmodel import select
+from app.services.authentication_service import create_access_token
 
 router = APIRouter(
     prefix="/auth",
@@ -14,7 +15,7 @@ router = APIRouter(
 password_hasher = PasswordHash.recommended()
 
 @router.post("/register", response_model=UserResponse, status_code=HTTP_201_CREATED)
-async def register(request: UserRequest, db: DatabaseSession):
+async def register(request: UserRegistrationRequest, db: DatabaseSession) -> UserResponse:
     #Check if email or username already exists in the database.
     query = select(User).where((User.email == request.email) | (User.username == request.username))
     existing_user = await db.exec(query)
@@ -41,6 +42,14 @@ async def register(request: UserRequest, db: DatabaseSession):
     return new_user
 
 
-@router.post("/login")
-async def login():
-    return {"message": "Login endpoint"}
+@router.post("/login", response_model=TokenResponse)
+async def login(request: UserLoginRequest, db: DatabaseSession) -> TokenResponse:
+    query = select(User).where((User.email == request.username_or_email) | (User.username == request.username_or_email))
+    user = await db.exec(query)
+    user = user.first()
+
+    if not user or not password_hasher.verify(request.password, user.hashed_password):
+        raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="Invalid email or password.")
+
+    access_token = create_access_token({"sub": str(user.id)})
+    return TokenResponse(access_token=access_token, token_type="bearer")

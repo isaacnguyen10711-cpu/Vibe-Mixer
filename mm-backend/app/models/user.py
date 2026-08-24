@@ -12,8 +12,8 @@ class User(SQLModel, table=True):
     hashed_password: str = Field(max_length=255) 
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
-
-class UserRequest(SQLModel):
+#for user registration request
+class UserRegistrationRequest(SQLModel):
     username: str = Field(max_length=50)
     email: str = Field(max_length=100)
     password: str = Field(min_length=8, max_length=128)
@@ -26,6 +26,10 @@ class UserResponse(SQLModel):
 
 
 #For login response
+class UserLoginRequest(SQLModel):
+    username_or_email: str = Field(max_length=100)
+    password: str = Field(min_length=8, max_length=128)
+
 class TokenResponse(SQLModel):
     access_token: str
     token_type: str
