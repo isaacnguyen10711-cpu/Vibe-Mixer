@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from pwdlib import PasswordHash
 from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
-from app.dependencies import DatabaseSession
+from pwdlib import PasswordHash
+from app.dependencies import DatabaseSession, AuthorizedUser
 from app.models.user import UserRegistrationRequest, UserLoginRequest, UserResponse, TokenResponse, User
 from sqlmodel import select
 from app.services.authentication_service import create_access_token
@@ -44,6 +44,7 @@ async def register(request: UserRegistrationRequest, db: DatabaseSession) -> Use
 
 @router.post("/login", response_model=TokenResponse)
 async def login(request: UserLoginRequest, db: DatabaseSession) -> TokenResponse:
+    
     query = select(User).where((User.email == request.username_or_email) | (User.username == request.username_or_email))
     user = await db.exec(query)
     user = user.first()
