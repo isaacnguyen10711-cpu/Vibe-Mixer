@@ -17,8 +17,8 @@ class Songs(SQLModel, table=True):
     
 class GeneratedSong(SQLModel):
     title: str
-    description: str
     artist: str
+    description: str | None = Field(default=None, max_length=255)
     duration: int | None = Field(default=None, ge=0)
     youtube_url: str | None = Field(default=None, max_length=255)
     thumbnail_url: str | None = Field(default=None, max_length=255)
