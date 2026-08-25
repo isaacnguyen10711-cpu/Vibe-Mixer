@@ -1,8 +1,10 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from pwdlib import PasswordHash
+from fastapi.security import OAuth2PasswordRequestForm
+from typing import Annotated
 from app.dependencies import DatabaseSession, AuthorizedUser
-from app.models.user import UserRegistrationRequest, UserLoginRequest, UserResponse, TokenResponse, User
+from app.models.user import UserRegistrationRequest, UserResponse, TokenResponse, User
 from sqlmodel import select
 from app.services.authentication_service import create_access_token
 
@@ -39,18 +41,24 @@ async def register(request: UserRegistrationRequest, db: DatabaseSession) -> Use
     db.add(new_user)
     await db.commit()
     await db.refresh(new_user)
-    return new_user
+    return UserResponse(
+        id=new_user.id,
+        email=new_user.email,
+        username=new_user.username,
+        created_at=new_user.created_at
+    )
 
 
 @router.post("/login", response_model=TokenResponse)
-async def login(request: UserLoginRequest, db: DatabaseSession) -> TokenResponse:
+async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: DatabaseSession) -> TokenResponse:
     
-    query = select(User).where((User.email == request.username_or_email) | (User.username == request.username_or_email))
+    query = select(User).where((User.email == form_data.username) | (User.username == form_data.username))
     user = await db.exec(query)
     user = user.first()
 
-    if not user or not password_hasher.verify(request.password, user.hashed_password):
+    if not user or not password_hasher.verify(form_data.password, user.hashed_password):
         raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="Invalid email or password.")
 
     access_token = create_access_token({"sub": str(user.id)})
     return TokenResponse(access_token=access_token, token_type="bearer")
+

@@ -16,3 +16,23 @@ class MoodEntry (SQLModel, table=True):
     anger: int = Field(default=1, ge=1, le=10)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
+    
+class MoodEntryRequest(SQLModel):
+    happiness: int = Field(default=1, ge=1, le=10)
+    energetic: int = Field(default=1, ge=1, le=10)
+    calming: int = Field(default=1, ge=1, le=10)
+    anxiety: int = Field(default=1, ge=1, le=10)
+    sadness: int = Field(default=1, ge=1, le=10)
+    anger: int = Field(default=1, ge=1, le=10)
+    
+class MoodEntryResponse(SQLModel):
+    id: int
+    user_id: int
+    happiness: int
+    energetic: int
+    calming: int
+    anxiety: int
+    sadness: int
+    anger: int
+    created_at: datetime
+    

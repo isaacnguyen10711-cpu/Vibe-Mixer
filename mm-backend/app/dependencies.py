@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Depends, HTTPException
 from starlette.status import HTTP_401_UNAUTHORIZED
 from app.models.user import User
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import OAuth2PasswordBearer
 from sqlmodel.ext.asyncio.session import AsyncSession
 from app.database import SessionLocal
 from app.config import settings
@@ -19,12 +19,12 @@ async def get_db() -> AsyncIterator[AsyncSession]:
 #Dependency that can be injected into a router
 DatabaseSession = Annotated[AsyncSession, Depends(get_db)]
 
-#bearer_scheme receives the token from the Authorization header and passes it to the get_current_user function.
-bearer_scheme = HTTPBearer() 
-Credentials = Annotated[HTTPAuthorizationCredentials, Depends(bearer_scheme)]
-    
-async def get_current_user(credentials: Credentials, db: DatabaseSession) -> User:
-    token = credentials.credentials
+#oauth2_scheme receives the token from the Authorization header and passes it to the get_current_user function.
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+Token = Annotated[str, Depends(oauth2_scheme)]
+
+#Verify the JWT token and retrieve the user from the database
+async def get_current_user(token: Token, db: DatabaseSession) -> User:
     try:
         #Decode the JWT token to get the user ID and verify its validity.
         payload = jwt.decode(token, settings.jwt_secret_key, algorithms=[settings.jwt_algorithm])
@@ -37,7 +37,7 @@ async def get_current_user(credentials: Credentials, db: DatabaseSession) -> Use
     except (jwt.PyJWTError, ValueError, TypeError):
         raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="Invalid token")
 
-    #Retrieve the user from the database using the user ID obtained from the token and validate that the user exists.
+    #Retrieve the user from the database using the user ID to return the user obj
     user = await db.get(User, user_id)
     if user is None:
         raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="User not found")

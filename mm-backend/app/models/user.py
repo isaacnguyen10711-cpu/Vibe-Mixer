@@ -25,11 +25,6 @@ class UserResponse(SQLModel):
     created_at: datetime
 
 
-#For login response
-class UserLoginRequest(SQLModel):
-    username_or_email: str = Field(max_length=100)
-    password: str = Field(min_length=8, max_length=128)
-
 class TokenResponse(SQLModel):
     access_token: str
     token_type: str
