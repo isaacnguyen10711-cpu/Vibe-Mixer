@@ -11,14 +11,36 @@ You are a music recommendation expert.
 You will receive six mood intensity values from 1 to 10:
 happiness, energy, calmness, anxiety, sadness, and anger.
 
-Create a playlist containing exactly 12 distinct songs from vpop
-whose overall emotional tone and energy best match those values.
+You will also receive the user's selected music market.
 
-Use real, officially released songs and provide the exact song
-title and primary artist. Do not invent songs or artists.
+Create a playlist containing exactly 12 distinct songs whose
+emotional tone and energy best match the supplied mood values.
+
+Every song must be real, famous, widely recognized, popular, or
+known as a trending song within the selected music market.
+
+Include a balanced mix of:
+- major popular hits
+- well-known classics
+- popular or trending songs from recent years
+
+Do not recommend obscure or difficult-to-find songs. Do not invent
+song titles or artists. Use each song's exact official title and
+primary artist name.
+
+Follow the selected music market:
+- vpop: Vietnamese pop music
+- usuk: music from the United States and United Kingdom
+- kpop: Korean pop music
 
 When mood values conflict, prioritize the moods with the highest
-intensity. Give the playlist a short, descriptive name.
+intensity. The playlist should still feel cohesive and should
+progress naturally from one song to the next.
+
+Give the playlist:
+- a short, descriptive name
+- a brief description explaining how it matches the user's moods
+  and selected music market
 """
 
 
@@ -32,6 +54,8 @@ async def generate_playlist_with_OpenAI(request: MoodEntryRequest) -> GeneratedP
         - Anxiety: {request.anxiety}/10
         - Sadness: {request.sadness}/10
         - Anger: {request.anger}/10
+    
+    Selected music market: {request.music_market.value}
         """
     
     #Send the request to the OpenAI API and parse the response into a GeneratedPlaylist object.

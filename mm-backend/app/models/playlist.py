@@ -19,5 +19,5 @@ class GeneratedSong(SQLModel):
     
 class GeneratedPlaylist(SQLModel):
     name: str
-    description: str | None = None
+    description: str
     songs: list[GeneratedSong]

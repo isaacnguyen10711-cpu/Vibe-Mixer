@@ -1,6 +1,7 @@
 from sqlmodel import SQLModel, Field
 from typing import ClassVar
 from datetime import UTC, datetime
+from enum import StrEnum
 
 class MoodEntry (SQLModel, table=True):
     __tablename__: ClassVar[str ]= "mood_entries"
@@ -16,7 +17,13 @@ class MoodEntry (SQLModel, table=True):
     anger: int = Field(default=1, ge=1, le=10)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
+
+class MusicMarket(StrEnum):
+    USUK = "usuk"
+    VPOP = "vpop"
+    KPOP = "kpop"
     
+
 class MoodEntryRequest(SQLModel):
     happiness: int = Field(default=1, ge=1, le=10)
     energetic: int = Field(default=1, ge=1, le=10)
@@ -25,14 +32,7 @@ class MoodEntryRequest(SQLModel):
     sadness: int = Field(default=1, ge=1, le=10)
     anger: int = Field(default=1, ge=1, le=10)
     
-class MoodEntryResponse(SQLModel):
-    id: int
-    user_id: int
-    happiness: int
-    energetic: int
-    calming: int
-    anxiety: int
-    sadness: int
-    anger: int
-    created_at: datetime
+    music_market: MusicMarket = MusicMarket.USUK
+
+
     
