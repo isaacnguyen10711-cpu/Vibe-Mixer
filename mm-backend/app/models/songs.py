@@ -16,3 +16,4 @@ class Songs(SQLModel, table=True):
     youtube_url: str | None = Field(default=None, max_length=255)
     thumbnail_url: str | None = Field(default=None, max_length=255)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    
