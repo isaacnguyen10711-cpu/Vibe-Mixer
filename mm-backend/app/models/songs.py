@@ -10,8 +10,6 @@ class Songs(SQLModel, table=True):
     playlist_id: int = Field(foreign_key="playlists.id", index=True)
     title: str = Field(max_length=100)
     artist: str = Field(max_length=100)
-    album: str | None = Field(default=None, max_length=100)
-    genre: str | None = Field(default=None, max_length=50)
     duration: int | None = Field(default=None, ge=0)
     youtube_url: str | None = Field(default=None, max_length=255)
     thumbnail_url: str | None = Field(default=None, max_length=255)
