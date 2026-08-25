@@ -2,6 +2,7 @@ from googleapiclient.discovery import build
 from app.config import settings
 import isodate
 
+#Initialize the YouTube Data API client
 service = build('youtube', 'v3', developerKey=settings.YouTube_API_Key)
 
 #This api call searches for a video on YouTube based on a search query.
@@ -33,11 +34,7 @@ def search_youtube_video(search_query: str):
     video_details_response = video_details_request.execute()
     duration = video_details_response['items'][0]['contentDetails']['duration']
      # Convert ISO 8601 duration to seconds
-    duration = int(isodate.parse_duration(duration).total_seconds() )
-    
-     # Format as "minutes:seconds"
-    minutes, seconds = divmod(duration, 60)
-    duration = f"{minutes}:{seconds:02d}" 
+    duration = int(isodate.parse_duration(duration).total_seconds())
 
     return {
         'video_id': video_id,

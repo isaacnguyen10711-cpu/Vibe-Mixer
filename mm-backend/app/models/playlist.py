@@ -1,6 +1,7 @@
 from sqlmodel import SQLModel, Field
 from typing import ClassVar
 from datetime import UTC, datetime
+from app.models.songs import GeneratedSong
 
 class Playlist (SQLModel, table=True):
     __tablename__: ClassVar[str ]= "playlists"
@@ -12,10 +13,6 @@ class Playlist (SQLModel, table=True):
     description: str | None = Field(default=None, max_length=255)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
-
-class GeneratedSong(SQLModel):
-    title: str
-    artist: str
     
 class GeneratedPlaylist(SQLModel):
     name: str
