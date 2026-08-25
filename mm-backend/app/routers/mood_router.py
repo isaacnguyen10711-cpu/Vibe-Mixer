@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
-from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from app.dependencies import DatabaseSession, AuthorizedUser
-from app.models.mood_entry import MoodEntryRequest, MoodEntryResponse
+from app.models.mood_entry import MoodEntryRequest
 from sqlmodel import select
+from app.services.openai_service import generate_playlist_with_OpenAI
 
 
 router = APIRouter(
@@ -12,6 +12,11 @@ router = APIRouter(
 
 @router.post("/generate-playlist")
 async def generate_playlist(request: MoodEntryRequest):
-    # Placeholder for playlist generation logic based on mood entries
-    return request
-
+    #Validate the mood values in the request.
+    try:
+        playlist = await generate_playlist_with_OpenAI(request)
+        return playlist
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    
+ 
