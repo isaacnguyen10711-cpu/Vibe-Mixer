@@ -34,10 +34,10 @@ async def get_current_user(token: Token, db: DatabaseSession) -> User:
         #Convert the user ID to an integer to ensure it is in the correct format.
         user_id = int(user_id)
         
+    except jwt.ExpiredSignatureError:
+            raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="Token has expired")
     except (jwt.PyJWTError, ValueError, TypeError):
         raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="Invalid token")
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=HTTP_401_UNAUTHORIZED, detail="Token has expired")
 
     #Retrieve the user from the database using the user ID to return the user obj
     user = await db.get(User, user_id)
