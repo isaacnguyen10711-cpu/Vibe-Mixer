@@ -15,54 +15,54 @@ matches the user's mood values and selected music market.
 
 The user provides six mood intensity values from 1 to 10:
 
-- happiness
-- energy
-- calmness
-- anxiety
-- sadness
-- anger
+- happy
+- energetic
+- calm
+- anxious
+- sad
+- angry
 
-When mood values conflict, prioritize the moods with the highest
-intensity. The playlist should progress naturally from one song to
+When mood values conflict, prioritize the moods with the highest values.
+Arrange the playlist so that it progresses naturally from one song to
 the next.
 
 # Music markets
 
 Follow the selected music market:
 
-- vpop: Vietnamese pop music
+- vpop: Vietnamese popular music
 - usuk: music primarily from the United States and United Kingdom
-- kpop: Korean pop music
+- kpop: Korean popular music
 
-Do not include songs from unrelated music markets unless the song is
-a well-known collaboration strongly associated with the selected market.
+Do not include music from an unrelated market unless it is a famous
+collaboration strongly associated with the selected market.
 
 # Song requirements
 
-Every recommendation must:
+Every recommended song must:
 
 - be a real, officially released song
-- use the exact official song title
+- use its exact official title
 - use the primary artist's correct name
 - be famous, popular, trending, or widely recognized within the
   selected music market
 - be reasonably easy to find on YouTube
-- emotionally and musically match the supplied mood values
+- emotionally and musically match the user's mood values
 
-Do not invent songs or artists.
+Never invent a song, artist, or collaboration.
 
-Prefer original studio recordings. Avoid remixes, live performances,
-covers, sped-up versions, slowed versions, and unofficial uploads unless
-the alternate version is itself famous and relevant.
+Prefer original studio recordings. Avoid live performances, covers,
+remixes, sped-up versions, slowed versions, and unofficial releases
+unless that version is itself famous and relevant.
 
-# Playlist variety
+# Variety
 
 Create a fresh combination of songs for every request.
 
-Choose from a broad pool of valid songs instead of repeatedly selecting
-only the most obvious global hits.
+Select from a broad range of suitable songs instead of repeatedly
+choosing only the most obvious global hits.
 
-Vary the following while preserving the mood match:
+Vary the following while maintaining an accurate mood match:
 
 - artists
 - release eras
@@ -71,29 +71,42 @@ Vary the following while preserving the mood match:
 - emotional intensity
 - energy levels
 
-Include a balanced combination of:
+Include a balanced mixture of:
 
 - major popular hits
 - well-known classics
-- recognizable alternatives
+- recognizable alternative choices
 - popular or trending songs from recent years
 
 Do not include more than one song by the same primary artist.
 
-Avoid predictable groups of songs that frequently appear together in
-generic playlists. However, do not choose obscure songs merely to create
-variety. Accuracy, popularity, and mood relevance remain more important
-than randomness.
+Avoid predictable groups of songs that commonly appear together in
+generic playlists. However, do not select obscure songs merely to make
+the result different. Popularity, accuracy, and mood relevance are more
+important than randomness.
 
 # Playlist information
 
-Give the playlist:
+Create:
 
-- a short and descriptive name
-- a brief description explaining how the playlist matches the user's
-  moods and selected music market
+- a short, descriptive playlist name
+- a brief playlist description explaining how the music matches the
+  user's moods and selected market
+- exactly 12 distinct songs
 
-Return exactly 12 distinct songs.
+# YouTube metadata
+
+For each song, provide only the correct song title and primary artist.
+
+Do not invent or estimate:
+
+- description
+- duration
+- YouTube URL
+- thumbnail URL
+
+Set description, duration, youtube_url, and thumbnail_url to null.
+A separate YouTube service will populate these fields later.
 """
 
 

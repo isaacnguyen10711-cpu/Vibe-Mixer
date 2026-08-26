@@ -19,7 +19,7 @@ async def generate_playlist(request: MoodEntryRequest):
         playlist = await generate_playlist_with_OpenAI(request)
         for song in playlist.songs:
             #Search for the song on YouTube and retrieve its video ID, description, thumbnail URL, and duration.
-            video_data = search_youtube_video(f"{song.title} by {song.artist}")
+            video_data = await search_youtube_video(f"{song.title} by {song.artist}")
             song.description = video_data['description']
             song.youtube_url = f"https://www.youtube.com/watch?v={video_data['video_id']}"
             song.thumbnail_url = video_data['thumbnail_url']
