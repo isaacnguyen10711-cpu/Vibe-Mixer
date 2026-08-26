@@ -7,7 +7,7 @@ import asyncio
 service = build('youtube', 'v3', developerKey=settings.YouTube_API_Key)
 
 #This api call searches for a video on YouTube based on a search query.
-async def search_youtube_video(search_query: str):
+async def search_youtube_video(search_query: str) -> dict:
     try:
         #service.search().list() is used to get the videoId, title, description and thumbnail_url of the first video that matches the search query.
         video_request = service.search().list(
@@ -49,7 +49,6 @@ async def search_youtube_video(search_query: str):
 
     return {
         'video_id': video_id,
-        'title': title,
         'description': description, 
         'thumbnail_url': thumbnail_url,
         'duration': duration
