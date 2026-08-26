@@ -101,12 +101,12 @@ async def generate_playlist_with_OpenAI(request: MoodEntryRequest) -> GeneratedP
     input = f"""
         User mood values:
         
-        - Happiness: {request.happiness}/10
-        - Energy: {request.energetic}/10
-        - Calmness: {request.calming}/10
-        - Anxiety: {request.anxiety}/10
-        - Sadness: {request.sadness}/10
-        - Anger: {request.anger}/10
+        - Happy: {request.happy}/10
+        - Energetic: {request.energetic}/10
+        - Calm: {request.calm}/10
+        - Anxious: {request.anxious}/10
+        - Sad: {request.sad}/10
+        - Angry: {request.angry}/10
     
     Selected music market: {request.music_market.value}
         """
