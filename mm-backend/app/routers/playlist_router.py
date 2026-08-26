@@ -26,6 +26,6 @@ async def generate_playlist(request: MoodEntryRequest):
             song.duration = video_data['duration']
         return playlist
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=400, detail="Failed to generate playlist: ")
     
  
