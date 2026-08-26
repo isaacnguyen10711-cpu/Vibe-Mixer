@@ -13,7 +13,8 @@ You are a music recommendation expert.
 Create a cohesive playlist containing exactly 12 distinct songs that
 matches the user's mood values and selected music market.
 
-The user provides six mood intensity values from 1 to 10:
+The user provides six mood intensity values from 1 to 5, where 1 means
+very low and 5 means very high:
 
 - happy
 - energetic
@@ -114,12 +115,12 @@ async def generate_playlist_with_OpenAI(request: MoodEntryRequest) -> GeneratedP
     input = f"""
         User mood values:
         
-        - Happy: {request.happy}/10
-        - Energetic: {request.energetic}/10
-        - Calm: {request.calm}/10
-        - Anxious: {request.anxious}/10
-        - Sad: {request.sad}/10
-        - Angry: {request.angry}/10
+        - Happy: {request.happy}/5
+        - Energetic: {request.energetic}/5
+        - Calm: {request.calm}/5
+        - Anxious: {request.anxious}/5
+        - Sad: {request.sad}/5
+        - Angry: {request.angry}/5
     
     Selected music market: {request.music_market.value}
         """

@@ -9,12 +9,12 @@ class MoodEntry (SQLModel, table=True):
     #Generate columns for the mood_entries table in the database.
     id: int | None = Field(default=None, primary_key=True)
     user_id: int = Field(foreign_key="users.id", index=True)
-    happy: int = Field(default=1, ge=1, le=10)
-    energetic: int = Field(default=1, ge=1, le=10)
-    calm: int = Field(default=1, ge=1, le=10)
-    anxious: int = Field(default=1, ge=1, le=10)
-    sad: int = Field(default=1, ge=1, le=10)
-    angry: int = Field(default=1, ge=1, le=10)
+    happy: int = Field(default=1, ge=1, le=5)
+    energetic: int = Field(default=1, ge=1, le=5)
+    calm: int = Field(default=1, ge=1, le=5)
+    anxious: int = Field(default=1, ge=1, le=5)
+    sad: int = Field(default=1, ge=1, le=5)
+    angry: int = Field(default=1, ge=1, le=5)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
 
@@ -25,12 +25,12 @@ class MusicMarket(StrEnum):
     
 
 class MoodEntryRequest(SQLModel):
-    happy: int = Field(default=1, ge=1, le=10)
-    energetic: int = Field(default=1, ge=1, le=10)
-    calm: int = Field(default=1, ge=1, le=10)
-    anxious: int = Field(default=1, ge=1, le=10)
-    sad: int = Field(default=1, ge=1, le=10)
-    angry: int = Field(default=1, ge=1, le=10)
+    happy: int = Field(default=1, ge=1, le=5)
+    energetic: int = Field(default=1, ge=1, le=5)
+    calm: int = Field(default=1, ge=1, le=5)
+    anxious: int = Field(default=1, ge=1, le=5)
+    sad: int = Field(default=1, ge=1, le=5)
+    angry: int = Field(default=1, ge=1, le=5)
     music_market: MusicMarket = MusicMarket.USUK
 
 
