@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import ButtonRow from '../components/ButtonRow';
 import GenerateButton from '../components/GenerateButton';
+import GeneratedPlaylist from '../components/GeneratedPlaylist';
 import MusicMarketDropDownButton from '../components/MusicMarketDropDownButton';
+import type { GeneratedPlaylistData } from '../types/playlist';
 
 function HomePage() {
     const [happy, setHappy] = useState(1);
@@ -12,9 +14,7 @@ function HomePage() {
     const [angry, setAngry] = useState(1);
     const [musicMarket, setMusicMarket] = useState("usuk");
 
-    const [playlistTitle, setPlaylistTitle] = useState("");
-    const [playlistDescription, setPlaylistDescription] = useState("");
-    const [generatedSongs, setGeneratedSongs] = useState([]);
+    const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(null);
     
 
     const handleGenerateSongs = async() => {
@@ -26,8 +26,13 @@ function HomePage() {
             body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
         });
 
-        const data = await response.json();
-        setGeneratedSongs(data.songs);
+        if (!response.ok) {
+            throw new Error("Failed to generate playlist");
+        }
+
+        const data: GeneratedPlaylistData = await response.json();
+        setPlaylist(data);
+        setShowPlaylist(true);
         console.log('Response data:', data);
 
         console.log('Generating songs with moods:', { happy, energetic, calm, sad, anxious, angry });
@@ -101,6 +106,11 @@ function HomePage() {
             <div className="my-6 flex justify-center px-4 md:justify-end md:px-0">
                 <GenerateButton onClick={handleGenerateSongs} />
             </div>
+
+
+            {playlist && (
+                <GeneratedPlaylist playlist={playlist} />
+            )}
         </div>
 
     )
