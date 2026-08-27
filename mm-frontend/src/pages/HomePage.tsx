@@ -18,7 +18,7 @@ function HomePage() {
                 <h1 className="text-2xl mt-5 font-bold md:text-3xl lg:text-5xl">How are you feeling today?</h1>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-20 justify-center mt-10">
+            <div className="grid md:grid-cols-3 md:gap-20 lg:gap-40 justify-center mt-10">
                 <div>
                     <div className="flex justify-center">
                         <h1 className="text-lg font-medium md:text-xl lg:text-2xl">Happy</h1>
