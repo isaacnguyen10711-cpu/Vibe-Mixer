@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ButtonRow from '../components/ButtonRow';
+import GenerateButton from '../components/GenerateButton';
 
 function HomePage() {
     const [happy, setHappy] = useState(1);
@@ -8,6 +9,29 @@ function HomePage() {
     const [sad, setSad] = useState(1);
     const [anxious, setAnxious] = useState(1);
     const [angry, setAngry] = useState(1);
+    const [musicMarket, setMusicMarket] = useState("");
+
+
+    const [playListTitle, setPlayListTitle] = useState("");
+    const [playListDescription, setPlayListDescription] = useState("");
+    const [generatedSongs, setGeneratedSongs] = useState([]);
+    
+
+    const handleGenerateSongs = async() => {
+        const response = await fetch('http://127.0.0.1:8000/playlist/generate-playlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry }),
+        });
+
+        const data = await response.json();
+        setGeneratedSongs(data.songs);
+        console.log('Response data:', data);
+
+        console.log('Generating songs with moods:', { happy, energetic, calm, sad, anxious, angry });
+    };
 
     return (
         <div className="max-w-6xl md:max-w-7xl mx-auto max-h-screen md:px-8">
@@ -67,6 +91,9 @@ function HomePage() {
                         <ButtonRow selectedMood={angry} onMoodSelect={setAngry} />
                     </div>
                 </div>
+            </div>
+            <div className="my-6 flex justify-center px-4 md:justify-end md:px-0">
+                <GenerateButton onClick={handleGenerateSongs} />
             </div>
         </div>
 
