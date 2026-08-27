@@ -48,7 +48,7 @@ function HomePage() {
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
                     </div>
                     <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={happy} onMoodSelect={setHappy} />
+                        <ButtonRow selectedMood={happy} setMood={setHappy} />
                     </div>
                 </div>
                 <div>
@@ -56,7 +56,7 @@ function HomePage() {
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Energetic</h1>
                     </div>
                     <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={energetic} onMoodSelect={setEnergetic} />
+                        <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
                     </div>
                 </div>
                 <div>
@@ -64,7 +64,7 @@ function HomePage() {
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Calm</h1>
                     </div>
                     <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={calm} onMoodSelect={setCalm} />
+                        <ButtonRow selectedMood={calm} setMood={setCalm} />
                     </div>
                 </div>
                 <div>
@@ -72,7 +72,7 @@ function HomePage() {
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Sad</h1>
                     </div>
                     <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={sad} onMoodSelect={setSad} />
+                        <ButtonRow selectedMood={sad} setMood={setSad} />
                     </div>
                 </div>
                 <div>
@@ -80,7 +80,7 @@ function HomePage() {
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Anxious</h1>
                     </div>
                     <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={anxious} onMoodSelect={setAnxious} />
+                        <ButtonRow selectedMood={anxious} setMood={setAnxious} />
                     </div>
                 </div>
                 <div>
@@ -88,7 +88,7 @@ function HomePage() {
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Angry</h1>
                     </div>
                     <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={angry} onMoodSelect={setAngry} />
+                        <ButtonRow selectedMood={angry} setMood={setAngry} />
                     </div>
                 </div>
             </div>

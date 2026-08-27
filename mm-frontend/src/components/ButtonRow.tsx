@@ -1,6 +1,6 @@
 type ButtonRowProps = {
   selectedMood: number;
-  onMoodSelect: (mood: number) => void;
+  setMood: (mood: number) => void;
 };
 
 function ButtonRow( props: ButtonRowProps) {
@@ -18,7 +18,7 @@ function ButtonRow( props: ButtonRowProps) {
                                 ? "scale-110 border-violet-400 bg-violet-400 text-white"
                                 : "border-pink-300 hover:scale-110 hover:bg-violet-300"
                         }`}
-                        onClick={() => props.onMoodSelect(moodLevel)}
+                        onClick={() => props.setMood(moodLevel)}
                     >
                         {moodLevel}
                     </button>
