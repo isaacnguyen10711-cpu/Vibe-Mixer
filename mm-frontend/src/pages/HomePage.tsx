@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ButtonRow from '../components/ButtonRow';
 import GenerateButton from '../components/GenerateButton';
+import MusicMarketDropDownButton from '../components/MusicMarketDropDownButton';
 
 function HomePage() {
     const [happy, setHappy] = useState(1);
@@ -9,11 +10,10 @@ function HomePage() {
     const [sad, setSad] = useState(1);
     const [anxious, setAnxious] = useState(1);
     const [angry, setAngry] = useState(1);
-    const [musicMarket, setMusicMarket] = useState("");
+    const [musicMarket, setMusicMarket] = useState("usuk");
 
-
-    const [playListTitle, setPlayListTitle] = useState("");
-    const [playListDescription, setPlayListDescription] = useState("");
+    const [playlistTitle, setPlaylistTitle] = useState("");
+    const [playlistDescription, setPlaylistDescription] = useState("");
     const [generatedSongs, setGeneratedSongs] = useState([]);
     
 
@@ -23,7 +23,7 @@ function HomePage() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry }),
+            body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
         });
 
         const data = await response.json();
@@ -36,18 +36,24 @@ function HomePage() {
     return (
         <div className="max-w-6xl md:max-w-7xl mx-auto max-h-screen md:px-8">
             <div className="flex justify-center">
-                <h1 className="text-lg mt-10 italic underline font-medium md:text-xl md:mt-15 lg:text-2xl">Mood Mixer</h1>
+                <h1 className="text-lg mt-7 italic underline font-medium md:text-xl md:mt-15 lg:text-2xl">Mood Mixer</h1>
             </div>
             <div className="flex flex-wrap justify-center">
                 <h1 className="text-2xl mt-2 font-bold md:text-3xl md:mt-5 lg:text-5xl ">How are you feeling today?</h1>
             </div>
+            <div className="mt-4 flex justify-end px-4 md:px-0">
+                <MusicMarketDropDownButton
+                    value={musicMarket}
+                    onChange={setMusicMarket}
+                />
+            </div>
 
-            <div className="grid gap-3 my-5 md:grid-cols-3 md:gap-20 lg:gap-40 justify-center md:mt-15">
+            <div className="grid gap-3 md:grid-cols-3 md:gap-20 lg:gap-40 justify-center md:mt-10">
                 <div>
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
                     </div>
-                    <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
+                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                         <ButtonRow selectedMood={happy} setMood={setHappy} />
                     </div>
                 </div>
@@ -55,7 +61,7 @@ function HomePage() {
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Energetic</h1>
                     </div>
-                    <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
+                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                         <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
                     </div>
                 </div>
@@ -63,7 +69,7 @@ function HomePage() {
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Calm</h1>
                     </div>
-                    <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
+                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                         <ButtonRow selectedMood={calm} setMood={setCalm} />
                     </div>
                 </div>
@@ -71,7 +77,7 @@ function HomePage() {
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Sad</h1>
                     </div>
-                    <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
+                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                         <ButtonRow selectedMood={sad} setMood={setSad} />
                     </div>
                 </div>
@@ -79,7 +85,7 @@ function HomePage() {
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Anxious</h1>
                     </div>
-                    <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
+                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                         <ButtonRow selectedMood={anxious} setMood={setAnxious} />
                     </div>
                 </div>
@@ -87,7 +93,7 @@ function HomePage() {
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Angry</h1>
                     </div>
-                    <div className="grid grid-cols-5 mt-2 gap-2 md:gap-4 md:mt-3 lg:gap-8 lg:mt-4">
+                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                         <ButtonRow selectedMood={angry} setMood={setAngry} />
                     </div>
                 </div>
