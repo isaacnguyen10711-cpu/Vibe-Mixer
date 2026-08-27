@@ -1,7 +1,4 @@
-type ButtonRowProps = {
-  selectedMood: number;
-  setMood: (mood: number) => void;
-};
+import type { ButtonRowProps } from "../types/componentProps";
 
 function ButtonRow( props: ButtonRowProps) {
     return (

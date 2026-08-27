@@ -1,8 +1,5 @@
 
-type MusicMarketDropDownButtonProps = {
-    value: string;
-    onChange: (market: string) => void;
-};
+import type { MusicMarketDropDownButtonProps } from "../types/componentProps";
 
 function MusicMarketDropDownButton(props: MusicMarketDropDownButtonProps) {
     return (

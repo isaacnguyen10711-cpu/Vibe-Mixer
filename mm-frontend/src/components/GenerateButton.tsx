@@ -1,6 +1,7 @@
 
+import type { GenerateButtonProps } from "../types/componentProps";
 
-function GenerateButton(props: { onClick: () => void }) {
+function GenerateButton(props: GenerateButtonProps) {
     return (
         <button
             type="button"
@@ -13,4 +14,3 @@ function GenerateButton(props: { onClick: () => void }) {
 }
 
 export default GenerateButton
-
