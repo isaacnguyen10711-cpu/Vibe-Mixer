@@ -1,40 +1,29 @@
 type ButtonRowProps = {
+  selectedMood: number;
   onMoodSelect: (mood: number) => void;
 };
 
 function ButtonRow( props: ButtonRowProps) {
     return (
         <>
-            <button
-                className="px-2 py-1 md:px-3 md:py-2 lg:px-4 lg:py-3 mx-1 rounded hover:bg-violet-300 outline outline-2 outline-pink-300 transition duration-300 ease-in-out hover:scale-110"
-                onClick={() => props.onMoodSelect(1)}
-            >
-                1
-            </button>
-            <button
-                className="px-2 py-1 md:px-3 md:py-2 lg:px-4 lg:py-3 mx-1 rounded hover:bg-violet-300 outline outline-2 outline-pink-300 transition duration-300 ease-in-out hover:scale-110"
-                onClick={() => props.onMoodSelect(2)}
-            >
-                2
-            </button>
-            <button
-                className="px-2 py-1 md:px-3 md:py-2 lg:px-4 lg:py-3 mx-1  rounded hover:bg-violet-300 outline outline-2 outline-pink-300 transition duration-300 ease-in-out hover:scale-110"
-                onClick={() => props.onMoodSelect(3)}
-            >
-                3
-            </button>
-            <button
-                className="px-2 py-1 md:px-3 md:py-2 lg:px-4 lg:py-3 mx-1 rounded hover:bg-violet-300 outline outline-2 outline-pink-300 transition duration-300 ease-in-out hover:scale-110"
-                onClick={() => props.onMoodSelect(4)}
-            >
-                4
-            </button>
-            <button
-                className="px-2 py-1 md:px-3 md:py-2 lg:px-4 lg:py-3 mx-1 rounded hover:bg-violet-300 outline outline-2 outline-pink-300 transition duration-300 ease-in-out hover:scale-110"
-                onClick={() => props.onMoodSelect(5)}
-            >
-                5
-            </button>
+            {[1, 2, 3, 4, 5].map((moodLevel) => {
+                const isSelected = props.selectedMood === moodLevel;
+
+                return (
+                    <button
+                        key={moodLevel}
+                        type="button"
+                        className={`min-h-6 rounded border-2 px-3 py-2 text-sm transition duration-300 ease-in-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-500 active:scale-95 md:px-3 md:text-base lg:px-4 lg:text-lg ${
+                            isSelected
+                                ? "scale-110 border-violet-400 bg-violet-400 text-white"
+                                : "border-pink-300 hover:scale-110 hover:bg-violet-300"
+                        }`}
+                        onClick={() => props.onMoodSelect(moodLevel)}
+                    >
+                        {moodLevel}
+                    </button>
+                );
+            })}
         </>
     )
 }
