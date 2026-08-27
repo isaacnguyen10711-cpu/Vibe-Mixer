@@ -1,4 +1,4 @@
-import type { GeneratedPlaylist } from "./playlist";
+import type { GeneratedPlaylistData } from "./playlist";
 
 export type ButtonRowProps = {
     selectedMood: number;
@@ -15,5 +15,5 @@ export type MusicMarketDropDownButtonProps = {
 };
 
 export type GeneratedPlaylistProps = {
-    playlist: GeneratedPlaylist;
+    playlist: GeneratedPlaylistData; 
 };
