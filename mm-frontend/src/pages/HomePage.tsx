@@ -3,7 +3,9 @@ import ButtonRow from '../components/ButtonRow';
 import GenerateButton from '../components/GenerateButton';
 import GeneratedPlaylist from '../components/GeneratedPlaylist';
 import MusicMarketDropDownButton from '../components/MusicMarketDropDownButton';
+import IsLoadingPopUp from '../components/IsLoadingPopUp';
 import type { GeneratedPlaylistData } from '../types/playlist';
+
 
 function HomePage() {
     const [happy, setHappy] = useState(1);
@@ -15,16 +17,19 @@ function HomePage() {
     const [musicMarket, setMusicMarket] = useState("usuk");
 
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(null);
+    const [loading, setLoading] = useState(false);
     
 
     const handleGenerateSongs = async() => {
-        const response = await fetch('http://127.0.0.1:8000/playlist/generate-playlist', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
-        });
+        setLoading(true);
+        try {
+            const response = await fetch('http://127.0.0.1:8000/playlist/generate-playlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
+            });
 
         if (!response.ok) {
             throw new Error("Failed to generate playlist");
@@ -32,14 +37,19 @@ function HomePage() {
 
         const data: GeneratedPlaylistData = await response.json();
         setPlaylist(data);
-        setShowPlaylist(true);
         console.log('Response data:', data);
-
         console.log('Generating songs with moods:', { happy, energetic, calm, sad, anxious, angry });
+          
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
         <div className="max-w-6xl md:max-w-7xl mx-auto max-h-screen md:px-8">
+            <IsLoadingPopUp loading={loading} />
             <div className="flex justify-center">
                 <h1 className="text-lg mt-7 italic underline font-medium md:text-xl md:mt-15 lg:text-2xl">Mood Mixer</h1>
             </div>
