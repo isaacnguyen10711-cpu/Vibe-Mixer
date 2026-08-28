@@ -48,22 +48,42 @@ function HomePage() {
     };
 
     return (
-        <div className="max-w-6xl md:max-w-7xl mx-auto max-h-screen md:px-8">
+        <div className="mx-auto w-full max-w-5xl md:max-w-6xl md:px-8 lg:max-w-7xl">
             <IsLoadingPopUp loading={loading} />
             <div className="flex justify-center">
-                <h1 className="text-lg mt-7 italic underline font-medium md:text-xl md:mt-15 lg:text-2xl">Mood Mixer</h1>
+                <h1 className={`text-lg italic underline font-medium md:text-xl lg:text-2xl ${
+                    playlist ? "mt-3 md:mt-4 lg:mt-15" : "mt-7 md:mt-15"
+                }`}>Mood Mixer</h1>
             </div>
-            <div className="flex flex-wrap justify-center">
-                <h1 className="text-2xl mt-2 font-bold md:text-3xl md:mt-5 lg:text-5xl ">How are you feeling today?</h1>
-            </div>
-            <div className="mt-4 flex justify-end px-4 md:px-0">
-                <MusicMarketDropDownButton
-                    value={musicMarket}
-                    onChange={setMusicMarket}
-                />
-            </div>
+            {playlist ? (
+                <>
+                    <GeneratedPlaylist playlist={playlist} />
+                    <div className="mb-4 flex justify-center md:justify-end">
+                        <button
+                            type="button"
+                            className="cursor-pointer rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 active:scale-95 md:px-5"
+                            onClick={() => setPlaylist(null)}
+                        >
+                            Clear results
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className="flex flex-wrap justify-center">
+                        <h1 className="mt-2 text-2xl font-bold md:mt-5 md:text-3xl lg:text-5xl">
+                            How are you feeling today?
+                        </h1>
+                    </div>
 
-            <div className="grid gap-3 md:grid-cols-3 md:gap-20 lg:gap-40 justify-center md:mt-10">
+                    <div className="mt-4 flex justify-end px-4 md:px-0">
+                        <MusicMarketDropDownButton
+                            value={musicMarket}
+                            onChange={setMusicMarket}
+                        />
+                    </div>
+
+                    <div className="grid gap-3 md:grid-cols-3 md:gap-20 lg:gap-40 justify-center md:mt-10">
                 <div>
                     <div className="flex justify-center">
                         <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
@@ -112,14 +132,11 @@ function HomePage() {
                         <ButtonRow selectedMood={angry} setMood={setAngry} />
                     </div>
                 </div>
-            </div>
-            <div className="my-6 flex justify-center px-4 md:justify-end md:px-0">
-                <GenerateButton onClick={handleGenerateSongs} />
-            </div>
-
-
-            {playlist && (
-                <GeneratedPlaylist playlist={playlist} />
+                    </div>
+                    <div className="my-6 flex justify-center px-4 md:justify-end md:px-0">
+                        <GenerateButton onClick={handleGenerateSongs} />
+                    </div>
+                </>
             )}
         </div>
 
