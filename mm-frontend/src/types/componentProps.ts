@@ -17,3 +17,7 @@ export type MusicMarketDropDownButtonProps = {
 export type GeneratedPlaylistProps = {
     playlist: GeneratedPlaylistData; 
 };
+
+export type IsLoadingPopUpProps = {
+    loading: boolean;
+};
