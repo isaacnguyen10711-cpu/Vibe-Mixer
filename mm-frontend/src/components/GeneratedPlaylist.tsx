@@ -8,7 +8,7 @@ function formatDuration(duration: number) {
 
 function GeneratedPlaylist(props: GeneratedPlaylistProps) {
     return (
-        <div className="mx-3 my-2 rounded-xl border-2 border-violet-300 bg-white/50 p-3 md:mx-0 md:p-3 md:my-4 lg:my-8 lg:p-5">
+        <div className="mx-3 my-2 rounded-xl border-2 border-violet-300 bg-white/50 p-3 md:mx-0 md:my-4 md:p-3 lg:my-8 lg:p-5">
             <h2 className="text-base font-bold md:text-lg lg:text-xl">
                 {props.playlist.name}
             </h2>
@@ -18,9 +18,9 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
 
             <div className="mt-2 grid grid-cols-2 gap-2 md:grid-cols-3 md:gap-3 lg:mt-4 lg:grid-cols-4">
                 {props.playlist.songs.map((song) => (
-                    <article
+                    <div
                         key={`${song.title}-${song.artist}`}
-                        className="flex min-w-0 flex-col overflow-hidden rounded-lg bg-white p-2 md:flex-row md:gap-2 md:p-3 lg:p-2"
+                        className="flex min-w-0 flex-col overflow-hidden rounded-lg bg-white p-2 transition duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-lg active:scale-95 md:flex-row md:gap-2 md:p-3 lg:p-2"
                     >
                         {song.thumbnail_url && (
                             <button
@@ -58,7 +58,7 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                                 </a>
                             )}
                         </div>
-                    </article>
+                    </div>
                 ))}
             </div>
         </div>

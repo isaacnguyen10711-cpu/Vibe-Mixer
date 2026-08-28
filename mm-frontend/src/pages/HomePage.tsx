@@ -61,7 +61,7 @@ function HomePage() {
                     <div className="mb-4 flex gap-4 justify-center md:justify-end md:gap-6">
                         <button
                             type="button"
-                            className="inline-flex min-h-12 w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-200 shadow-[0_7px_0_rgb(91_33_182)] hover:bg-violet-100 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 active:scale-95 md:w-44 md:px-5 md:text-base lg:w-48 lg:text-lg"
+                            className="inline-flex min-h-12 w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 shadow-[0_7px_0_rgb(91_33_182)] hover:bg-violet-100 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 active:scale-95 md:w-44 md:px-5 md:text-base lg:w-48 lg:text-lg"
                             onClick={() => setPlaylist(null)}
                         >
                             Clear results
