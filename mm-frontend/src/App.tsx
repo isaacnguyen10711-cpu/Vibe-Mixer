@@ -1,10 +1,15 @@
 import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import { Route, Routes } from 'react-router'
 
 function App() {
 
  return (
-  <div className="flex min-h-screen justify-center bg-linear-to-r from-violet-200 to-red-100">
-    <HomePage/>
+  <div className="flex min-h-[100dvh] w-full justify-center bg-linear-to-r from-violet-200 to-red-100">
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
   </div>
  )
 }

@@ -5,6 +5,7 @@ import GeneratedPlaylist from '../components/GeneratedPlaylist';
 import MusicMarketDropDownButton from '../components/MusicMarketDropDownButton';
 import IsLoadingPopUp from '../components/IsLoadingPopUp';
 import type { GeneratedPlaylistData } from '../types/playlist';
+import { Link } from 'react-router';
 
 
 function HomePage() {
@@ -50,10 +51,16 @@ function HomePage() {
     return (
         <div className="mx-auto w-full max-w-5xl md:max-w-6xl md:px-8 lg:max-w-7xl">
             <IsLoadingPopUp loading={loading} />
+            <div className="flex justify-end px-4 pt-4 md:px-0">
+                <Link
+                    to="/login"
+                    className="rounded-lg border-2 border-violet-500 bg-white px-3 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:px-4 md:text-base lg:px-5 lg:text-lg"
+                >
+                    Log in
+                </Link>
+            </div>
             <div className="flex justify-center">
-                <h1 className={`text-lg italic underline font-medium md:text-xl lg:text-2xl ${
-                    playlist ? "mt-3 md:mt-4 lg:mt-15" : "mt-7 md:mt-15"
-                }`}>Mood Mixer</h1>
+                <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Mood Mixer</h1>
             </div>
             {playlist ? (
                 <>
