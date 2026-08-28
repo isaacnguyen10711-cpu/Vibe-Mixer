@@ -11,7 +11,6 @@ from app.config import settings
 
 # Import the models to ensure they are registered with SQLModel's metadata
 from app.models.user import User 
-from app.models.mood_entry import MoodEntry  
 from app.models.playlist import Playlist  
 from app.models.songs import Songs  
 

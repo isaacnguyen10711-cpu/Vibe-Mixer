@@ -8,7 +8,7 @@ class Playlist (SQLModel, table=True):
     
     #Generate columns for the playlists table in the database.
     id: int | None = Field(default=None, primary_key=True)
-    mood_entry_id: int = Field(foreign_key="mood_entries.id", index=True)
+    user_id: int = Field(foreign_key="users.id", index=True)
     name: str = Field(max_length=100)
     description: str | None = Field(default=None, max_length=255)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
