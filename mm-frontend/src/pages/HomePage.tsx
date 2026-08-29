@@ -19,10 +19,23 @@ function HomePage() {
     const [angry, setAngry] = useState(1);
     const [musicMarket, setMusicMarket] = useState("usuk");
 
-    const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(null);
     const [loading, setLoading] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(() => {
+        // Initialize the playlist state from session storage if available and return to playlist state
+        const savedPlaylist = sessionStorage.getItem('playlist');
+        return savedPlaylist ? JSON.parse(savedPlaylist) : null;
+    });
 
+    // Update session storage whenever the playlist state changes
+    useEffect(() => {
+        if (playlist) {
+            sessionStorage.setItem('playlist', JSON.stringify(playlist));
+        }
+        else {
+            sessionStorage.removeItem('playlist');
+        }
+    }, [playlist]);
 
     useEffect(() => {
         const loggedIn = localStorage.getItem('access_token')
