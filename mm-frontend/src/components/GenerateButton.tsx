@@ -1,7 +1,6 @@
+import type { ActionButtonProps } from "../types/componentProps";
 
-import type { GenerateButtonProps } from "../types/componentProps";
-
-function GenerateButton(props: GenerateButtonProps) {
+function GenerateButton(props: ActionButtonProps) {
     return (
         <button
             type="button"
@@ -10,7 +9,7 @@ function GenerateButton(props: GenerateButtonProps) {
         >
             Generate Songs
         </button>
-    )
+    );
 }
 
-export default GenerateButton
+export default GenerateButton;

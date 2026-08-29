@@ -5,7 +5,7 @@ export type ButtonRowProps = {
     setMood: (mood: number) => void;
 };
 
-export type GenerateButtonProps = {
+export type ActionButtonProps = {
     onClick: () => void;
 };
 
