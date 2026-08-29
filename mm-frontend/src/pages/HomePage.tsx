@@ -34,6 +34,7 @@ function HomePage() {
         }
     }, []);
 
+
     const handleLogout = () => {
         localStorage.clear();
         setIsLoggedIn(false);

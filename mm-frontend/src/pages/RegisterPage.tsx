@@ -75,9 +75,6 @@ function RegisterPage() {
                 </Link>
 
                 <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">Register</h1>
-                <p className="mt-2 text-sm text-gray-600 md:text-base lg:text-base">
-                    Register to save and view your playlists.
-                </p>
 
                 <form className="mt-6 space-y-4 md:mt-8 md:space-y-5 lg:space-y-5" onSubmit={handleRegister}>
                     <div>
