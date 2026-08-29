@@ -20,13 +20,13 @@ function HomePage() {
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(null);
     const [loading, setLoading] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    
+
 
     useEffect(() => {
         const loggedIn = localStorage.getItem('access_token')
         if (loggedIn) {
             setIsLoggedIn(true);
-        } 
+        }
         else {
             setIsLoggedIn(false);
         }
@@ -37,7 +37,7 @@ function HomePage() {
         setIsLoggedIn(false);
     };
 
-    const handleGenerateSongs = async() => {
+    const handleGenerateSongs = async () => {
         setLoading(true);
         try {
             const response = await fetch('http://127.0.0.1:8000/playlist/generate-playlist', {
@@ -48,19 +48,50 @@ function HomePage() {
                 body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
             });
 
-        if (!response.ok) {
-            throw new Error("Failed to generate playlist");
-        }
+            if (!response.ok) {
+                throw new Error("Failed to generate playlist");
+            }
 
-        const data: GeneratedPlaylistData = await response.json();
-        setPlaylist(data);
-        console.log('Response data:', data);
-        console.log('Generating songs with moods:', { happy, energetic, calm, sad, anxious, angry });
-          
+            const data: GeneratedPlaylistData = await response.json();
+            setPlaylist(data);
+            console.log('Response data:', data);
+            console.log('Generating songs with moods:', { happy, energetic, calm, sad, anxious, angry });
+
         } catch (error) {
             console.error(error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleSavePlaylist = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/playlist/save-playlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                },
+                body: JSON.stringify(playlist),
+            });
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    throw new Error("Unauthorized. Please log in to your account to save the playlist.");
+                }
+                else {
+                    throw new Error("Failed to save playlist");
+                }
+            }
+
+            const data = await response.json();
+            alert("Playlist saved successfully!");
+            console.log('Saved playlist:', data);
+        }
+        catch (error) {
+            error instanceof Error
+                ? alert(error.message)
+                : console.error(error);
         }
     };
 
@@ -91,17 +122,24 @@ function HomePage() {
             {playlist ? (
                 <>
                     <GeneratedPlaylist playlist={playlist} />
-                    <div className="mb-4 flex gap-4 justify-center md:justify-end md:gap-6">
+                    <div className="mb-4 mx-3 flex gap-4 justify-center md:justify-end md:mx-0 md:gap-6">
                         <button
                             type="button"
                             className="inline-flex min-h-12 w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 shadow-[0_7px_0_rgb(91_33_182)] hover:bg-violet-100 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 active:scale-95 md:w-44 md:px-5 md:text-base lg:w-48 lg:text-lg"
                             onClick={() => setPlaylist(null)}
                         >
-                            Try Again
+                            Different Moods?
                         </button>
                         <GenerateButton
                             onClick={handleGenerateSongs}
                         />
+                        <button
+                            type="button"
+                            className="inline-flex min-h-12 w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 shadow-[0_7px_0_rgb(91_33_182)] hover:bg-violet-100 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 active:scale-95 md:w-44 md:px-5 md:text-base lg:w-48 lg:text-lg"
+                            onClick={handleSavePlaylist}
+                        >
+                            Save Playlist
+                        </button>
                     </div>
                 </>
             ) : (
@@ -120,54 +158,54 @@ function HomePage() {
                     </div>
 
                     <div className="grid gap-3 md:grid-cols-3 md:gap-20 lg:gap-40 justify-center md:mt-10">
-                <div>
-                    <div className="flex justify-center">
-                        <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
-                    </div>
-                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={happy} setMood={setHappy} />
-                    </div>
-                </div>
-                <div>
-                    <div className="flex justify-center">
-                        <h1 className="text-base font-medium md:text-xl lg:text-2xl">Energetic</h1>
-                    </div>
-                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
-                    </div>
-                </div>
-                <div>
-                    <div className="flex justify-center">
-                        <h1 className="text-base font-medium md:text-xl lg:text-2xl">Calm</h1>
-                    </div>
-                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={calm} setMood={setCalm} />
-                    </div>
-                </div>
-                <div>
-                    <div className="flex justify-center">
-                        <h1 className="text-base font-medium md:text-xl lg:text-2xl">Sad</h1>
-                    </div>
-                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={sad} setMood={setSad} />
-                    </div>
-                </div>
-                <div>
-                    <div className="flex justify-center">
-                        <h1 className="text-base font-medium md:text-xl lg:text-2xl">Anxious</h1>
-                    </div>
-                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={anxious} setMood={setAnxious} />
-                    </div>
-                </div>
-                <div>
-                    <div className="flex justify-center">
-                        <h1 className="text-base font-medium md:text-xl lg:text-2xl">Angry</h1>
-                    </div>
-                    <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
-                        <ButtonRow selectedMood={angry} setMood={setAngry} />
-                    </div>
-                </div>
+                        <div>
+                            <div className="flex justify-center">
+                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
+                            </div>
+                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                                <ButtonRow selectedMood={happy} setMood={setHappy} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex justify-center">
+                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Energetic</h1>
+                            </div>
+                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                                <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex justify-center">
+                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Calm</h1>
+                            </div>
+                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                                <ButtonRow selectedMood={calm} setMood={setCalm} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex justify-center">
+                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Sad</h1>
+                            </div>
+                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                                <ButtonRow selectedMood={sad} setMood={setSad} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex justify-center">
+                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Anxious</h1>
+                            </div>
+                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                                <ButtonRow selectedMood={anxious} setMood={setAnxious} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="flex justify-center">
+                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Angry</h1>
+                            </div>
+                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                                <ButtonRow selectedMood={angry} setMood={setAngry} />
+                            </div>
+                        </div>
                     </div>
                     <div className="my-6 flex justify-center px-4 md:justify-end md:px-0">
                         <GenerateButton onClick={handleGenerateSongs} />

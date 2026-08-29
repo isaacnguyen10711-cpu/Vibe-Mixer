@@ -9,6 +9,9 @@ function RegisterPage() {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
+    // Need to add succesful registration feedback to the user.
+
+
     const handleRegister = async (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError("");
@@ -41,13 +44,13 @@ function RegisterPage() {
                     password,
                 }),
             });
-
-            if (response.status === 409) {
-                throw new Error("Email already exists.");
-            }
-
             if (!response.ok) {
-                throw new Error("Registration failed. Please try again.");
+                if (response.status === 409) {
+                    throw new Error("Email already exists.");
+                }
+                else {
+                    throw new Error("Registration failed. Please try again.");
+                }
             }
 
             navigate("/login");
