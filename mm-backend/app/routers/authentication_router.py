@@ -18,13 +18,13 @@ password_hasher = PasswordHash.recommended()
 
 @router.post("/register", response_model=UserResponse, status_code=HTTP_201_CREATED)
 async def register(request: UserRegistrationRequest, db: DatabaseSession) -> UserResponse:
-    #Check if email or username already exists in the database.
-    query = select(User).where((User.email == request.email) | (User.username == request.username))
+    #Check if the email already exists in the database.
+    query = select(User).where(User.email == request.email)
     existing_user = await db.exec(query)
     existing_user = existing_user.first()
     
     if existing_user:
-        raise HTTPException(status_code=HTTP_409_CONFLICT, detail="Email or username already exists.")
+        raise HTTPException(status_code=HTTP_409_CONFLICT, detail="Email already exists.")
     
     #Validate the password length and complexity.
     if len(request.password) < 8:
@@ -35,7 +35,6 @@ async def register(request: UserRegistrationRequest, db: DatabaseSession) -> Use
     #Create a new user instance and save it to the database.
     new_user = User(
         email=request.email,
-        username=request.username,
         hashed_password=hashed_password
     )
     db.add(new_user)
