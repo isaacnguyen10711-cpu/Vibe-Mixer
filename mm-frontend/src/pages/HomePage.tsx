@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ButtonRow from '../components/ButtonRow';
 import GenerateButton from '../components/GenerateButton';
 import GeneratedPlaylist from '../components/GeneratedPlaylist';
@@ -19,7 +19,23 @@ function HomePage() {
 
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(null);
     const [loading, setLoading] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     
+
+    useEffect(() => {
+        const loggedIn = localStorage.getItem('access_token')
+        if (loggedIn) {
+            setIsLoggedIn(true);
+        } 
+        else {
+            setIsLoggedIn(false);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.clear();
+        setIsLoggedIn(false);
+    };
 
     const handleGenerateSongs = async() => {
         setLoading(true);
@@ -52,14 +68,24 @@ function HomePage() {
         <div className="mx-auto w-full max-w-5xl md:max-w-6xl md:px-8 lg:max-w-7xl">
             <IsLoadingPopUp loading={loading} />
             <div className="flex justify-end px-4 pt-4 md:px-0">
-                <Link
-                    to="/login"
-                    className="rounded-lg border-2 border-violet-500 bg-white px-3 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:px-4 md:text-base lg:px-5 lg:text-lg"
-                >
-                    Log in
-                </Link>
+                {!isLoggedIn ? (
+                    <Link
+                        to="/login"
+                        className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
+                    >
+                        Log in
+                    </Link>
+                ) : (
+                    <Link
+                        to="/"
+                        onClick={handleLogout}
+                        className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
+                    >
+                        Log out
+                    </Link>
+                )}
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-[-16px] md:mt-0">
                 <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Mood Mixer</h1>
             </div>
             {playlist ? (
@@ -71,7 +97,7 @@ function HomePage() {
                             className="inline-flex min-h-12 w-40 cursor-pointer items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 shadow-[0_7px_0_rgb(91_33_182)] hover:bg-violet-100 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-600 active:scale-95 md:w-44 md:px-5 md:text-base lg:w-48 lg:text-lg"
                             onClick={() => setPlaylist(null)}
                         >
-                            Clear results
+                            Try Again
                         </button>
                         <GenerateButton
                             onClick={handleGenerateSongs}

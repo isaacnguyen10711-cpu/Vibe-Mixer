@@ -13,7 +13,7 @@ function LoginPage() {
         setError("");
 
         if (!usernameOrEmail.trim() || !password) {
-            setError("Enter your username or email and password.");
+            setError("Username or email and password are required.");
             return;
         }
 
@@ -120,6 +120,9 @@ function LoginPage() {
                     >
                         {loading ? "Logging in..." : "Log in"}
                     </button>
+                    <Link to="/register" className="block text-center text-sm text-violet-600 hover:underline md:text-base lg:text-base">
+                        Don't have an account? Sign up
+                    </Link>
                 </form>
             </section>
         </main>
