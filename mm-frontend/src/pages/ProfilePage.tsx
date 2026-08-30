@@ -47,6 +47,56 @@ function ProfilePage() {
         setEmailIsEditable(!emailIsEditable);
     };
 
+    const handleSaveUsername = async () => {
+        try {
+        const response = await fetch("http://127.0.0.1:8000/users/profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`
+            },
+            body: JSON.stringify({ username, email })
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to update username.");
+        }
+
+        toggleUsernameEditable();
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                console.error("Error updating username:", error.message);
+            }
+            alert("An error occurred while updating the username.");
+        }
+    };
+
+    const handleSaveEmail = async () => {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/users/profile", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`
+                },
+                body: JSON.stringify({ username, email })
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to update email.");
+            }
+
+            toggleEmailEditable();
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                console.error("Error updating email:", error.message);
+            }
+            alert("An error occurred while updating the email.");
+        }
+    };
+
 
     return (
         <>
@@ -54,7 +104,7 @@ function ProfilePage() {
                 <section className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-md md:p-8 lg:max-w-lg lg:p-9">
                     <Link
                         to="/"
-                        className="text-sm font-semibold text-violet-700 underline md:text-base"
+                        className="text-sm font-semibold text-violet-700 underline md:text-base lg:text-lg"
                     >
                         Back to Mood Mixer
                     </Link>
@@ -63,11 +113,11 @@ function ProfilePage() {
                         Profile
                     </h1>
 
-                    <p className="mt-2 text-sm text-gray-600 md:text-base">
+                    <p className="mt-2 text-sm text-gray-600 md:text-base lg:text-lg">
                         View your Mood Mixer account details.
                     </p>
 
-                    <div className="mt-6 space-y-3 rounded-xl bg-violet-100 p-4 md:mt-8 md:space-y-4 md:p-5 lg:p-6">
+                    <div className="mt-6 space-y-3 rounded-xl bg-violet-100 p-4 md:mt-8 md:space-y-4 md:p-5 lg:space-y-5 lg:p-6">
                         <div className="rounded-lg bg-white p-3 md:p-4 lg:p-5">
                             <p className="text-sm font-semibold text-violet-700 md:text-base lg:text-lg">
                                 Username
@@ -83,7 +133,7 @@ function ProfilePage() {
                                 />
                                 <button
                                     type="button"
-                                    onClick={toggleUsernameEditable}
+                                    onClick={handleSaveUsername}
                                     className="mt-2 text-sm text-violet-700 px-4 py-2 hover:cursor-pointer hover:text-violet-800 md:text-base lg:text-lg"
                                 >
                                     Save
@@ -122,7 +172,7 @@ function ProfilePage() {
                                     />
                                     <button
                                         type="button"
-                                        onClick={toggleEmailEditable}
+                                        onClick={handleSaveEmail}
                                         className="mt-2 px-4 py-2 text-sm text-violet-700 hover:cursor-pointer hover:text-violet-800 md:text-base lg:text-lg"
                                     >
                                         Save
@@ -145,10 +195,10 @@ function ProfilePage() {
                         </div>
 
                         <div className="rounded-lg bg-white p-3 md:p-4 lg:p-5">
-                            <p className="text-sm font-semibold text-violet-700 md:text-base">
+                            <p className="text-sm font-semibold text-violet-700 md:text-base lg:text-lg">
                                 Member since
                             </p>
-                            <p className="mt-1 text-sm text-gray-800 md:text-base">
+                            <p className="mt-1 text-sm text-gray-800 md:text-base lg:text-lg">
                                 {new Date(createdAt).toLocaleDateString()}
                             </p>
                         </div>
