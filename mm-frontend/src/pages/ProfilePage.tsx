@@ -15,30 +15,34 @@ function ProfilePage() {
                     Profile
                 </h1>
 
-                <div className="mt-6 space-y-4 rounded-xl bg-purple-200 p-4 md:mt-8 md:space-y-5 md:p-5 lg:space-y-5 lg:p-6">
-                    <div>
-                        <p className="text-sm font-semibold md:text-base lg:text-base">
+                <p className="mt-2 text-sm text-gray-600 md:text-base">
+                    View your Mood Mixer account details.
+                </p>
+
+                <div className="mt-6 space-y-3 rounded-xl bg-violet-100 p-4 md:mt-8 md:space-y-4 md:p-5 lg:p-6">
+                    <div className="rounded-lg bg-white p-3 md:p-4 lg:p-5">
+                        <p className="text-sm font-semibold text-violet-700 md:text-base">
                             Username
                         </p>
-                        <p className="mt-2 rounded-lg px-4 py-3 text-sm text-gray-700 md:px-5 md:text-base lg:py-4">
+                        <p className="mt-1 text-sm text-gray-800 md:text-base">
                             Not set yet
                         </p>
                     </div>
 
-                    <div>
-                        <p className="text-sm font-semibold md:text-base lg:text-base">
+                    <div className="rounded-lg bg-white p-3 md:p-4 lg:p-5">
+                        <p className="text-sm font-semibold text-violet-700 md:text-base">
                             Email
                         </p>
-                        <p className="mt-2 break-words rounded-lg px-4 py-3 text-sm text-gray-700 md:px-5 md:text-base lg:py-4">
+                        <p className="mt-1 break-words text-sm text-gray-800 md:text-base">
                             you@example.com
                         </p>
                     </div>
 
-                    <div>
-                        <p className="text-sm font-semibold md:text-base lg:text-base">
+                    <div className="rounded-lg bg-white p-3 md:p-4 lg:p-5">
+                        <p className="text-sm font-semibold text-violet-700 md:text-base">
                             Member since
                         </p>
-                        <p className="mt-2 rounded-lg px-4 py-3 text-sm text-gray-700 md:px-5 md:text-base lg:py-4">
+                        <p className="mt-1 text-sm text-gray-800 md:text-base">
                             Date will appear here
                         </p>
                     </div>

@@ -64,7 +64,7 @@ function LoginPage() {
 
     return (
         <main className="flex min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">
-            <section className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-md md:p-8 lg:max-w-lg lg:p-9">
+            <div className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-lg md:p-8 lg:max-w-[34rem] lg:p-9">
                 <Link to="/" className="text-sm font-semibold text-violet-700 underline md:text-base">
                     Back to Mood Mixer
                 </Link>
@@ -121,7 +121,7 @@ function LoginPage() {
                         Don't have an account? Sign up
                     </Link>
                 </form>
-            </section>
+            </div>
         </main>
     );
 }
