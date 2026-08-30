@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine
-from app.routers import authentication_router, playlist_router
+from app.routers import authentication_router, playlist_router, user_router
 
 
 @asynccontextmanager
@@ -16,6 +16,7 @@ app = FastAPI(title="Mood Mixer API", lifespan=lifespan)
 
 app.include_router(authentication_router.router)
 app.include_router(playlist_router.router)
+app.include_router(user_router.router)
 
 app.add_middleware(
     CORSMiddleware,
