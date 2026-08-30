@@ -13,8 +13,15 @@ class Playlist (SQLModel, table=True):
     description: str | None = Field(default=None, max_length=255)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     
-    
+#For generated playlist response from OpenAI
 class GeneratedPlaylist(SQLModel):
     name: str
     description: str
     songs: list[GeneratedSong]
+
+#For playlist response from the database to return in user profile
+class PlaylistResponse(SQLModel):
+    id: int
+    name: str
+    description: str | None
+    created_at: datetime
