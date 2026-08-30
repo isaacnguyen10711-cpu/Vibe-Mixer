@@ -27,3 +27,7 @@ class UserResponse(SQLModel):
 class TokenResponse(SQLModel):
     access_token: str
     token_type: str
+    
+class UserUpdateRequest(SQLModel):
+    username: str | None = Field(default=None, max_length=50)
+    email: str | None = Field(default=None, max_length=100)

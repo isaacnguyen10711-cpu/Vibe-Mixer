@@ -46,4 +46,5 @@ async def get_current_user(token: Token, db: DatabaseSession) -> User:
     
     return user 
 
+#Dependency that can be injected into a router to authorize and get the currently authorized user.
 AuthorizedUser = Annotated[User, Depends(get_current_user)]
