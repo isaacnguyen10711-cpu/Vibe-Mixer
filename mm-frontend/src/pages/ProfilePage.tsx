@@ -129,7 +129,7 @@ function ProfilePage() {
                                     type="text"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    className="mt-1 w-full rounded-md shadow-sm text-sm md:text-base lg:text-lg"
+                                    className="mt-1 w-full rounded-md shadow-sm outline-none text-sm md:text-base lg:text-lg"
                                 />
                                 <button
                                     type="button"
@@ -168,7 +168,7 @@ function ProfilePage() {
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="mt-1 w-full rounded-md shadow-sm text-sm md:text-base lg:text-lg"
+                                        className="mt-1 w-full rounded-md shadow-sm outline-none text-sm md:text-base lg:text-lg"
                                     />
                                     <button
                                         type="button"

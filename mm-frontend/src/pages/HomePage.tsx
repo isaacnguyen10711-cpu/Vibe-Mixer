@@ -8,6 +8,7 @@ import SavePlaylistButton from '../components/SavePlaylistButton';
 import IsLoadingPopUp from '../components/IsLoadingPopUp';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import { Link } from 'react-router';
+import { User } from 'lucide-react';
 
 
 function HomePage() {
@@ -20,7 +21,9 @@ function HomePage() {
     const [musicMarket, setMusicMarket] = useState("usuk");
 
     const [loading, setLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        return Boolean(localStorage.getItem('access_token'));
+    });
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(() => {
         // Initialize the playlist state from session storage if available and return to playlist state
         const savedPlaylist = sessionStorage.getItem('playlist');
@@ -36,17 +39,6 @@ function HomePage() {
             sessionStorage.removeItem('playlist');
         }
     }, [playlist]);
-
-    useEffect(() => {
-        const loggedIn = localStorage.getItem('access_token')
-        if (loggedIn) {
-            setIsLoggedIn(true);
-        }
-        else {
-            setIsLoggedIn(false);
-        }
-    }, []);
-
 
     const handleLogout = () => {
         localStorage.clear();
@@ -105,16 +97,19 @@ function HomePage() {
             console.log('Saved playlist:', data);
         }
         catch (error) {
-            error instanceof Error
-                ? alert(error.message)
-                : console.error(error);
+            if (error instanceof Error) {
+                alert(error.message);
+            }
+            else {
+                console.error(error);
+            }
         }
     };
 
     return (
         <div className="mx-auto w-full max-w-5xl md:max-w-6xl md:px-8 lg:max-w-7xl">
             <IsLoadingPopUp loading={loading} />
-            <div className="flex justify-end px-4 pt-4 md:px-0">
+            <div className="flex justify-end gap-3 px-4 pt-4 md:px-0">
                 {!isLoggedIn ? (
                     <Link
                         to="/login"
@@ -129,6 +124,16 @@ function HomePage() {
                         className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
                     >
                         Log out
+                    </Link>
+                )}
+                {isLoggedIn && (
+                    <Link
+                        to="/profile"
+                        aria-label="Open profile"
+                        title="Profile"
+                        className="flex items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-3 py-2 text-violet-700 transition hover:bg-violet-100 md:px-4 lg:px-5"
+                    >
+                        <User className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
                     </Link>
                 )}
             </div>
