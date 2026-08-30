@@ -1,6 +1,5 @@
 from sqlmodel import SQLModel, Field
 from typing import ClassVar
-from app.models.playlist import PlaylistResponse
 from datetime import UTC, datetime
 
 class User(SQLModel, table=True):
@@ -28,10 +27,3 @@ class UserResponse(SQLModel):
 class TokenResponse(SQLModel):
     access_token: str
     token_type: str
-    
-class UserProfileResponse(SQLModel):
-    id: int
-    username: str | None
-    email: str
-    playlists: list[PlaylistResponse]
-    created_at: datetime
