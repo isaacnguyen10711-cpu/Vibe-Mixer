@@ -3,7 +3,6 @@ from app.dependencies import DatabaseSession, AuthorizedUser
 from app.models.mood_entry import MoodEntryRequest
 from app.models.songs import Songs
 from app.models.playlist import Playlist, GeneratedPlaylist
-from app.models.songs import GeneratedSong
 from sqlmodel import select
 from app.services.openai_service import generate_playlist_with_OpenAI
 from app.services.youtube_service import search_youtube_video
@@ -30,6 +29,14 @@ async def generate_playlist(request: MoodEntryRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to generate playlist: {str(e)}")
     
+
+@router.get("/get-playlists/")
+async def get_playlists(db: DatabaseSession, user: AuthorizedUser):
+    query = select(Playlist).where(Playlist.user_id == user.id)
+    result = await db.exec(query)
+    playlists = result.all()
+    return playlists
+
     
 @router.post("/save-playlist")
 async def save_playlist(playlist: GeneratedPlaylist, db: DatabaseSession, user: AuthorizedUser):
