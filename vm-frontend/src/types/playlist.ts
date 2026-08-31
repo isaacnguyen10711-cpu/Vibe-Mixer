@@ -19,3 +19,10 @@ export type SavedPlaylist = {
     description: string | null;
     created_at: string;
 };
+
+export type SavedPlaylistData = {
+    id: number;
+    name: string;
+    description: string | null;
+    songs: GeneratedSong[];
+};
