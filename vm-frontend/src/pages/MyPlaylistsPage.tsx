@@ -36,8 +36,13 @@ function MyPlaylistsPage() {
     }, []); 
 
     return (
-        <main className="min-h-screen w-full px-4 py-8 md:px-8 lg:px-12">
-            <section className="mx-auto w-full max-w-5xl rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:p-8 lg:max-w-6xl lg:p-9">
+        <main className="min-h-screen w-full px-4 py-6 md:px-8 lg:px-12">
+            <div className="flex justify-center mt-4 md:mt-8">
+                <Link to="/">
+                <h1 className="inline-block text-xl mb-4 italic underline font-medium md:text-2xl md:mb-6">Vibe Mixer</h1>
+                </Link>
+            </div>
+            <div className="mx-auto w-full max-w-5xl rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:p-8 lg:max-w-6xl lg:p-9">
                 <Link
                     to="/profile"
                     className="text-sm font-semibold text-violet-700 underline md:text-base lg:text-lg"
@@ -105,7 +110,7 @@ function MyPlaylistsPage() {
                         )}
                     </>
                 )}
-            </section>
+            </div>
         </main>
     );
 }

@@ -52,7 +52,9 @@ function PlaylistDetailsPage() {
     return (
         <main className="max-w-5xl lg:max-w-7xl mx-auto p-2 md:p-6">
             <div className="flex justify-center mt-4 md:mt-8">
-                <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Vibe Mixer</h1>
+                <Link to="/">
+                <h1 className="text-xl italic underline font-medium md:text-2xl">Vibe Mixer</h1>
+                </Link>
             </div>
             <Link
                 to="/my-playlists"
