@@ -7,6 +7,33 @@ function MyPlaylistsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    useEffect(() => {
+        async function loadPlaylists() {
+            try {
+                const response = await fetch("http://127.0.0.1:8000/playlist/get-playlists/", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    },
+                });
+
+                if (!response.ok) {
+                    setError("Failed to load your saved playlists.");
+                    return;
+                }
+
+                const playlistData: SavedPlaylist[] = await response.json();
+                setPlaylists(playlistData);
+            }
+            catch {
+                setError("Failed to connect to the server.");
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+
+        loadPlaylists();
+    }, []);
 
     return (
         <main className="min-h-screen w-full px-4 py-8 md:px-8 lg:px-12">
