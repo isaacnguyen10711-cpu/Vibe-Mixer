@@ -2,6 +2,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
+import MyPlaylistsPage from './pages/MyPlaylistsPage'
 import { Route, Routes } from 'react-router'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/my-playlists" element={<MyPlaylistsPage />} />
     </Routes>
   </div>
  )
