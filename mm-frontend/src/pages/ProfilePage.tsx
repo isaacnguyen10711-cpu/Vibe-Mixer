@@ -117,8 +117,8 @@ function ProfilePage() {
                         View your Mood Mixer account details.
                     </p>
 
-                    <div className="mt-6 space-y-3 rounded-xl bg-violet-100 p-4 md:mt-8 md:space-y-4 md:p-5 lg:space-y-5 lg:p-6">
-                        <div className="rounded-lg bg-white p-3 md:p-4 lg:p-5">
+                    <div className="mt-4 space-y-3 rounded-xl bg-violet-100 p-4 md:space-y-4 md:p-5 lg:space-y-5 lg:p-6">
+                        <div className="rounded-lg bg-white p-3 md:p-2 lg:p-3">
                             <p className="text-sm font-semibold text-violet-700 md:text-base lg:text-lg">
                                 Username
                             </p>
@@ -206,7 +206,7 @@ function ProfilePage() {
 
                     <Link
                         to="/my-playlists"
-                        className="mt-6 block w-full rounded-lg bg-violet-600 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-violet-700 md:mt-8 md:text-base lg:text-lg"
+                        className="mt-4 block w-full rounded-lg bg-violet-600 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-violet-700 md:text-base lg:text-lg"
                     >
                         My playlists
                     </Link>

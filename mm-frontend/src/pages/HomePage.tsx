@@ -9,6 +9,7 @@ import IsLoadingPopUp from '../components/IsLoadingPopUp';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import { Link } from 'react-router';
 import { User } from 'lucide-react';
+import { jwtDecode } from 'jwt-decode';  
 
 
 function HomePage() {
@@ -21,24 +22,37 @@ function HomePage() {
     const [musicMarket, setMusicMarket] = useState("usuk");
 
     const [loading, setLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(() => {
-        return Boolean(localStorage.getItem('access_token'));
-    });
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(() => {
         // Initialize the playlist state from session storage if available and return to playlist state
         const savedPlaylist = sessionStorage.getItem('playlist');
         return savedPlaylist ? JSON.parse(savedPlaylist) : null;
     });
 
-    // Update session storage whenever the playlist state changes
+    const token = localStorage.getItem('access_token'); 
+
+    
     useEffect(() => {
+        // Check if the user is logged in based on the token's expiration time
+        if (token) {
+            const decodedToken = jwtDecode(token);
+            if (decodedToken.exp && decodedToken.exp * 1000 > Date.now()) {
+                setIsLoggedIn(true);
+            }
+            else {
+                localStorage.removeItem('access_token');
+                setIsLoggedIn(false);
+            }
+        }
+
+        // Update session storage whenever the playlist state changes
         if (playlist) {
             sessionStorage.setItem('playlist', JSON.stringify(playlist));
         }
         else {
             sessionStorage.removeItem('playlist');
         }
-    }, [playlist]);
+    }, [playlist, token]);
 
     const handleLogout = () => {
         localStorage.clear();
