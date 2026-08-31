@@ -50,7 +50,7 @@ function MyPlaylistsPage() {
                 </h1>
                 <p className="mt-2 text-sm text-gray-600 md:text-base lg:text-lg">
                     View the playlists you have saved.
-                </p>
+                </p> 
 
                 {loading && (
                     <p className="mt-8 text-sm text-gray-700 md:text-base lg:text-lg">

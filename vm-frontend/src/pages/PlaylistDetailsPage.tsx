@@ -1,11 +1,12 @@
 import GeneratedPlaylist from '../components/GeneratedPlaylist';
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import type { GeneratedPlaylistData } from '../types/playlist';
 
 function PlaylistDetailsPage() {
     const { playlistId } = useParams();
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(null);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         // Fetch playlist songs based on the playlistId
@@ -19,7 +20,7 @@ function PlaylistDetailsPage() {
                     }
                 );
 
-                if (!response.ok) { 
+                if (!response.ok) {
                     if (response.status === 401) {
                         throw new Error('Unauthorized. Please log in.');
                     }
@@ -32,25 +33,39 @@ function PlaylistDetailsPage() {
                 }
                 const data = await response.json();
                 setPlaylist(data);
-            } 
+            }
             catch (error) {
                 if (error instanceof Error) {
-                    console.error('Error fetching playlist songs:', error.message);
-                } 
+                    setError(error.message);
+                }
                 else {
-                    console.error('Error fetching playlist songs:', error);
+                    setError('An unknown error occurred while fetching playlist songs.');
                 }
             }
         }
-        
+
         if (playlistId) {
             fetchPlaylistSongs();
         }
     }, [playlistId]);
 
     return (
-        <main>
-            {playlist && (
+        <main className="max-w-5xl lg:max-w-7xl mx-auto p-2 md:p-6">
+            <div className="flex justify-center mt-4 md:mt-8">
+                <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Vibe Mixer</h1>
+            </div>
+            <Link
+                to="/my-playlists"
+                className="inline-block text-sm font-semibold text-violet-700 underline p-2 md:text-base lg:text-lg lg:mb-[-10px]"
+            >
+                Back to My Playlists
+            </Link>
+
+            {error && (
+                <p className="text-red-600 text-sm mt-2">{error}</p>
+            )}
+
+            {!error && playlist && (
                 <GeneratedPlaylist playlist={playlist} />
             )}
         </main>
