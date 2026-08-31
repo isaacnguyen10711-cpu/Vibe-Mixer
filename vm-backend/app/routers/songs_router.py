@@ -12,7 +12,11 @@ router = APIRouter(
 
 @router.get("/get-songs/{playlist_id}")
 async def get_songs(playlist_id: int, db: DatabaseSession, user: AuthorizedUser):
-    playlist_query = select(Playlist).where(Playlist.id == playlist_id, Playlist.user_id == user.id)
+    playlist_query = select(Playlist).where(
+        Playlist.id == playlist_id, 
+        Playlist.user_id == user.id
+        )
+    
     playlist_result = await db.exec(playlist_query)
     playlist = playlist_result.first()
     if playlist is None:
@@ -21,4 +25,9 @@ async def get_songs(playlist_id: int, db: DatabaseSession, user: AuthorizedUser)
     songs_query = select(Songs).where(Songs.playlist_id == playlist_id)
     result = await db.exec(songs_query)
     songs = result.all()
-    return songs
+    
+    return {
+        "name": playlist.name,
+        "description": playlist.description,
+        "songs": songs
+    }
