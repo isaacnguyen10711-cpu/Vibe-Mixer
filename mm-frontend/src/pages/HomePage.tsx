@@ -152,7 +152,7 @@ function HomePage() {
                 )}
             </div>
             <div className="flex justify-center mt-[-16px] md:mt-0">
-                <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Mood Mixer</h1>
+                <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Vibe Mixer</h1>
             </div>
             {playlist ? (
                 <>

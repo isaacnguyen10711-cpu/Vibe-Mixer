@@ -66,7 +66,7 @@ function LoginPage() {
         <main className="flex min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">
             <div className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-lg md:p-8 lg:max-w-[34rem] lg:p-9">
                 <Link to="/" className="text-sm font-semibold text-violet-700 underline md:text-base">
-                    Back to Mood Mixer
+                    Back to Vibe Mixer
                 </Link>
 
                 <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">Log in</h1>

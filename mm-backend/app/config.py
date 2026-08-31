@@ -2,15 +2,15 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    #Loaded from the DATABASE_URL variable in mm-backend/.env.
+    #Loaded from the DATABASE_URL variable in vm-backend/.env.
     DATABASE_URL: str
     
-    #Loaded from the jwt_secret_key variable in mm-backend/.env.
+    #Loaded from the jwt_secret_key variable in vm-backend/.env.
     JWT_SECRET_KEY: str
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION_MINUTES: int = 60 
     
-    #Loaded from the OpenAI_API_KEY variable in mm-backend/.env.
+    #Loaded from the OpenAI_API_KEY variable in vm-backend/.env.
     OpenAI_API_KEY: str
     OpenAI_Model: str
     

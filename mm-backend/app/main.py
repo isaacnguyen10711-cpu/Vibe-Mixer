@@ -12,7 +12,7 @@ async def lifespan(app: FastAPI):
     await engine.dispose()
 
 # The application instance imported and the lifespan function is passed to the FastAPI constructor to manage the application's lifespan events.
-app = FastAPI(title="Mood Mixer API", lifespan=lifespan)
+app = FastAPI(title="Vibe Mixer API", lifespan=lifespan)
 
 app.include_router(authentication_router.router)
 app.include_router(playlist_router.router)

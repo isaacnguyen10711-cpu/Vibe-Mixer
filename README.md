@@ -1,2 +1,2 @@
-# Mood-Mixer
+# Vibe Mixer
 Music playlists based on your mood

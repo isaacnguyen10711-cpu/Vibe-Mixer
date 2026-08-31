@@ -106,7 +106,7 @@ function ProfilePage() {
                         to="/"
                         className="text-sm font-semibold text-violet-700 underline md:text-base lg:text-lg"
                     >
-                        Back to Mood Mixer
+                        Back to Vibe Mixer
                     </Link>
 
                     <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">
@@ -114,7 +114,7 @@ function ProfilePage() {
                     </h1>
 
                     <p className="mt-2 text-sm text-gray-600 md:text-base lg:text-lg">
-                        View your Mood Mixer account details.
+                        View your Vibe Mixer account details.
                     </p>
 
                     <div className="mt-4 space-y-3 rounded-xl bg-violet-100 p-4 md:space-y-4 md:p-5 lg:space-y-5 lg:p-6">
