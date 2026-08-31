@@ -2,6 +2,10 @@
 
 Vibe Mixer is a full-stack web application that generates music playlists based on the user's mood and preferred music market.
 
+## Status
+
+In Development
+
 ## Features
 
 - Generate playlists from six mood values
@@ -70,6 +74,30 @@ Vibe Mixer is a full-stack web application that generates music playlists based 
 
 - OpenAI API
 - YouTube Data API v3
+
+## Future Implementations
+
+### Frontend
+- Add a playlist search and filtering feature
+- Add video embedding features to allow playing video without navigating to youtube
+- Allow users to edit playlist names and descriptions
+- Allow users to delete playlists
+- Add confirmation popup dialog when playlists are saved or deleted
+- Add loading and error popup dialog
+- Add motion and animation effects
+- Add protected routes for authenticated pages
+- Add a custom 404 page
+- Add password reset page
+
+### Backend
+- Add endpoints for updating and deleting playlists
+- Add searching and filtering logic
+- Add password reset and email verification
+- Add pagination for saved playlists
+- Improve API error handling and validation
+- Add rate limiting for logging in and OpenAI and YouTube API requests
+- Containerize the application with Docker
+- Deploy the API and PostgreSQL database
 
 ## Project Structure
 
