@@ -46,7 +46,8 @@ In Development
 
 ![Saved playlists page](vm-frontend/src/assets/demo/SavedPlaylistPage.png)
 
-###
+### Saved playlist details
+
 ![Playlist details page](vm-frontend/src/assets/demo/PlaylistDetailsPage.png)
 
 
