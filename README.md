@@ -72,7 +72,7 @@ Vibe Mixer is a full-stack web application that generates music playlists based 
 
 ```text
 Vibe-Mixer/
-├── vm-frontend/     # React frontend
-├── vm-backend/      # FastAPI backend
-└── README.md
+vm-frontend/     # React frontend
+vm-backend/      # FastAPI backend
+README.md
 ```
