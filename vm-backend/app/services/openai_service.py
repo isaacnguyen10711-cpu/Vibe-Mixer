@@ -3,7 +3,7 @@ from app.config import settings
 from app.models.mood_entry import MoodEntryRequest
 from app.models.playlist import GeneratedPlaylist
 
-client = AsyncOpenAI(api_key=settings.OpenAI_API_KEY)
+client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
 instructions = """
 You are a music recommendation expert.
@@ -140,7 +140,7 @@ async def generate_playlist_with_OpenAI(request: MoodEntryRequest) -> GeneratedP
     
     #Send the request to the OpenAI API and parse the response into a GeneratedPlaylist object.
     response = await client.responses.parse(
-        model=settings.OpenAI_Model,
+        model=settings.OPENAI_MODEL,
         instructions=instructions,
         input=input,
         #Parse the response into a GeneratedPlaylist object

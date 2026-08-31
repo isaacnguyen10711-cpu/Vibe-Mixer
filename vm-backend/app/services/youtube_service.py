@@ -4,7 +4,7 @@ import isodate
 import asyncio
 
 #Initialize the YouTube Data API client
-service = build('youtube', 'v3', developerKey=settings.YouTube_API_Key)
+service = build('youtube', 'v3', developerKey=settings.YOUTUBE_API_KEY)
 
 #This api call searches for a video on YouTube based on a search query.
 async def search_youtube_video(search_query: str) -> dict:
@@ -16,7 +16,7 @@ async def search_youtube_video(search_query: str) -> dict:
             type='video',
             maxResults=1,
             videoEmbeddable='true',
-            key=settings.YouTube_API_Key
+            key=settings.YOUTUBE_API_KEY
         )
 
         #Execute the request in a separate thread to avoid blocking the event loop.
@@ -33,7 +33,7 @@ async def search_youtube_video(search_query: str) -> dict:
         video_details_request = service.videos().list(
             part='contentDetails',
             id=video_id,
-            key=settings.YouTube_API_Key
+            key=settings.YOUTUBE_API_KEY
         )
 
         #Execute the request in a separate thread to avoid blocking the event loop.

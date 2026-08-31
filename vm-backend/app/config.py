@@ -10,11 +10,11 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRATION_MINUTES: int = 60 
     
-    #Loaded from the OpenAI_API_KEY variable in vm-backend/.env.
-    OpenAI_API_KEY: str
-    OpenAI_Model: str
+    #Loaded from the OPENAI_API_KEY variable in vm-backend/.env.
+    OPENAI_API_KEY: str
+    OPENAI_MODEL: str
     
-    YouTube_API_Key: str
+    YOUTUBE_API_KEY: str
 
     #Tell Pydantic where to find local environment variables.
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
