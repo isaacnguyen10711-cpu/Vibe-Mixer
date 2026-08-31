@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import MyPlaylistsPage from './pages/MyPlaylistsPage'
+import PlaylistDetailsPage from './pages/PlaylistDetailsPage'
 import { Route, Routes } from 'react-router'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/my-playlists" element={<MyPlaylistsPage />} />
+      <Route path="/my-playlist/:playlistId" element={<PlaylistDetailsPage />} />
     </Routes>
   </div>
  )

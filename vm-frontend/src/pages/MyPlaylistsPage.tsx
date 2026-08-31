@@ -81,10 +81,13 @@ function MyPlaylistsPage() {
                         ) : (
                             <div className="mt-8 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
                                 {playlists.map((playlist) => (
-                                    <div
+                                    <>
+                                    <Link
+                                        to={`/my-playlist/${playlist.id}`}
                                         key={playlist.id}
                                         className="rounded-xl border-2 border-violet-200 bg-white p-4 md:p-5 lg:p-6"
                                     >
+                                    <div>
                                         <h2 className="text-base font-bold text-violet-800 md:text-lg lg:text-xl">
                                             {playlist.name}
                                         </h2>
@@ -95,6 +98,8 @@ function MyPlaylistsPage() {
                                             Saved {new Date(playlist.created_at).toLocaleDateString()}
                                         </p>
                                     </div>
+                                </Link>
+                                </>
                                 ))}
                             </div>
                         )}
