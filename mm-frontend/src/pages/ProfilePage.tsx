@@ -203,6 +203,13 @@ function ProfilePage() {
                             </p>
                         </div>
                     </div>
+
+                    <Link
+                        to="/my-playlists"
+                        className="mt-6 block w-full rounded-lg bg-violet-600 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-violet-700 md:mt-8 md:text-base lg:text-lg"
+                    >
+                        My playlists
+                    </Link>
                 </section>
             </main>
         </>
