@@ -22,7 +22,7 @@ async def generate_playlist(request: MoodEntryRequest):
             #Search for the song on YouTube and retrieve its video ID, description, thumbnail URL, and duration.
             video_data = await search_youtube_video(f"{song.title} by {song.artist}")
             song.description = video_data['description']
-            song.youtube_url = f"https://www.youtube.com/watch?v={video_data['video_id']}"
+            song.youtube_url = video_data['youtube_url']
             song.thumbnail_url = video_data['thumbnail_url']
             song.duration = video_data['duration']
         return playlist

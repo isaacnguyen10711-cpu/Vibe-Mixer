@@ -24,7 +24,7 @@ async def search_youtube_video(search_query: str) -> dict:
         if not response['items']:
             raise ValueError(f"No video found for query: {search_query}")
         video_id = response['items'][0]['id']['videoId']
-        title = response['items'][0]['snippet']['title']
+        youtube_url = f"https://www.youtube.com/watch?v={video_id}"
         description = response['items'][0]['snippet']['description']
         thumbnail_url = response['items'][0]['snippet']['thumbnails']['default']['url']
 
@@ -49,6 +49,7 @@ async def search_youtube_video(search_query: str) -> dict:
 
     return {
         'video_id': video_id,
+        'youtube_url': youtube_url,
         'description': description, 
         'thumbnail_url': thumbnail_url,
         'duration': duration
