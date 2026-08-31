@@ -18,29 +18,29 @@ Vibe Mixer is a full-stack web application that generates music playlists based 
 
 ### Mood selection
 
-![Vibe Mixer home page](mm-frontend/src/assets/demo/HomePage.png)
+![Vibe Mixer home page](vm-frontend/src/assets/demo/HomePage.png)
 
 ### Loading state
 
-![Playlist loading state](mm-frontend/src/assets/demo/Loading.png)
+![Playlist loading state](vm-frontend/src/assets/demo/Loading.png)
 
 ### Generated playlist
 
-![Generated playlist](mm-frontend/src/assets/demo/GeneratedPlaylist.png)
+![Generated playlist](vm-frontend/src/assets/demo/GeneratedPlaylist.png)
 
 ### Authentication
 
-![Login page](mm-frontend/src/assets/demo/LoginPage.png)
+![Login page](vm-frontend/src/assets/demo/LoginPage.png)
 
-![Register page](mm-frontend/src/assets/demo/RegisterPage.png)
+![Register page](vm-frontend/src/assets/demo/RegisterPage.png)
 
 ### Profile
 
-![Profile page](mm-frontend/src/assets/demo/ProfilePage.png)
+![Profile page](vm-frontend/src/assets/demo/ProfilePage.png)
 
 ### Saved playlists
 
-![Saved playlists page](mm-frontend/src/assets/demo/SavedPlaylistPage.png)
+![Saved playlists page](vm-frontend/src/assets/demo/SavedPlaylistPage.png)
 
 
 ## Technology Stack

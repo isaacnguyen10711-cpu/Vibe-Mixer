@@ -157,7 +157,7 @@ function HomePage() {
             {playlist ? (
                 <>
                     <GeneratedPlaylist playlist={playlist} />
-                    <div className="mb-4 mx-3 flex gap-4 justify-center md:justify-end md:mx-0 md:gap-6">
+                    <div className="mx-2 mb-4 flex justify-center gap-2 md:mx-0 md:justify-end md:gap-4 lg:mt-4 lg:gap-6">
                         <DifferentMoodsButton onClick={() => setPlaylist(null)} />
                         <GenerateButton onClick={handleGenerateSongs} />
                         <SavePlaylistButton onClick={handleSavePlaylist} />
@@ -178,7 +178,7 @@ function HomePage() {
                         />
                     </div>
 
-                    <div className="grid gap-3 md:grid-cols-3 md:gap-20 lg:gap-40 justify-center md:mt-10">
+                    <div className="grid gap-3 md:grid-cols-3 md:gap-20 md:space-y-[-10px] lg:gap-40 lg:space-y-[-25px] justify-center md:mt-10">
                         <div>
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
@@ -228,7 +228,7 @@ function HomePage() {
                             </div>
                         </div>
                     </div>
-                    <div className="my-6 flex justify-center px-4 md:justify-end md:px-0">
+                    <div className="my-6 flex justify-center px-4 md:justify-end md:px-0 md:mt-10 lg:mt-12">
                         <GenerateButton onClick={handleGenerateSongs} />
                     </div>
                 </>
