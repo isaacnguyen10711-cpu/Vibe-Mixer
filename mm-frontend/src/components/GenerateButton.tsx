@@ -1,6 +1,8 @@
-import type { ActionButtonProps } from "../types/componentProps";
+type GenerateButtonProps = {
+    onClick: () => void;
+};
 
-function GenerateButton(props: ActionButtonProps) {
+function GenerateButton(props: GenerateButtonProps) {
     return (
         <button
             type="button"

@@ -1,6 +1,8 @@
-import type { ActionButtonProps } from "../types/componentProps";
+type SavePlaylistButtonProps = {
+    onClick: () => void;
+};
 
-function SavePlaylistButton(props: ActionButtonProps) {
+function SavePlaylistButton(props: SavePlaylistButtonProps) {
     return (
         <button
             type="button"

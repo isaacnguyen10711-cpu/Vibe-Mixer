@@ -1,4 +1,8 @@
-import type { GeneratedPlaylistProps } from "../types/componentProps";
+import type { GeneratedPlaylistData } from "../types/playlist";
+
+type GeneratedPlaylistProps = {
+    playlist: GeneratedPlaylistData;
+};
 
 function formatDuration(duration: number) {
     const minutes = Math.floor(duration / 60);

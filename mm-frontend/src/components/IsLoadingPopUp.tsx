@@ -1,4 +1,6 @@
-import type { IsLoadingPopUpProps } from "../types/componentProps";
+type IsLoadingPopUpProps = {
+    loading: boolean;
+};
 
 function IsLoadingPopUp(props: IsLoadingPopUpProps) {
     if (!props.loading) return null;

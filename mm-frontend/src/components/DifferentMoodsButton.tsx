@@ -1,6 +1,8 @@
-import type { ActionButtonProps } from "../types/componentProps";
+type DifferentMoodsButtonProps = {
+    onClick: () => void;
+};
 
-function DifferentMoodsButton(props: ActionButtonProps) {
+function DifferentMoodsButton(props: DifferentMoodsButtonProps) {
     return (
         <button
             type="button"
