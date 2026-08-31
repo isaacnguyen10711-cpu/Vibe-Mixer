@@ -42,6 +42,9 @@ Vibe Mixer is a full-stack web application that generates music playlists based 
 
 ![Saved playlists page](vm-frontend/src/assets/demo/SavedPlaylistPage.png)
 
+###
+![Playlist details page](vm-frontend/src/assets/demo/PlaylistDetailsPage.png)
+
 
 ## Technology Stack
 
