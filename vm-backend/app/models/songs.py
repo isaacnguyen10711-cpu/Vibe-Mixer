@@ -7,7 +7,7 @@ class Songs(SQLModel, table=True):
     
     #Generate columns for the songs table in the database.
     id: int | None = Field(default=None, primary_key=True)
-    playlist_id: int = Field(foreign_key="playlists.id", index=True)
+    playlist_id: int = Field(foreign_key="playlists.id", ondelete="CASCADE", index=True)
     title: str = Field(max_length=100)
     artist: str = Field(max_length=100)
     duration: int | None = Field(default=None, ge=0)

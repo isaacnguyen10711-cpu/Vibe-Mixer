@@ -89,3 +89,18 @@ async def update_playlist(playlist_id: int, playlist: PlaylistUpdateRequest, db:
     await db.refresh(existing_playlist)
     return existing_playlist
 
+
+@router.delete("/delete-playlist/{playlist_id}")
+async def delete_playlist(playlist_id: int, db: DatabaseSession, user: AuthorizedUser):
+    query = select(Playlist).where(
+        Playlist.id == playlist_id, 
+        Playlist.user_id == user.id)
+    
+    result = await db.exec(query)
+    existing_playlist = result.first()
+    if not existing_playlist:
+        raise HTTPException(status_code=404, detail="Playlist not found.")
+
+    await db.delete(existing_playlist)
+    await db.commit()
+    return {"detail": "Playlist deleted successfully."} 
