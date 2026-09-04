@@ -19,6 +19,8 @@ async def get_db() -> AsyncIterator[AsyncSession]:
 #Dependency that can be injected into a router
 DatabaseSession = Annotated[AsyncSession, Depends(get_db)]
 
+
+
 #oauth2_scheme receives the token from the Authorization header and passes it to the get_current_user function.
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 Token = Annotated[str, Depends(oauth2_scheme)]

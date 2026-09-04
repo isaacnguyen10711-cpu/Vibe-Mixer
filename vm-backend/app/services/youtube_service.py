@@ -45,7 +45,7 @@ async def search_youtube_video(search_query: str) -> dict:
         duration = int(isodate.parse_duration(duration).total_seconds())
     
     except ValueError as e:
-        raise ValueError(f"Unable to find video for query: {search_query}. Error: {str(e)}")
+        raise ValueError(f"Unable to find video for query: {search_query}.")
 
     return {
         'video_id': video_id,

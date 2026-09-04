@@ -25,3 +25,9 @@ class PlaylistResponse(SQLModel):
     name: str
     description: str | None
     created_at: datetime
+
+
+class PlaylistUpdateRequest(SQLModel):
+    name: str
+    description: str 
+    

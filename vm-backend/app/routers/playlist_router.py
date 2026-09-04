@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from app.dependencies import DatabaseSession, AuthorizedUser
 from app.models.mood_entry import MoodEntryRequest
 from app.models.songs import Songs
-from app.models.playlist import Playlist, GeneratedPlaylist
+from app.models.playlist import Playlist, GeneratedPlaylist, PlaylistUpdateRequest
 from sqlmodel import select
 from app.services.openai_service import generate_playlist_with_OpenAI
 from app.services.youtube_service import search_youtube_video
@@ -68,3 +68,24 @@ async def save_playlist(playlist: GeneratedPlaylist, db: DatabaseSession, user: 
     await db.commit()
     await db.refresh(new_playlist)
     return new_playlist
+
+
+@router.put("/update-playlist/{playlist_id}")
+async def update_playlist(playlist_id: int, playlist: PlaylistUpdateRequest, db: DatabaseSession, user: AuthorizedUser):
+    query = select(Playlist).where(
+        Playlist.id == playlist_id, 
+        Playlist.user_id == user.id)
+    
+    result = await db.exec(query)
+    existing_playlist = result.first()
+    if not existing_playlist:
+        raise HTTPException(status_code=404, detail="Playlist not found.")
+
+    # Update the playlist's name and description
+    existing_playlist.name = playlist.name
+    existing_playlist.description = playlist.description
+
+    await db.commit()
+    await db.refresh(existing_playlist)
+    return existing_playlist
+
