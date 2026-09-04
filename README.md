@@ -16,6 +16,8 @@ In Development
 - Update profile information
 - Save generated playlists
 - View previously saved playlists
+- Search and Sort saved playlists
+- Update and Delete saved playlists
 - Responsive mobile, tablet, and desktop interface
 
 ## Screenshots
@@ -50,6 +52,8 @@ In Development
 
 ![Playlist details page](vm-frontend/src/assets/demo/PlaylistDetailsPage.png)
 
+### Play music video
+![Display music video](vm-frontend/src/assets/demo/EmbeddedVideo.png)
 
 ## Technology Stack
 
@@ -79,20 +83,12 @@ In Development
 ## Future Implementations
 
 ### Frontend
-- Add a playlist search and filtering feature
-- Add video embedding features to allow playing video without navigating to youtube
-- Allow users to edit playlist names and descriptions
-- Allow users to delete playlists
-- Add confirmation popup dialog when playlists are saved or deleted
-- Add loading and error popup dialog
 - Add motion and animation effects
 - Add protected routes for authenticated pages
 - Add a custom 404 page
 - Add password reset page
 
 ### Backend
-- Add endpoints for updating and deleting playlists
-- Add searching and filtering logic
 - Add password reset and email verification
 - Add pagination for saved playlists
 - Improve API error handling and validation
