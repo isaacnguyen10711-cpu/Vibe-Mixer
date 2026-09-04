@@ -2,6 +2,7 @@ import GeneratedPlaylist from '../components/GeneratedPlaylist';
 import { Link, useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import type { GeneratedPlaylistData } from '../types/playlist';
+import PopupDialog from '../components/PopupDialog';
 
 function PlaylistDetailsPage() {
     const { playlistId } = useParams();
@@ -11,8 +12,13 @@ function PlaylistDetailsPage() {
     const [isEditing, setIsEditing] = useState(false);
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+
     const [isSaving, setIsSaving] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+
+    const [isDeletePopUpOpen, setIsDeletePopUpOpen] = useState(false);
+    const [isErrorPopUpOpen, setIsErrorPopUpOpen] = useState(false);
+    const [popUpMessage, setPopUpMessage] = useState("");
 
     useEffect(() => {
         // Fetch playlist songs based on the playlistId
@@ -108,10 +114,13 @@ function PlaylistDetailsPage() {
         setIsEditing(false);
     }
 
+    function openDeletePopup() {
+        setPopUpMessage("Are you sure you want to delete this playlist?");
+        setIsDeletePopUpOpen(true);
+    }
+
     async function handleDelete() {
-        if (!playlistId || !window.confirm("Are you sure you want to delete this playlist?")) {
-            return;
-        }
+        if (!playlistId) return;
 
         setIsDeleting(true);
         setError(null);
@@ -137,9 +146,23 @@ function PlaylistDetailsPage() {
             setError(error instanceof Error ? error.message : "Failed to delete playlist.");
             setIsDeleting(false);
         }
+        finally {
+            setIsDeletePopUpOpen(false);
+        }
     }
 
     return (
+        <>
+        {isDeletePopUpOpen && (
+            <PopupDialog
+                message={popUpMessage}
+                confirmButtonText="Delete"
+                onPrimaryButtonClick={handleDelete}
+                cancelButtonText="Cancel"
+                onSecondaryButtonClick={() => setIsDeletePopUpOpen(false)}
+            />
+        )}
+        
         <main className="max-w-5xl lg:max-w-7xl mx-auto p-2 md:p-6">
             <div className="flex justify-center mt-4 md:mt-8">
                 <Link to="/">
@@ -214,7 +237,7 @@ function PlaylistDetailsPage() {
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={handleDelete}
+                                    onClick={openDeletePopup}
                                     disabled={isDeleting}
                                     className="rounded-lg  bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-red-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
                                 >
@@ -226,6 +249,7 @@ function PlaylistDetailsPage() {
                 </>
             )}
         </main>
+        </>
     );
 }
 
