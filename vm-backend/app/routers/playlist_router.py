@@ -98,7 +98,7 @@ async def delete_playlist(playlist_id: int, db: DatabaseSession, user: Authorize
     
     result = await db.exec(query)
     existing_playlist = result.first()
-    if not existing_playlist:
+    if existing_playlist is None:
         raise HTTPException(status_code=404, detail="Playlist not found.")
 
     await db.delete(existing_playlist)
