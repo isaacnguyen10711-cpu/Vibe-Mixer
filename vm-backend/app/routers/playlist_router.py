@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from app.dependencies import DatabaseSession, AuthorizedUser
 from app.models.mood_entry import MoodEntryRequest
 from app.models.songs import Songs
@@ -31,10 +31,21 @@ async def generate_playlist(request: MoodEntryRequest):
     
 
 @router.get("/get-playlists/")
-async def get_playlists(db: DatabaseSession, user: AuthorizedUser):
+async def get_playlists(db: DatabaseSession, user: AuthorizedUser, sort: str = Query(default="newest"), search: str | None = Query(default=None)):
     query = select(Playlist).where(Playlist.user_id == user.id)
-    result = await db.exec(query)
+
+    if search:
+        search = f"%{search.strip()}%"
+        query = query.where(Playlist.name.ilike(search))
+    
+    result = await db.exec(query) 
     playlists = result.all()
+    
+    if sort == "oldest":
+        playlists = sorted(playlists, key=lambda x: x.created_at)
+    elif sort == "newest":
+        playlists = sorted(playlists, key=lambda x: x.created_at, reverse=True)
+    
     return playlists
 
     
