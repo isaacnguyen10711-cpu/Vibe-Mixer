@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { GeneratedPlaylistData } from "../types/playlist";
 
 type GeneratedPlaylistProps = {
@@ -11,7 +12,33 @@ function formatDuration(duration: number) {
 }
 
 function GeneratedPlaylist(props: GeneratedPlaylistProps) {
+    const [videoUrl, setVideoUrl] = useState("");
+
     return (
+        <>
+        {videoUrl && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                <div className="w-full max-w-2xl rounded-lg bg-white p-3">
+                    <iframe
+                        src={videoUrl}
+                        title="YouTube video"
+                        className="aspect-video w-full"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                    />
+                    <div className="flex justify-end">
+                    <button
+                        type="button"
+                        onClick={() => setVideoUrl("")}
+                        className="mt-3 rounded bg-violet-600 px-4 py-2 text-white hover:cursor-pointer"
+                    >
+                        Close
+                    </button>
+                    </div>
+                </div> 
+            </div>
+        )}
+
         <div className="mx-3 my-2 rounded-xl border-2 border-violet-300 bg-white/50 p-3 md:mx-0 md:my-4 md:p-2 lg:my-6 lg:p-5">
             <h2 className="text-base font-bold md:text-lg lg:text-xl">
                 {props.playlist.name}
@@ -28,8 +55,9 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                     >
                         {song.thumbnail_url && (
                             <button
+                                type="button"
                                 className="cursor-pointer"
-                                onClick={() => window.open(song.youtube_url ? song.youtube_url : "", "_blank")}
+                                onClick={() => song.youtube_url && setVideoUrl(song.youtube_url.replace("watch?v=", "embed/") + "?autoplay=1")}
                             >
                                 <img
                                     src={song.thumbnail_url}
@@ -52,20 +80,20 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                             )}
 
                             {song.youtube_url && (
-                                <a
-                                    href={song.youtube_url}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="mt-auto pt-1 text-xs font-semibold text-violet-700 underline lg:text-sm"
+                                <button
+                                    type="button"
+                                    onClick={() => song.youtube_url && setVideoUrl(song.youtube_url.replace("watch?v=", "embed/") + "?autoplay=1")}
+                                    className="mt-auto pt-1 text-xs font-semibold text-violet-700 hover:cursor-pointer underline lg:text-sm"
                                 >
-                                    Play on YouTube
-                                </a>
+                                    Play video
+                                </button>
                             )}
                         </div>
                     </div>
                 ))}
             </div>
         </div>
+        </>
     );
 }
 
