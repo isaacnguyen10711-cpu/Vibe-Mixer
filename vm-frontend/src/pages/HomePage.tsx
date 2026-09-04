@@ -6,6 +6,7 @@ import GeneratedPlaylist from '../components/GeneratedPlaylist';
 import MusicMarketDropDownButton from '../components/MusicMarketDropDownButton';
 import SavePlaylistButton from '../components/SavePlaylistButton';
 import IsLoadingPopUp from '../components/IsLoadingPopUp';
+import PopupDialog from '../components/PopupDialog';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import { Link } from 'react-router';
 import { User } from 'lucide-react';
@@ -22,6 +23,7 @@ function HomePage() {
     const [musicMarket, setMusicMarket] = useState("usuk");
 
     const [loading, setLoading] = useState(false);
+    const [popUpMessage, setPopUpMessage] = useState<string | null>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [playlist, setPlaylist] = useState<GeneratedPlaylistData | null>(() => {
         // Initialize the playlist state from session storage if available and return to playlist state
@@ -107,12 +109,12 @@ function HomePage() {
             }
 
             const data = await response.json();
-            alert("Playlist saved successfully!");
+            setPopUpMessage("Playlist saved successfully!");
             console.log('Saved playlist:', data);
         }
         catch (error) {
             if (error instanceof Error) {
-                alert(error.message);
+                setPopUpMessage(error.message);
             }
             else {
                 console.error(error);
@@ -123,6 +125,13 @@ function HomePage() {
     return (
         <div className="mx-auto w-full max-w-5xl md:max-w-6xl md:px-8 lg:max-w-7xl">
             <IsLoadingPopUp loading={loading} />
+            {popUpMessage && (
+                <PopupDialog
+                    message={popUpMessage}
+                    confirmButtonText="OK"
+                    onPrimaryButtonClick={() => setPopUpMessage(null)}
+                />
+            )}
             <div className="flex justify-end gap-3 px-4 pt-4 md:px-0">
                 {!isLoggedIn ? (
                     <Link

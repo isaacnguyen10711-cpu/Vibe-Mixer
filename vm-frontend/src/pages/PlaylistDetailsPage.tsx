@@ -17,7 +17,6 @@ function PlaylistDetailsPage() {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const [isDeletePopUpOpen, setIsDeletePopUpOpen] = useState(false);
-    const [isErrorPopUpOpen, setIsErrorPopUpOpen] = useState(false);
     const [popUpMessage, setPopUpMessage] = useState("");
 
     useEffect(() => {
