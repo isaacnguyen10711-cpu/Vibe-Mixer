@@ -10,7 +10,7 @@ import PopupDialog from '../components/PopupDialog';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import { Link } from 'react-router';
 import { User } from 'lucide-react';
-import { jwtDecode } from 'jwt-decode';  
+import { jwtDecode } from 'jwt-decode';
 import PlayAllVideosButton from '../components/PlayAllSongsButton';
 
 
@@ -32,11 +32,11 @@ function HomePage() {
         return savedPlaylist ? JSON.parse(savedPlaylist) : null;
     });
 
-    const token = localStorage.getItem('access_token'); 
+    const token = localStorage.getItem('access_token');
 
     const [isPlayingAllVideos, setIsPlayingAllVideos] = useState(false);
 
-    
+
     useEffect(() => {
         // Check if the user is logged in based on the token's expiration time
         if (token) {
@@ -172,11 +172,15 @@ function HomePage() {
                         isPlayingAllVideos={isPlayingAllVideos}
                         onCloseAllVideos={() => setIsPlayingAllVideos(false)}
                     />
-                    <div className="mx-2 mb-4 flex justify-center gap-2 md:mx-0 md:justify-end md:gap-4 lg:mt-4 lg:gap-6">
-                        <DifferentMoodsButton onClick={() => setPlaylist(null)} />
-                        <GenerateButton onClick={handleGenerateSongs} />
-                        <SavePlaylistButton onClick={handleSavePlaylist} />
-                        <PlayAllVideosButton onClick={() => setIsPlayingAllVideos(true)} />
+                    <div className="mx-2 mb-4 grid grid-cols-2 gap-3 md:mx-0 md:flex md:justify-between lg:mt-4">
+                        <div className="flex flex-col items-center gap-3 md:flex-row md:justify-start md:gap-4 lg:gap-6">
+                            <DifferentMoodsButton onClick={() => setPlaylist(null)} />
+                            <GenerateButton onClick={handleGenerateSongs} />
+                        </div>
+                        <div className="flex flex-col items-center gap-3 md:flex-row md:justify-end md:gap-4 lg:gap-6">
+                            <SavePlaylistButton onClick={handleSavePlaylist} />
+                            <PlayAllVideosButton onClick={() => setIsPlayingAllVideos(true)} />
+                        </div>
                     </div>
                 </>
             ) : (
