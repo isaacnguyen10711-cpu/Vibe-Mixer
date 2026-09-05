@@ -1,9 +1,9 @@
 type PopupDialogProps = {
     message: string;
     confirmButtonText: string;
-    onPrimaryButtonClick: () => void;
+    onConfirmButtonClick: () => void;
     cancelButtonText?: string;
-    onSecondaryButtonClick?: () => void;
+    onCancelButtonClick?: () => void;
 };
 
 function PopupDialog(props: PopupDialogProps) {
@@ -19,10 +19,10 @@ function PopupDialog(props: PopupDialogProps) {
                 </p>
 
                 <div className="mt-5 flex justify-center gap-3 md:mt-6 md:gap-4">
-                    {props.cancelButtonText && props.onSecondaryButtonClick && (
+                    {props.cancelButtonText && props.onCancelButtonClick && (
                         <button
                             type="button"
-                            onClick={props.onSecondaryButtonClick}
+                            onClick={props.onCancelButtonClick}
                             className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 hover:cursor-pointer hover:bg-violet-100 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
                         >
                             {props.cancelButtonText}
@@ -31,7 +31,7 @@ function PopupDialog(props: PopupDialogProps) {
 
                     <button
                         type="button"
-                        onClick={props.onPrimaryButtonClick}
+                        onClick={props.onConfirmButtonClick}
                         className="rounded-lg border-2 border-violet-700 bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-violet-700 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
                     >
                         {props.confirmButtonText}

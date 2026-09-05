@@ -3,6 +3,8 @@ import type { GeneratedPlaylistData } from "../types/playlist";
 
 type GeneratedPlaylistProps = {
     playlist: GeneratedPlaylistData;
+    isPlayingAllVideos?: boolean;
+    onCloseAllVideos?: () => void;
 };
 
 function formatDuration(duration: number) {
@@ -14,8 +16,40 @@ function formatDuration(duration: number) {
 function GeneratedPlaylist(props: GeneratedPlaylistProps) {
     const [videoUrl, setVideoUrl] = useState("");
 
+    // Extract video IDs from the playlist's YouTube URLs
+    const videoIdList = props.playlist.songs
+        .map((song) => song.youtube_url?.split("v=")[1]?.split("&")[0])
+    
+    // Build the YouTube playlist URL using the extracted video IDs and join them
+     const playlistUrl =
+        `https://www.youtube.com/embed?autoplay=1&playlist=${videoIdList.join(",")}`;
+
     return (
         <>
+        {props.isPlayingAllVideos && videoIdList.length > 0 && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+                <div className="w-full max-w-2xl rounded-lg bg-white p-3">
+                    <iframe
+                        src={playlistUrl}
+                        title="YouTube video"
+                        className="aspect-video w-full"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                    />
+                    <div className="flex justify-end">
+                    <button
+                        type="button"
+                        onClick={props.onCloseAllVideos}
+                        className="mt-3 rounded bg-violet-600 px-4 py-2 text-white hover:cursor-pointer"
+                    >
+                        Close
+                    </button>
+                    </div>
+                </div> 
+            </div>
+        )}
+
+
         {videoUrl && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
                 <div className="w-full max-w-2xl rounded-lg bg-white p-3">
