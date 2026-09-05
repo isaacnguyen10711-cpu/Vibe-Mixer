@@ -106,7 +106,7 @@ function ProfilePage() {
                 <PopupDialog
                     message={popUpMessage}
                     confirmButtonText="OK"
-                    onPrimaryButtonClick={() => setPopUpMessage(null)}
+                    onConfirmButtonClick={() => setPopUpMessage(null)}
                 />
             )}
             <main className="flex flex-col min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">

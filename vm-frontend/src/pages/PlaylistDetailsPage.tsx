@@ -156,9 +156,9 @@ function PlaylistDetailsPage() {
             <PopupDialog
                 message={popUpMessage}
                 confirmButtonText="Delete"
-                onPrimaryButtonClick={handleDelete}
+                onConfirmButtonClick={handleDelete}
                 cancelButtonText="Cancel"
-                onSecondaryButtonClick={() => setIsDeletePopUpOpen(false)}
+                onCancelButtonClick={() => setIsDeletePopUpOpen(false)}
             />
         )}
         
