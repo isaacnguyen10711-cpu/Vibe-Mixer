@@ -14,10 +14,21 @@ router = APIRouter(
 )
 
 @router.post("/generate-playlist")
-async def generate_playlist(request: MoodEntryRequest):
+async def generate_playlist(request: MoodEntryRequest, db: DatabaseSession, user: AuthorizedUser):
+    # Retrieve the user's favorite songs from the database.
+    favorite_songs_query = (
+    select(Songs).join(Playlist, Songs.playlist_id == Playlist.id).where(
+        Playlist.user_id == user.id,
+        Songs.is_favorite.is_(True),
+    )
+)
+    result = await db.exec(favorite_songs_query)
+    favorite_songs = result.all()
+
+    
     #Validate the mood values in the request.
     try:
-        playlist = await generate_playlist_with_OpenAI(request)
+        playlist = await generate_playlist_with_OpenAI(request, favorite_songs)
         for song in playlist.songs:
             #Search for the song on YouTube and retrieve its video ID, description, thumbnail URL, and duration.
             video_data = await search_youtube_video(f"{song.title} by {song.artist}")

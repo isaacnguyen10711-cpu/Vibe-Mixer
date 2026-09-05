@@ -124,7 +124,7 @@ A separate YouTube service will populate these fields later.
 """
 
 
-async def generate_playlist_with_OpenAI(request: MoodEntryRequest) -> GeneratedPlaylist:
+async def generate_playlist_with_OpenAI(request: MoodEntryRequest, favorite_songs: list[str]) -> GeneratedPlaylist:
     input = f"""
         User mood values:
         
