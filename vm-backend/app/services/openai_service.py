@@ -124,7 +124,7 @@ A separate YouTube service will populate these fields later.
 """
 
 
-async def generate_playlist_with_OpenAI(request: MoodEntryRequest, favorite_songs: list[str]) -> GeneratedPlaylist:
+async def generate_playlist_with_OpenAI(request: MoodEntryRequest, favorite_songs_str: str | None = None) -> GeneratedPlaylist:
     input = f"""
         User mood values:
         
@@ -136,6 +136,14 @@ async def generate_playlist_with_OpenAI(request: MoodEntryRequest, favorite_song
         - Angry: {request.angry}/5
     
     Selected music market: {request.music_market.value}
+
+    The user's favourite songs are:
+
+    {favorite_songs_str or "The user has no favourite songs yet."}
+
+    Use the favourite songs to understand the user's music taste.
+    Recommend related songs, but do not repeat the favourite songs.
+
         """
     
     #Send the request to the OpenAI API and parse the response into a GeneratedPlaylist object.
