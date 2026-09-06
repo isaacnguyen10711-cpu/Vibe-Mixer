@@ -32,25 +32,24 @@ async def generate_playlist(request: MoodEntryRequest):
  
 @router.post("/generate-personalised-playlist")
 async def generate_personalised_playlist(request: MoodEntryRequest, db: DatabaseSession, user: AuthorizedUser):
-    # Retrieve the user's favorite songs from the database.
-    favorite_songs_query = (
-    select(Songs).join(Playlist, Songs.playlist_id == Playlist.id).where(
-        Playlist.user_id == user.id,
-        Songs.is_favorite.is_(True),
+    # Retrieve songs from all playlists saved by the user.
+    saved_songs_query = (
+        select(Songs)
+        .join(Playlist, Songs.playlist_id == Playlist.id)
+        .where(Playlist.user_id == user.id)
     )
-)
-    result = await db.exec(favorite_songs_query)
-    favorite_songs = result.all()
+    result = await db.exec(saved_songs_query)
+    saved_songs = result.all()
     
-    # Convert the favorite songs to a string format for OpenAI input.
-    favorite_songs_str = ""
-    for song in favorite_songs:
-        favorite_songs_str += f"{song.title} by {song.artist}\n"
+    # Convert the saved songs to a string format for OpenAI input.
+    saved_songs_str = ""
+    for song in saved_songs:
+        saved_songs_str += f"{song.title} by {song.artist}\n"
 
     
     #Validate the mood values in the request.
-    try:
-        playlist = await generate_playlist_with_OpenAI(request, favorite_songs_str)
+    try: 
+        playlist = await generate_playlist_with_OpenAI(request, saved_songs_str)
         for song in playlist.songs:
             #Search for the song on YouTube and retrieve its video ID, description, thumbnail URL, and duration.
             video_data = await search_youtube_video(f"{song.title} by {song.artist}")
