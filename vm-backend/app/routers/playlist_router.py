@@ -58,7 +58,6 @@ async def generate_personalised_playlist(request: MoodEntryRequest, db: Database
     for song in saved_songs:
         saved_songs_str += f"{song.title} by {song.artist}\n"
 
-    
     #Validate the mood values in the request.
     try: 
         playlist = await generate_playlist_with_OpenAI(request, saved_songs_str)

@@ -66,12 +66,21 @@ function HomePage() {
 
     const handleGenerateSongs = async () => {
         setLoading(true);
+
+        // Set the response URL and headers based on the user's login status
+        const responseUrl = isLoggedIn ? 'http://127.0.0.1:8000/playlist/generate-personalised-playlist' : 'http://127.0.0.1:8000/playlist/generate-playlist';
+        // Initialize headers with Content-Type and add Authorization if the user is logged in
+        const headers: Record<string, string> = {
+                'Content-Type': 'application/json',
+            }
+        if (isLoggedIn) {
+            headers['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
+        }
+
         try {
-            const response = await fetch('http://127.0.0.1:8000/playlist/generate-playlist', {
+                const response = await fetch(responseUrl, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: headers,
                 body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
             });
 
