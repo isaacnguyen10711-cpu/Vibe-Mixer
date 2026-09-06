@@ -61,7 +61,7 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                         allowFullScreen
                     />
                     <div className="flex justify-end">
-                    <button
+                    <button 
                         type="button"
                         onClick={() => setVideoUrl("")}
                         className="mt-3 rounded bg-violet-600 px-4 py-2 text-white hover:cursor-pointer"
