@@ -32,11 +32,23 @@ async def generate_playlist(request: MoodEntryRequest):
  
 @router.post("/generate-personalised-playlist")
 async def generate_personalised_playlist(request: MoodEntryRequest, db: DatabaseSession, user: AuthorizedUser):
-    # Retrieve songs from all playlists saved by the user.
+    saved_playlists_query = (
+        select(Playlist)
+        .where(Playlist.user_id == user.id)
+        .order_by(Playlist.created_at.desc())
+        .limit(5)  
+    )
+    result = await db.exec(saved_playlists_query)
+    saved_playlists = result.all() 
+    
+    # Extract the IDs of the saved playlists to use in the query for saved songs.
+    saved_playlist_ids = []
+    for playlist in saved_playlists:
+        saved_playlist_ids.append(playlist.id)
+    
     saved_songs_query = (
         select(Songs)
-        .join(Playlist, Songs.playlist_id == Playlist.id)
-        .where(Playlist.user_id == user.id)
+        .where(Songs.playlist_id.in_(saved_playlist_ids))
     )
     result = await db.exec(saved_songs_query)
     saved_songs = result.all()
