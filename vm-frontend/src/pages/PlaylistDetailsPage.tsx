@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import PopupDialog from '../components/PopupDialog';
+import { API_URL } from '../config';
 
 function PlaylistDetailsPage() {
     const { playlistId } = useParams();
@@ -23,7 +24,7 @@ function PlaylistDetailsPage() {
         // Fetch playlist songs based on the playlistId
         async function fetchPlaylistSongs() {
             try {
-                const response = await fetch(`http://127.0.0.1:8000/playlist-songs/get-songs/${playlistId}`,
+                const response = await fetch(`${API_URL}/playlist-songs/get-songs/${playlistId}`,
                     {
                         headers: {
                             "Authorization": `Bearer ${localStorage.getItem('access_token')}`
@@ -73,7 +74,7 @@ function PlaylistDetailsPage() {
 
         try {
             const response = await fetch(
-                `http://127.0.0.1:8000/playlist/update-playlist/${playlistId}`,
+                `${API_URL}/playlist/update-playlist/${playlistId}`,
                 {
                     method: "PUT",
                     headers: {
@@ -126,7 +127,7 @@ function PlaylistDetailsPage() {
 
         try {
             const response = await fetch(
-                `http://127.0.0.1:8000/playlist/delete-playlist/${playlistId}`,
+                `${API_URL}/playlist/delete-playlist/${playlistId}`,
                 {
                     method: "DELETE",
                     headers: {

@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import PopupDialog from "../components/PopupDialog";
+import { API_URL } from "../config";
 
 function ProfilePage() {
     const [username, setUsername] = useState("Not set yet");
@@ -14,7 +15,7 @@ function ProfilePage() {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await fetch("http://127.0.0.1:8000/users/profile",
+                const response = await fetch(`${API_URL}/users/profile`,
                     {
                         headers: {
                             Authorization: `Bearer ${localStorage.getItem("access_token")}`
@@ -51,7 +52,7 @@ function ProfilePage() {
 
     const handleSaveUsername = async () => {
         try {
-        const response = await fetch("http://127.0.0.1:8000/users/profile", {
+        const response = await fetch(`${API_URL}/users/profile`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -76,7 +77,7 @@ function ProfilePage() {
 
     const handleSaveEmail = async () => {
         try {
-            const response = await fetch("http://127.0.0.1:8000/users/profile", {
+            const response = await fetch(`${API_URL}/users/profile`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

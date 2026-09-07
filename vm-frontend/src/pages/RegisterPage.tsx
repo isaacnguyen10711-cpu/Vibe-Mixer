@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router";
+import { API_URL } from "../config";
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ function RegisterPage() {
         setLoading(true);
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/auth/register", {
+            const response = await fetch(`${API_URL}/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

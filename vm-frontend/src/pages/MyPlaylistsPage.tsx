@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import type { SavedPlaylist } from "../types/playlist";
+import { API_URL } from "../config";
 
 function MyPlaylistsPage() {
     const [playlists, setPlaylists] = useState<SavedPlaylist[]>([]);
@@ -15,7 +16,7 @@ function MyPlaylistsPage() {
             setError("");
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/playlist/get-playlists/?sort=${sort}&search=${encodeURIComponent(search)}`, {
+                const response = await fetch(`${API_URL}/playlist/get-playlists/?sort=${sort}&search=${encodeURIComponent(search)}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                     },

@@ -12,6 +12,7 @@ import { Link } from 'react-router';
 import { User } from 'lucide-react';
 import { jwtDecode } from 'jwt-decode';
 import PlayAllVideosButton from '../components/PlayAllSongsButton';
+import { API_URL } from '../config';
 
 
 function HomePage() {
@@ -68,7 +69,7 @@ function HomePage() {
         setLoading(true);
 
         // Set the response URL and headers based on the user's login status
-        const responseUrl = isLoggedIn ? 'http://127.0.0.1:8000/playlist/generate-personalised-playlist' : 'http://127.0.0.1:8000/playlist/generate-playlist';
+        const responseUrl = isLoggedIn ? `${API_URL}/playlist/generate-personalised-playlist` : `${API_URL}/playlist/generate-playlist`;
         // Initialize headers with Content-Type and add Authorization if the user is logged in
         const headers: Record<string, string> = {
                 'Content-Type': 'application/json',
@@ -101,7 +102,7 @@ function HomePage() {
 
     const handleSavePlaylist = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/playlist/save-playlist', {
+            const response = await fetch(`${API_URL}/playlist/save-playlist`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

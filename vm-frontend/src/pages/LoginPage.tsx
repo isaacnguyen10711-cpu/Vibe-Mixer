@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router";
+import { API_URL } from "../config";
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function LoginPage() {
             formData.set("username", usernameOrEmail.trim());
             formData.set("password", password);
 
-            const response = await fetch("http://127.0.0.1:8000/auth/login", {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
