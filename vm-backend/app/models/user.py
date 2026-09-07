@@ -1,6 +1,11 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
 from typing import ClassVar
+from typing import TYPE_CHECKING
 from datetime import UTC, datetime
+
+# Import Playlist for type checking to avoid circular imports
+if TYPE_CHECKING:
+    from .playlist import Playlist
 
 class User(SQLModel, table=True):
     __tablename__: ClassVar[str] = "users"
@@ -11,6 +16,7 @@ class User(SQLModel, table=True):
     email: str = Field(max_length=100, unique=True, index=True)
     hashed_password: str = Field(max_length=255) 
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    playlists: list["Playlist"] = Relationship(back_populates="user")
     
 #for user registration request
 class UserRegistrationRequest(SQLModel):

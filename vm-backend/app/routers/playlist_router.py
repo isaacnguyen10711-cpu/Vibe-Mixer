@@ -4,6 +4,7 @@ from app.models.mood_entry import MoodEntryRequest
 from app.models.songs import Songs
 from app.models.playlist import Playlist, GeneratedPlaylist, PlaylistUpdateRequest
 from sqlmodel import select
+from sqlalchemy.orm import selectinload
 from app.services.openai_service import generate_playlist_with_OpenAI
 from app.services.youtube_service import search_youtube_video
 
@@ -35,28 +36,18 @@ async def generate_personalised_playlist(request: MoodEntryRequest, db: Database
     saved_playlists_query = (
         select(Playlist)
         .where(Playlist.user_id == user.id)
+        .options(selectinload(Playlist.songs))
         .order_by(Playlist.created_at.desc())
         .limit(5)  
     )
     result = await db.exec(saved_playlists_query)
     saved_playlists = result.all() 
     
-    # Extract the IDs of the saved playlists to use in the query for saved songs.
-    saved_playlist_ids = []
-    for playlist in saved_playlists:
-        saved_playlist_ids.append(playlist.id)
-    
-    saved_songs_query = (
-        select(Songs)
-        .where(Songs.playlist_id.in_(saved_playlist_ids))
-    )
-    result = await db.exec(saved_songs_query)
-    saved_songs = result.all()
-    
     # Convert the saved songs to a string format for OpenAI input.
     saved_songs_str = ""
-    for song in saved_songs:
-        saved_songs_str += f"{song.title} by {song.artist}\n"
+    for playlist in saved_playlists:
+        for song in playlist.songs:
+            saved_songs_str += f"{song.title} by {song.artist}\n"
 
     #Validate the mood values in the request.
     try: 
