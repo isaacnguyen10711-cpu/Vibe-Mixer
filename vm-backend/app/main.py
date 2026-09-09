@@ -28,7 +28,7 @@ app.include_router(user_router.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://vibe-mixer-iota.vercel.app/"],  # Adjust this to your frontend's origin in production
+    allow_origins=["http://localhost:5173", "https://vibe-mixer-iota.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
