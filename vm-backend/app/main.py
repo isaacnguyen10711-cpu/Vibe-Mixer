@@ -17,6 +17,10 @@ async def lifespan(app: FastAPI):
 # The application instance imported and the lifespan function is passed to the FastAPI constructor to manage the application's lifespan events.
 app = FastAPI(title="Vibe Mixer API", lifespan=lifespan)
 
+@app.get("/")
+async def health_check():
+    return {"status": "Vibe Mixer API is running"}
+
 app.include_router(authentication_router.router)
 app.include_router(playlist_router.router)
 app.include_router(songs_router.router)

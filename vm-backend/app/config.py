@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     
     #Loaded from the jwt_secret_key variable in vm-backend/.env.
     JWT_SECRET_KEY: str
-    JWT_ALGORITHM: str = "HS256"
+    JWT_ALGORITHM: str 
     JWT_EXPIRATION_MINUTES: int = 60 
     
     #Loaded from the OPENAI_API_KEY variable in vm-backend/.env.
