@@ -10,13 +10,18 @@ function MyPlaylistsPage() {
     const [sort, setSort] = useState("newest");
     const [search, setSearch] = useState("");
 
+    const params = new URLSearchParams({
+        sort: sort,
+        search: search,
+    });
+
     useEffect(() => {
         async function loadPlaylists() {
             setLoading(true);
             setError("");
 
             try {
-                const response = await fetch(`${API_URL}/playlist/get-playlists/?sort=${sort}&search=${encodeURIComponent(search)}`, {
+                const response = await fetch(`${API_URL}/playlist/get-playlists/?${params.toString()}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
                     },
