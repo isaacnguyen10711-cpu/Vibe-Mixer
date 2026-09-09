@@ -10,7 +10,6 @@ import PopupDialog from '../components/PopupDialog';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import { Link } from 'react-router';
 import { User } from 'lucide-react';
-import { jwtDecode } from 'jwt-decode';
 import PlayAllVideosButton from '../components/PlayAllSongsButton';
 import { API_URL } from '../config';
 
@@ -33,24 +32,35 @@ function HomePage() {
         return savedPlaylist ? JSON.parse(savedPlaylist) : null;
     });
 
-    const token = localStorage.getItem('access_token');
-
     const [isPlayingAllVideos, setIsPlayingAllVideos] = useState(false);
+
+    // Check if the user is logged in by verifying the access token through the backend API
+    useEffect(() => {
+        const token = localStorage.getItem('access_token');
+        const checkToken = async () => {
+             if (!token) {
+            return;
+        }
+
+        const response = await fetch(`${API_URL}/users/profile`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (response.ok) {
+            setIsLoggedIn(true);
+        } else {
+            localStorage.removeItem("access_token");
+            setIsLoggedIn(false);
+        }
+    }
+
+    checkToken();
+    }, []);
 
 
     useEffect(() => {
-        // Check if the user is logged in based on the token's expiration time
-        if (token) {
-            const decodedToken = jwtDecode(token);
-            if (decodedToken.exp && decodedToken.exp * 1000 > Date.now()) {
-                setIsLoggedIn(true);
-            }
-            else {
-                localStorage.removeItem('access_token');
-                setIsLoggedIn(false);
-            }
-        }
-
         // Update session storage whenever the playlist state changes
         if (playlist) {
             sessionStorage.setItem('playlist', JSON.stringify(playlist));
@@ -58,7 +68,7 @@ function HomePage() {
         else {
             sessionStorage.removeItem('playlist');
         }
-    }, [playlist, token]);
+    }, [playlist]);
 
     const handleLogout = () => {
         localStorage.clear();
