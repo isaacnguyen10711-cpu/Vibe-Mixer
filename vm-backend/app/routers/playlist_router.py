@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException, Query, Request
 from app.dependencies import DatabaseSession, AuthorizedUser
 from app.models.mood_entry import MoodEntryRequest
 from app.models.songs import Songs
@@ -7,6 +7,7 @@ from sqlmodel import select
 from sqlalchemy.orm import selectinload
 from app.services.openai_service import generate_playlist_with_OpenAI
 from app.services.youtube_service import search_youtube_video
+from app.services.rate_limiter_service import limiter
 
 
 router = APIRouter(
@@ -15,10 +16,11 @@ router = APIRouter(
 )
 
 @router.post("/generate-playlist")
-async def generate_playlist(request: MoodEntryRequest): 
+@limiter.limit("3/20 seconds")
+async def generate_playlist(request: Request, mood_data: MoodEntryRequest): 
     #Validate the mood values in the request.
     try:
-        playlist = await generate_playlist_with_OpenAI(request)
+        playlist = await generate_playlist_with_OpenAI(mood_data)
         for song in playlist.songs:
             #Search for the song on YouTube and retrieve its video ID, description, thumbnail URL, and duration.
             video_data = await search_youtube_video(f"{song.title} by {song.artist}")
@@ -32,7 +34,8 @@ async def generate_playlist(request: MoodEntryRequest):
 
  
 @router.post("/generate-personalised-playlist")
-async def generate_personalised_playlist(request: MoodEntryRequest, db: DatabaseSession, user: AuthorizedUser):
+@limiter.limit("3/20 seconds")
+async def generate_personalised_playlist(request: Request, mood_data: MoodEntryRequest, db: DatabaseSession, user: AuthorizedUser):
     saved_playlists_query = (
         select(Playlist)
         .where(Playlist.user_id == user.id)
@@ -51,7 +54,7 @@ async def generate_personalised_playlist(request: MoodEntryRequest, db: Database
 
     #Validate the mood values in the request.
     try: 
-        playlist = await generate_playlist_with_OpenAI(request, saved_songs_str)
+        playlist = await generate_playlist_with_OpenAI(mood_data, saved_songs_str)
         for song in playlist.songs:
             #Search for the song on YouTube and retrieve its video ID, description, thumbnail URL, and duration.
             video_data = await search_youtube_video(f"{song.title} by {song.artist}")

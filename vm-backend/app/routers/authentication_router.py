@@ -1,9 +1,10 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
+from app.services.rate_limiter_service import limiter
 from starlette.status import HTTP_201_CREATED, HTTP_409_CONFLICT, HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from pwdlib import PasswordHash
 from fastapi.security import OAuth2PasswordRequestForm
 from typing import Annotated
-from app.dependencies import DatabaseSession, AuthorizedUser
+from app.dependencies import DatabaseSession
 from app.models.user import UserRegistrationRequest, UserResponse, TokenResponse, User
 from sqlmodel import select
 from app.services.authentication_service import create_access_token
@@ -17,9 +18,10 @@ router = APIRouter(
 password_hasher = PasswordHash.recommended()
 
 @router.post("/register", response_model=UserResponse, status_code=HTTP_201_CREATED)
-async def register(request: UserRegistrationRequest, db: DatabaseSession) -> UserResponse:
+@limiter.limit("3/20 seconds")
+async def register(request: Request, registration_request: UserRegistrationRequest, db: DatabaseSession) -> UserResponse:
     #Check if the email already exists in the database.
-    query = select(User).where(User.email == request.email)
+    query = select(User).where(User.email == registration_request.email)
     existing_user = await db.exec(query)
     existing_user = existing_user.first()
     
@@ -27,14 +29,14 @@ async def register(request: UserRegistrationRequest, db: DatabaseSession) -> Use
         raise HTTPException(status_code=HTTP_409_CONFLICT, detail="Email already exists.")
     
     #Validate the password length and complexity.
-    if len(request.password) < 8:
+    if len(registration_request.password) < 8:
         raise HTTPException(status_code=HTTP_400_BAD_REQUEST, detail="Password must be at least 8 characters long.")
     
     #Hash the password before storing it in the database.
-    hashed_password = password_hasher.hash(request.password)
+    hashed_password = password_hasher.hash(registration_request.password)
     #Create a new user instance and save it to the database.
     new_user = User(
-        email=request.email,
+        email=registration_request.email,
         hashed_password=hashed_password
     )
     db.add(new_user)
@@ -49,7 +51,8 @@ async def register(request: UserRegistrationRequest, db: DatabaseSession) -> Use
 
 
 @router.post("/login", response_model=TokenResponse)
-async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: DatabaseSession) -> TokenResponse:
+@limiter.limit("3/20 seconds")
+async def login(request: Request, form_data: Annotated[OAuth2PasswordRequestForm, Depends()], db: DatabaseSession) -> TokenResponse:
     
     query = select(User).where((User.email == form_data.username) | (User.username == form_data.username))
     user = await db.exec(query)

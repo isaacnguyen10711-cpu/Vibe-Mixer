@@ -4,6 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine
 from app.routers import authentication_router, playlist_router, songs_router, user_router
 
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from app.services.rate_limiter_service import limiter
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -26,3 +29,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
