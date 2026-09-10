@@ -191,27 +191,31 @@ function HomePage() {
                 </div>
             </header>
 
-            <section className="mx-4 grid items-center gap-8 py-8 md:grid-cols-2 md:py-12 lg:mx-auto lg:max-w-6xl">
-                <div className="px-3 text-center md:px-0 md:text-left">
-                    <p className="mb-3 text-sm font-semibold text-violet-700">
+            <section className="mx-4 grid min-h-screen content-start items-center gap-12 pt-12 md:grid-cols-2 lg:mx-auto lg:max-w-6xl">
+                <div className="text-center md:text-left">
+                    <p className="mb-4 text-sm font-semibold tracking-wider text-violet-700 md:text-base">
                         Music made for your mood
                     </p>
-                    <h1 className="text-4xl font-bold leading-tight tracking-tight text-violet-950 md:text-5xl lg:text-6xl">
-                        A place to mix your vibes
+                    <h1 className="text-5xl font-bold leading-tight tracking-tight text-violet-950 md:text-6xl lg:text-7xl">
+                        A place to mix your <span className="text-violet-700">vibes.</span>
                     </h1>
 
-                    <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-slate-700 md:mx-0 md:text-base">
+                    <p className="mx-auto mt-6 max-w-lg text-base leading-7 text-slate-700 md:mx-0 md:text-lg">
                         Choose how you feel and create a personalised playlist made for your mood.
+                    </p>
+
+                    <p className="mt-6 font-semibold text-violet-950">
+                        6 moods · 3 music markets · 12 songs
                     </p>
                 </div>
 
                 <div className="flex justify-center md:justify-end">
-                    <div className="flex w-full max-w-sm flex-col items-center rounded-3xl bg-violet-950 px-8 py-10 text-center text-white shadow-xl shadow-violet-900/20">
-                        <div className="rounded-full bg-white p-5 text-violet-950">
-                            <AudioLines className="h-16 w-16" />
+                    <div className="flex aspect-square w-full max-w-md flex-col items-center justify-center rounded-3xl border border-white/20 bg-violet-950 p-8 text-center text-white shadow-xl shadow-violet-900/20">
+                        <div className="flex h-40 w-40 items-center justify-center rounded-full border-8 border-violet-300 bg-white text-violet-950 md:h-48 md:w-48">
+                            <AudioLines className="h-20 w-20 md:h-24 md:w-24" />
                         </div>
-                        <p className="mt-6 text-xl font-semibold">Your personalised mix</p>
-                        <p className="mt-1 text-sm text-violet-200">12 songs selected for you</p>
+                        <p className="mt-8 text-2xl font-semibold">Your personalised mix</p>
+                        <p className="mt-2 text-sm text-violet-200 md:text-base">Built around how you feel today</p>
                     </div>
                 </div>
             </section>
