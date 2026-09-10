@@ -10,7 +10,7 @@ function MusicMarketDropDownButton(props: MusicMarketDropDownButtonProps) {
             <select
                 value={props.value}
                 onChange={(event) => props.onChange(event.target.value)}
-                className="rounded border-2 border-indigo-400 bg-indigo-200 px-2 py-1 text-sm font-medium transition duration-300 ease-in-out hover:bg-indigo-300 hover:cursor-pointer focus:outline-2 focus:outline-blue-500 md:px-3 md:py-2 md:text-base lg:px-4 lg:py-3 lg:text-lg"
+                className="rounded-lg border border-violet-300 bg-white px-3 py-2 text-sm font-semibold text-violet-900 transition hover:cursor-pointer hover:border-violet-500 focus:outline-2 focus:outline-violet-500 md:text-base"
             >
                 <option value="usuk" className="font-medium">US/UK</option>
                 <option value="vpop" className="font-medium">V-POP</option>

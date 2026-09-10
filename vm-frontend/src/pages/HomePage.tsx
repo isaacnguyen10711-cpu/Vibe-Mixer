@@ -146,7 +146,7 @@ function HomePage() {
     };
 
     return (
-        <div className="mx-auto w-full max-w-5xl md:max-w-6xl md:px-8 lg:max-w-7xl">
+        <div className="mx-auto w-full max-w-7xl pb-10 md:px-8">
             <IsLoadingPopUp loading={loading} />
             {popUpMessage && (
                 <PopupDialog
@@ -155,7 +155,13 @@ function HomePage() {
                     onConfirmButtonClick={() => setPopUpMessage(null)}
                 />
             )}
-            <div className="flex justify-end gap-3 px-4 pt-4 md:px-0">
+            <header className="flex items-center justify-between px-4 py-5 md:px-0">
+                <div className="flex items-center gap-2 text-violet-950">
+                    <AudioLines className="h-7 w-7" />
+                    <span className="text-xl font-bold">Vibe Mixer</span>
+                </div>
+
+                <div className="flex gap-3">
                 {!isLoggedIn ? (
                     <Link
                         to="/login"
@@ -182,14 +188,15 @@ function HomePage() {
                         <User className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
                     </Link>
                 )}
-            </div>
+                </div>
+            </header>
 
-            <section className="mx-4 mt-8 grid items-center gap-8 md:grid-cols-2 lg:mx-auto lg:max-w-6xl">
+            <section className="mx-4 grid items-center gap-8 py-8 md:grid-cols-2 md:py-12 lg:mx-auto lg:max-w-6xl">
                 <div className="px-3 text-center md:px-0 md:text-left">
-                    <p className="mb-3 text-sm font-semibold tracking-widest text-violet-700">
-                        Vibe Mixer
+                    <p className="mb-3 text-sm font-semibold text-violet-700">
+                        Music made for your mood
                     </p>
-                    <h1 className="text-3xl font-bold leading-tight text-violet-950 md:text-4xl lg:text-5xl">
+                    <h1 className="text-4xl font-bold leading-tight tracking-tight text-violet-950 md:text-5xl lg:text-6xl">
                         A place to mix your vibes
                     </h1>
 
@@ -199,21 +206,12 @@ function HomePage() {
                 </div>
 
                 <div className="flex justify-center md:justify-end">
-                    <div className="w-full max-w-sm rounded-3xl bg-violet-950 p-7 text-white shadow-lg">
-                        <div className="mb-5 flex items-center gap-3">
-                            <div className="rounded-full bg-white p-3 text-violet-950">
-                                <AudioLines className="h-6 w-6" />
-                            </div>
-                            <div>
-                                <p className="font-semibold">Your daily mix</p>
-                                <p className="text-sm text-violet-200">Made from your mood</p>
-                            </div>
+                    <div className="flex w-full max-w-sm flex-col items-center rounded-3xl bg-violet-950 px-8 py-10 text-center text-white shadow-xl shadow-violet-900/20">
+                        <div className="rounded-full bg-white p-5 text-violet-950">
+                            <AudioLines className="h-16 w-16" />
                         </div>
-
-                        <div className="flex h-20 items-center justify-center mt-6">
-                            <AudioLines className="h-28 w-28 text-white" />
-                            <AudioLines className="h-28 w-28 text-white" />
-                        </div>
+                        <p className="mt-6 text-xl font-semibold">Your personalised mix</p>
+                        <p className="mt-1 text-sm text-violet-200">12 songs selected for you</p>
                     </div>
                 </div>
             </section>
@@ -237,11 +235,11 @@ function HomePage() {
                 </>
             ) : (
                 <>
-                    <div className="mx-4 mt-6 grid overflow-hidden rounded-2xl border-2 border-violet-300 bg-white/80 shadow-sm md:mx-0 md:grid-cols-3">
-                        <div className="flex flex-col items-center justify-between gap-4 border-b-2 border-violet-300 p-5 md:col-span-3 md:flex-row">
-                            <h1 className="text-2xl font-bold md:text-3xl lg:text-4xl">
+                    <div className="mx-4 mt-4 grid overflow-hidden rounded-2xl border border-violet-300 bg-white/80 shadow-lg shadow-violet-900/10 md:mx-0 md:grid-cols-3">
+                        <div className="flex flex-col items-center justify-between gap-4 border-b border-violet-300 bg-white/60 p-5 md:col-span-3 md:flex-row md:px-7">
+                            <h2 className="text-2xl font-bold text-violet-950 md:text-3xl">
                                 How are you feeling today?
-                            </h1>
+                            </h2>
 
                             <MusicMarketDropDownButton
                                 value={musicMarket}
@@ -251,7 +249,7 @@ function HomePage() {
 
                         <div className="border-b border-violet-300 p-5 md:border-r">
                             <div className="flex justify-center">
-                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
+                                <h3 className="text-base font-semibold text-violet-950 md:text-xl">Happy</h3>
                             </div>
                             <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                                 <ButtonRow selectedMood={happy} setMood={setHappy} />
@@ -259,7 +257,7 @@ function HomePage() {
                         </div>
                         <div className="border-b border-violet-300 p-5 md:border-r">
                             <div className="flex justify-center">
-                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Energetic</h1>
+                                <h3 className="text-base font-semibold text-violet-950 md:text-xl">Energetic</h3>
                             </div>
                             <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                                 <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
@@ -267,7 +265,7 @@ function HomePage() {
                         </div>
                         <div className="border-b border-violet-300 p-5">
                             <div className="flex justify-center">
-                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Calm</h1>
+                                <h3 className="text-base font-semibold text-violet-950 md:text-xl">Calm</h3>
                             </div>
                             <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                                 <ButtonRow selectedMood={calm} setMood={setCalm} />
@@ -275,7 +273,7 @@ function HomePage() {
                         </div>
                         <div className="border-b border-violet-300 p-5 md:border-b-0 md:border-r">
                             <div className="flex justify-center">
-                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Sad</h1>
+                                <h3 className="text-base font-semibold text-violet-950 md:text-xl">Sad</h3>
                             </div>
                             <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                                 <ButtonRow selectedMood={sad} setMood={setSad} />
@@ -283,7 +281,7 @@ function HomePage() {
                         </div>
                         <div className="border-b border-violet-300 p-5 md:border-b-0 md:border-r">
                             <div className="flex justify-center">
-                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Anxious</h1>
+                                <h3 className="text-base font-semibold text-violet-950 md:text-xl">Anxious</h3>
                             </div>
                             <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                                 <ButtonRow selectedMood={anxious} setMood={setAnxious} />
@@ -291,14 +289,14 @@ function HomePage() {
                         </div>
                         <div className="p-5">
                             <div className="flex justify-center">
-                                <h1 className="text-base font-medium md:text-xl lg:text-2xl">Angry</h1>
+                                <h3 className="text-base font-semibold text-violet-950 md:text-xl">Angry</h3>
                             </div>
                             <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
                                 <ButtonRow selectedMood={angry} setMood={setAngry} />
                             </div>
                         </div>
                     </div>
-                    <div className="my-6 flex justify-center px-4 md:justify-end md:px-0 md:mt-10 lg:mt-12">
+                    <div className="my-7 flex justify-center px-4 md:justify-end md:px-0">
                         <GenerateButton onClick={handleGenerateSongs} />
                     </div>
                 </>
