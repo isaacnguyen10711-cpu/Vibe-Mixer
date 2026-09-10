@@ -154,6 +154,7 @@ function PlaylistDetailsPage() {
 
     return (
         <>
+        {/* Delete confirmation popup */}
         {isDeletePopUpOpen && (
             <PopupDialog
                 message={popUpMessage}
@@ -165,6 +166,7 @@ function PlaylistDetailsPage() {
         )}
         
         <main className="max-w-5xl lg:max-w-7xl mx-auto p-2 md:p-6">
+            {/* Page logo and navigation */}
             <div className="flex justify-center mt-4 md:mt-8">
                 <Link to="/" className="flex items-center gap-2 text-violet-950">
                     <AudioLines className="h-7 w-7" />
@@ -178,10 +180,13 @@ function PlaylistDetailsPage() {
                 Back to My Playlists
             </Link>
 
+            {/* Loading error */}
             {error && <p className="mt-2 text-sm text-red-600 md:text-base">{error}</p>}
 
+            {/* Playlist details */}
             {playlist && (
                 <>
+                    {/* Playlist editing form */}
                     {isEditing && (
                         <div className="mx-3 mt-4 rounded-xl border-2 border-violet-400 bg-violet-100 p-3 md:mx-0 md:p-4 lg:p-5">
                             <label className="block text-sm font-semibold text-violet-700 md:text-base lg:text-lg">
@@ -208,6 +213,7 @@ function PlaylistDetailsPage() {
 
                     <GeneratedPlaylist playlist={playlist} />
 
+                    {/* Edit and delete actions */}
                     <div className="mx-3 my-4 flex justify-end gap-3 md:mx-0 md:my-5 lg:my-6">
                         {isEditing ? (
                             <>

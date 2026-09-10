@@ -67,6 +67,7 @@ function LoginPage() {
     return (
         <main className="flex min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">
             <div className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-lg md:p-8 lg:max-w-[34rem] lg:p-9">
+                {/* Page logo */}
                 <Link to="/" className="flex items-center gap-2 text-violet-950">
                     <AudioLines className="h-7 w-7" />
                     <span className="text-xl font-bold">Vibe Mixer</span>
@@ -74,6 +75,7 @@ function LoginPage() {
 
                 <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">Log in</h1>
 
+                {/* Login form */}
                 <form className="mt-6 space-y-4 md:mt-8 md:space-y-5 lg:space-y-5" onSubmit={handleLogin}>
                     <div>
                         <label htmlFor="username" className="block text-sm font-semibold md:text-base lg:text-base">
@@ -107,6 +109,7 @@ function LoginPage() {
                         />
                     </div>
 
+                    {/* Login error */}
                     {error && (
                         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 md:text-base lg:px-3 lg:py-2">
                             {error}

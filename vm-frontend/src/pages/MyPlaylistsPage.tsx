@@ -49,6 +49,7 @@ function MyPlaylistsPage() {
 
     return (
         <main className="min-h-screen w-full px-4 py-6 md:px-8 lg:px-12">
+            {/* Page logo */}
             <div className="flex justify-center mt-4 md:mt-8">
                 <Link to="/" className="mb-4 flex items-center gap-2 text-violet-950 md:mb-6">
                     <AudioLines className="h-7 w-7" />
@@ -56,6 +57,7 @@ function MyPlaylistsPage() {
                 </Link>
             </div>
             <div className="mx-auto w-full max-w-5xl rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:p-8 lg:max-w-6xl lg:p-9">
+                {/* Navigation, search, and sorting */}
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
                     <Link
                         to="/profile"
@@ -90,6 +92,7 @@ function MyPlaylistsPage() {
                     View the playlists you have saved.
                 </p>
 
+                {/* Loading and error states */}
                 {loading && (
                     <p className="mt-8 text-sm text-gray-700 md:text-base lg:text-lg">
                         Loading playlists...
@@ -102,6 +105,7 @@ function MyPlaylistsPage() {
                     </p>
                 )}
 
+                {/* Saved playlist results */}
                 {!loading && !error && (
                     <>
                         {playlists.length === 0 ? (

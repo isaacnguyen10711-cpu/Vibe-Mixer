@@ -72,6 +72,7 @@ function RegisterPage() {
     return (
         <main className="flex min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">
             <section className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-md md:p-8 lg:max-w-lg lg:p-9">
+                {/* Page logo */}
                 <Link to="/" className="flex items-center gap-2 text-violet-950">
                     <AudioLines className="h-7 w-7" />
                     <span className="text-xl font-bold">Vibe Mixer</span>
@@ -79,6 +80,7 @@ function RegisterPage() {
 
                 <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">Register</h1>
 
+                {/* Registration form */}
                 <form className="mt-6 space-y-4 md:mt-8 md:space-y-5 lg:space-y-5" onSubmit={handleRegister}>
                     <div>
                         <label htmlFor="email" className="block text-sm font-semibold md:text-base lg:text-base">
@@ -128,6 +130,7 @@ function RegisterPage() {
                         />
                     </div>
 
+                    {/* Registration error */}
                     {error && (
                         <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 md:text-base lg:px-3 lg:py-2">
                             {error}

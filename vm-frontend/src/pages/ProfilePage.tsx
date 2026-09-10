@@ -104,6 +104,7 @@ function ProfilePage() {
 
     return (
         <>
+            {/* Profile update message */}
             {popUpMessage && (
                 <PopupDialog
                     message={popUpMessage}
@@ -113,6 +114,7 @@ function ProfilePage() {
             )}
             <main className="flex flex-col min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">
                 <section className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-md md:p-8 lg:max-w-lg lg:p-9">
+                    {/* Page logo */}
                     <Link
                         to="/"
                         className="flex items-center gap-2 text-violet-950"
@@ -129,6 +131,7 @@ function ProfilePage() {
                         View your Vibe Mixer account details.
                     </p>
 
+                    {/* Account details */}
                     <div className="mt-4 space-y-3 rounded-xl bg-violet-100 p-4 md:space-y-4 md:p-5 lg:space-y-5 lg:p-6">
                         <div className="rounded-lg bg-white p-3 md:p-2 lg:p-3">
                             <p className="text-sm font-semibold text-violet-700 md:text-base lg:text-lg">
