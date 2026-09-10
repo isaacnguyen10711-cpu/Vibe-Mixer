@@ -122,7 +122,7 @@ function MyPlaylistsPage() {
                                     <Link
                                         to={`/my-playlist/${playlist.id}`}
                                         key={playlist.id}
-                                        className="rounded-xl border-2 border-violet-500 bg-white p-4 md:p-5 lg:p-6"
+                                        className="rounded-xl border-2 border-violet-500 bg-white duration-500 hover:scale-105 hover:shadow-lg p-4 md:p-5 lg:p-6"
                                     >
                                         <div>
                                             <h2 className="text-base font-bold text-violet-800 md:text-lg lg:text-xl">
