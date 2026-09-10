@@ -252,8 +252,8 @@ function HomePage() {
             ) : (
                 <>
                     {/* Mood levels and music market */}
-                    <div className="mx-4 grid overflow-hidden rounded-2xl border border-violet-300 bg-white/80 shadow-lg shadow-violet-900/10 md:mx-0 md:grid-cols-3">
-                        <div className="flex flex-col items-center justify-between gap-4 border-b border-violet-300 bg-white/60 p-5 md:col-span-3 md:flex-row md:px-7">
+                    <div className="mx-4 grid gap-8 rounded-2xl border border-violet-300 bg-white/80 p-6 shadow-lg shadow-violet-900/10 md:mx-0 md:grid-cols-2 md:p-8 lg:grid-cols-3">
+                        <div className="flex flex-col items-center justify-between gap-4 border-b border-violet-200 pb-6 md:col-span-2 md:flex-row lg:col-span-3">
                             <h2 className="text-2xl font-bold text-violet-950 md:text-3xl">
                                 How are you feeling today?
                             </h2>
@@ -264,51 +264,51 @@ function HomePage() {
                             />
                         </div>
 
-                        <div className="border-b border-violet-300 p-5 md:border-r">
+                        <div className="border-l-4 border-violet-400 pl-4">
                             <div className="flex justify-center">
                                 <h3 className="text-base font-semibold text-violet-950 md:text-xl">Happy</h3>
                             </div>
-                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                            <div className="mt-2 grid grid-cols-5 gap-2 md:mt-3 md:gap-3 lg:mt-4 lg:gap-4">
                                 <ButtonRow selectedMood={happy} setMood={setHappy} />
                             </div>
                         </div>
-                        <div className="border-b border-violet-300 p-5 md:border-r">
+                        <div className="border-l-4 border-violet-400 pl-4">
                             <div className="flex justify-center">
                                 <h3 className="text-base font-semibold text-violet-950 md:text-xl">Energetic</h3>
                             </div>
-                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                            <div className="mt-2 grid grid-cols-5 gap-2 md:mt-3 md:gap-3 lg:mt-4 lg:gap-4">
                                 <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
                             </div>
                         </div>
-                        <div className="border-b border-violet-300 p-5">
+                        <div className="border-l-4 border-violet-400 pl-4">
                             <div className="flex justify-center">
                                 <h3 className="text-base font-semibold text-violet-950 md:text-xl">Calm</h3>
                             </div>
-                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                            <div className="mt-2 grid grid-cols-5 gap-2 md:mt-3 md:gap-3 lg:mt-4 lg:gap-4">
                                 <ButtonRow selectedMood={calm} setMood={setCalm} />
                             </div>
                         </div>
-                        <div className="border-b border-violet-300 p-5 md:border-b-0 md:border-r">
+                        <div className="border-l-4 border-violet-400 pl-4">
                             <div className="flex justify-center">
                                 <h3 className="text-base font-semibold text-violet-950 md:text-xl">Sad</h3>
                             </div>
-                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                            <div className="mt-2 grid grid-cols-5 gap-2 md:mt-3 md:gap-3 lg:mt-4 lg:gap-4">
                                 <ButtonRow selectedMood={sad} setMood={setSad} />
                             </div>
                         </div>
-                        <div className="border-b border-violet-300 p-5 md:border-b-0 md:border-r">
+                        <div className="border-l-4 border-violet-400 pl-4">
                             <div className="flex justify-center">
                                 <h3 className="text-base font-semibold text-violet-950 md:text-xl">Anxious</h3>
                             </div>
-                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                            <div className="mt-2 grid grid-cols-5 gap-2 md:mt-3 md:gap-3 lg:mt-4 lg:gap-4">
                                 <ButtonRow selectedMood={anxious} setMood={setAnxious} />
                             </div>
                         </div>
-                        <div className="p-5">
+                        <div className="border-l-4 border-violet-400 pl-4">
                             <div className="flex justify-center">
                                 <h3 className="text-base font-semibold text-violet-950 md:text-xl">Angry</h3>
                             </div>
-                            <div className="grid grid-cols-5 mt-2 gap-4 md:gap-6 md:mt-3 lg:gap-8 lg:mt-4">
+                            <div className="mt-2 grid grid-cols-5 gap-2 md:mt-3 md:gap-3 lg:mt-4 lg:gap-4">
                                 <ButtonRow selectedMood={angry} setMood={setAngry} />
                             </div>
                         </div>
