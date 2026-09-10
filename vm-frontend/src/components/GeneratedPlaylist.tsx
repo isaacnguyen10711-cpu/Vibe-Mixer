@@ -40,7 +40,7 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                     <button
                         type="button"
                         onClick={props.onCloseAllVideos}
-                        className="mt-3 rounded bg-violet-600 px-4 py-2 text-white hover:cursor-pointer"
+                        className="mt-3 rounded bg-violet-600 px-4 py-2 text-white transition duration-300 hover:cursor-pointer hover:scale-105"
                     >
                         Close
                     </button>
@@ -64,7 +64,7 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                     <button 
                         type="button"
                         onClick={() => setVideoUrl("")}
-                        className="mt-3 rounded bg-violet-600 px-4 py-2 text-white hover:cursor-pointer"
+                        className="mt-3 rounded bg-violet-600 px-4 py-2 text-white transition duration-300 hover:cursor-pointer hover:scale-105"
                     >
                         Close
                     </button>
@@ -90,7 +90,7 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                         {song.thumbnail_url && (
                             <button
                                 type="button"
-                                className="cursor-pointer"
+                                className="transition duration-300 hover:cursor-pointer hover:scale-105"
                                 onClick={() => song.youtube_url && setVideoUrl(song.youtube_url.replace("watch?v=", "embed/") + "?autoplay=1")}
                             >
                                 <img
@@ -117,7 +117,7 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
                                 <button
                                     type="button"
                                     onClick={() => song.youtube_url && setVideoUrl(song.youtube_url.replace("watch?v=", "embed/") + "?autoplay=1")}
-                                    className="mt-auto pt-1 text-xs font-semibold text-violet-700 hover:cursor-pointer underline lg:text-sm"
+                                    className="mt-auto pt-1 text-xs font-semibold text-violet-700 underline transition duration-300 hover:cursor-pointer hover:scale-105 lg:text-sm"
                                 >
                                     Play video
                                 </button>

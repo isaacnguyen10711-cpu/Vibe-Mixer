@@ -23,7 +23,7 @@ function PopupDialog(props: PopupDialogProps) {
                         <button
                             type="button"
                             onClick={props.onCancelButtonClick}
-                            className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 hover:cursor-pointer hover:bg-violet-100 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
+                            className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-100 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
                         >
                             {props.cancelButtonText}
                         </button>
@@ -32,7 +32,7 @@ function PopupDialog(props: PopupDialogProps) {
                     <button
                         type="button"
                         onClick={props.onConfirmButtonClick}
-                        className="rounded-lg border-2 border-violet-700 bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-violet-700 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
+                        className="rounded-lg border-2 border-violet-700 bg-violet-600 px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-700 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
                     >
                         {props.confirmButtonText}
                     </button>

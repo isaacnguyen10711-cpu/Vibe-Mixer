@@ -114,7 +114,7 @@ function LoginPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full cursor-pointer rounded-lg bg-violet-600 px-4 py-3 text-sm font-semibold text-white hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-60 md:px-5 md:text-base lg:py-4"
+                        className="w-full rounded-lg bg-violet-600 px-4 py-3 text-sm font-semibold text-white transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-700 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-60 md:px-5 md:text-base lg:py-4"
                     >
                         {loading ? "Logging in..." : "Log in"}
                     </button>

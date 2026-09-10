@@ -162,63 +162,67 @@ function HomePage() {
                 </div>
 
                 <div className="flex gap-3">
-                {!isLoggedIn ? (
-                    <Link
-                        to="/login"
-                        className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
-                    >
-                        Log in
-                    </Link>
-                ) : (
-                    <Link
-                        to="/"
-                        onClick={handleLogout}
-                        className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
-                    >
-                        Log out
-                    </Link>
-                )}
-                {isLoggedIn && (
-                    <Link
-                        to="/profile"
-                        aria-label="Open profile"
-                        title="Profile"
-                        className="flex items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-3 py-2 text-violet-700 transition hover:bg-violet-100 md:px-4 lg:px-5"
-                    >
-                        <User className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
-                    </Link>
-                )}
+                    {!isLoggedIn ? (
+                        <Link
+                            to="/login"
+                            className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
+                        >
+                            Log in
+                        </Link>
+                    ) : (
+                        <Link
+                            to="/"
+                            onClick={handleLogout}
+                            className="rounded-lg border-2 border-violet-500 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition hover:bg-violet-100 md:text-base lg:px-5 lg:text-lg"
+                        >
+                            Log out
+                        </Link>
+                    )}
+                    {isLoggedIn && (
+                        <Link
+                            to="/profile"
+                            aria-label="Open profile"
+                            title="Profile"
+                            className="flex items-center justify-center rounded-lg border-2 border-violet-500 bg-white px-3 py-2 text-violet-700 transition hover:bg-violet-100 md:px-4 lg:px-5"
+                        >
+                            <User className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+                        </Link>
+                    )}
                 </div>
             </header>
 
             <section className="mx-4 grid min-h-screen content-start items-center gap-12 pt-12 md:grid-cols-2 lg:mx-auto lg:max-w-6xl">
                 <div className="text-center md:text-left">
-                    <p className="mb-4 text-sm font-semibold tracking-wider text-violet-700 md:text-base">
-                        Music made for your mood
-                    </p>
-                    <h1 className="text-5xl font-bold leading-tight tracking-tight text-violet-950 md:text-6xl lg:text-7xl">
-                        A place to mix your <span className="text-violet-700">vibes.</span>
+                    <h1 className="text-5xl font-semibold leading-tight tracking-tight text-violet-950 md:text-6xl lg:text-7xl">
+                        Whatever the mood, there’s a mix for it.
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-lg text-base leading-7 text-slate-700 md:mx-0 md:text-lg">
-                        Choose how you feel and create a personalised playlist made for your mood.
+                    <p className="mx-auto mt-6 max-w-lg text-base leading-7 text-violet-900 md:mx-0 md:text-lg">
+                        Tell us how today feels. Vibe Mixer will find 12 songs that fit the moment.
                     </p>
-
-                    <p className="mt-6 font-semibold text-violet-950">
-                        6 moods · 3 music markets · 12 songs
-                    </p>
+                    <button
+                        type="button"
+                        className="mt-6 rounded-lg bg-orange-600 px-4 py-2 text-white shadow-xl transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-600 md:mt-8 md:px-6 md:py-3"
+                        onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+                    >
+                        Select Mood
+                    </button>
                 </div>
 
                 <div className="flex justify-center md:justify-end">
-                    <div className="flex aspect-square w-full max-w-md flex-col items-center justify-center rounded-3xl border border-white/20 bg-violet-950 p-8 text-center text-white shadow-xl shadow-violet-900/20">
-                        <div className="flex h-40 w-40 items-center justify-center rounded-full border-8 border-violet-300 bg-white text-violet-950 md:h-48 md:w-48">
-                            <AudioLines className="h-20 w-20 md:h-24 md:w-24" />
+                    <div className="flex min-h-[24rem] w-full max-w-sm flex-col items-center justify-center rounded-3xl border border-white/20 bg-violet-950 p-6 text-center text-white shadow-xl shadow-violet-900/20 md:min-h-[30rem] md:max-w-md md:p-8 lg:min-h-[34rem] lg:max-w-lg lg:p-10">
+                        <div className="flex h-36 w-36 items-center justify-center rounded-full border-8 border-violet-300 bg-white text-violet-950 md:h-48 md:w-48 lg:h-56 lg:w-56">
+                            <AudioLines className="h-16 w-16 md:h-24 md:w-24 lg:h-28 lg:w-28" />
                         </div>
-                        <p className="mt-8 text-2xl font-semibold">Your personalised mix</p>
-                        <p className="mt-2 text-sm text-violet-200 md:text-base">Built around how you feel today</p>
+                        <p className="mt-6 text-2xl font-semibold md:mt-8 md:text-3xl lg:mt-10">Today’s mix</p>
+                        <p className="mt-2 text-sm text-violet-200 md:mt-3 md:text-base lg:text-lg">12 songs picked for this mood.</p>
                     </div>
                 </div>
+                <p className="text-center text-sm font-medium text-violet-700 md:col-span-2">
+                    Choose your mood below ↓
+                </p>
             </section>
+
             {playlist ? (
                 <>
                     <GeneratedPlaylist
@@ -239,7 +243,7 @@ function HomePage() {
                 </>
             ) : (
                 <>
-                    <div className="mx-4 mt-4 grid overflow-hidden rounded-2xl border border-violet-300 bg-white/80 shadow-lg shadow-violet-900/10 md:mx-0 md:grid-cols-3">
+                    <div className="mx-4 grid overflow-hidden rounded-2xl border border-violet-300 bg-white/80 shadow-lg shadow-violet-900/10 md:mx-0 md:grid-cols-3">
                         <div className="flex flex-col items-center justify-between gap-4 border-b border-violet-300 bg-white/60 p-5 md:col-span-3 md:flex-row md:px-7">
                             <h2 className="text-2xl font-bold text-violet-950 md:text-3xl">
                                 How are you feeling today?
