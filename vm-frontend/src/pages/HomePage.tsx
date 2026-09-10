@@ -191,7 +191,7 @@ function HomePage() {
                 </div>
             </header>
 
-            <section className="mx-4 grid min-h-screen content-start items-center gap-12 pt-12 md:grid-cols-2 lg:mx-auto lg:max-w-6xl">
+            <section className="mx-4 grid min-h-screen content-start items-center gap-12 pt-12 md:max-h-screen md:grid-cols-2 md:gap-8 md:pt-8 lg:mx-auto lg:min-h-screen lg:max-w-6xl lg:gap-12 lg:pt-12">
                 <div className="text-center md:text-left">
                     <h1 className="text-5xl font-semibold leading-tight tracking-tight text-violet-950 md:text-6xl lg:text-7xl">
                         Whatever the mood, there’s a mix for it.
@@ -202,15 +202,15 @@ function HomePage() {
                     </p>
                     <button
                         type="button"
-                        className="mt-6 rounded-lg bg-orange-600 px-4 py-2 text-white shadow-xl transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-600 md:mt-8 md:px-6 md:py-3"
+                        className="mt-6 rounded-lg bg-teal-600 px-4 py-2 text-white shadow-xl transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-teal-700 md:mt-8 md:px-6 md:py-3"
                         onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
                     >
-                        Select Mood
+                        Select Mood 
                     </button>
                 </div>
 
                 <div className="flex justify-center md:justify-end">
-                    <div className="flex min-h-[24rem] w-full max-w-sm flex-col items-center justify-center rounded-3xl border border-white/20 bg-violet-950 p-6 text-center text-white shadow-xl shadow-violet-900/20 md:min-h-[30rem] md:max-w-md md:p-8 lg:min-h-[34rem] lg:max-w-lg lg:p-10">
+                    <div className="flex min-h-[24rem] w-full max-w-sm flex-col items-center justify-center rounded-3xl border border-white/20 bg-violet-950 p-6 text-center text-white shadow-xl shadow-violet-900/20 md:min-h-[26rem] md:max-w-md md:p-8 lg:min-h-[34rem] lg:max-w-lg lg:p-10">
                         <div className="flex h-36 w-36 items-center justify-center rounded-full border-8 border-violet-300 bg-white text-violet-950 md:h-48 md:w-48 lg:h-56 lg:w-56">
                             <AudioLines className="h-16 w-16 md:h-24 md:w-24 lg:h-28 lg:w-28" />
                         </div>
