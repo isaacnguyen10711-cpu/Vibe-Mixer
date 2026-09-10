@@ -12,6 +12,7 @@ import { Link } from 'react-router';
 import { User } from 'lucide-react';
 import PlayAllVideosButton from '../components/PlayAllSongsButton';
 import { API_URL } from '../config';
+import { AudioLines } from 'lucide-react';
 
 
 function HomePage() {
@@ -38,25 +39,25 @@ function HomePage() {
     useEffect(() => {
         const token = localStorage.getItem('access_token');
         const checkToken = async () => {
-             if (!token) {
-            return;
+            if (!token) {
+                return;
+            }
+
+            const response = await fetch(`${API_URL}/users/profile`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (response.ok) {
+                setIsLoggedIn(true);
+            } else {
+                localStorage.removeItem("access_token");
+                setIsLoggedIn(false);
+            }
         }
 
-        const response = await fetch(`${API_URL}/users/profile`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (response.ok) {
-            setIsLoggedIn(true);
-        } else {
-            localStorage.removeItem("access_token");
-            setIsLoggedIn(false);
-        }
-    }
-
-    checkToken();
+        checkToken();
     }, []);
 
 
@@ -82,14 +83,14 @@ function HomePage() {
         const responseUrl = isLoggedIn ? `${API_URL}/playlist/generate-personalised-playlist` : `${API_URL}/playlist/generate-playlist`;
         // Initialize headers with Content-Type and add Authorization if the user is logged in
         const headers: Record<string, string> = {
-                'Content-Type': 'application/json',
-            }
+            'Content-Type': 'application/json',
+        }
         if (isLoggedIn) {
             headers['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
         }
 
         try {
-                const response = await fetch(responseUrl, {
+            const response = await fetch(responseUrl, {
                 method: 'POST',
                 headers: headers,
                 body: JSON.stringify({ happy, energetic, calm, sad, anxious, angry, music_market: musicMarket }),
@@ -182,9 +183,40 @@ function HomePage() {
                     </Link>
                 )}
             </div>
-            <div className="flex justify-center mt-[-16px] md:mt-0">
-                <h1 className="text-lg italic underline font-medium md:text-xl lg:text-2xl">Vibe Mixer</h1>
-            </div>
+
+            <section className="mx-4 mt-8 grid items-center gap-8 md:grid-cols-2 lg:mx-auto lg:max-w-6xl">
+                <div className="px-3 text-center md:px-0 md:text-left">
+                    <p className="mb-3 text-sm font-semibold tracking-widest text-violet-700">
+                        Vibe Mixer
+                    </p>
+                    <h1 className="text-3xl font-bold leading-tight text-violet-950 md:text-4xl lg:text-5xl">
+                        A place to mix your vibes
+                    </h1>
+
+                    <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-slate-700 md:mx-0 md:text-base">
+                        Choose how you feel and create a personalised playlist made for your mood.
+                    </p>
+                </div>
+
+                <div className="flex justify-center md:justify-end">
+                    <div className="w-full max-w-sm rounded-3xl bg-violet-950 p-7 text-white shadow-lg">
+                        <div className="mb-5 flex items-center gap-3">
+                            <div className="rounded-full bg-white p-3 text-violet-950">
+                                <AudioLines className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <p className="font-semibold">Your daily mix</p>
+                                <p className="text-sm text-violet-200">Made from your mood</p>
+                            </div>
+                        </div>
+
+                        <div className="flex h-20 items-center justify-center mt-6">
+                            <AudioLines className="h-28 w-28 text-white" />
+                            <AudioLines className="h-28 w-28 text-white" />
+                        </div>
+                    </div>
+                </div>
+            </section>
             {playlist ? (
                 <>
                     <GeneratedPlaylist
