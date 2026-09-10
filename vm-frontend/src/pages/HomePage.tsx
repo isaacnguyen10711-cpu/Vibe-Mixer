@@ -237,21 +237,19 @@ function HomePage() {
                 </>
             ) : (
                 <>
-                    <div className="flex flex-wrap justify-center">
-                        <h1 className="mt-2 text-2xl font-bold md:mt-5 md:text-3xl lg:text-5xl">
-                            How are you feeling today?
-                        </h1>
-                    </div>
+                    <div className="mx-4 mt-6 grid overflow-hidden rounded-2xl border-2 border-violet-300 bg-white/80 shadow-sm md:mx-0 md:grid-cols-3">
+                        <div className="flex flex-col items-center justify-between gap-4 border-b-2 border-violet-300 p-5 md:col-span-3 md:flex-row">
+                            <h1 className="text-2xl font-bold md:text-3xl lg:text-4xl">
+                                How are you feeling today?
+                            </h1>
 
-                    <div className="mt-4 flex justify-end px-4 md:px-0">
-                        <MusicMarketDropDownButton
-                            value={musicMarket}
-                            onChange={setMusicMarket}
-                        />
-                    </div>
+                            <MusicMarketDropDownButton
+                                value={musicMarket}
+                                onChange={setMusicMarket}
+                            />
+                        </div>
 
-                    <div className="grid gap-3 md:grid-cols-3 md:gap-20 md:space-y-[-10px] lg:gap-40 lg:space-y-[-25px] justify-center md:mt-10">
-                        <div>
+                        <div className="border-b border-violet-300 p-5 md:border-r">
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Happy</h1>
                             </div>
@@ -259,7 +257,7 @@ function HomePage() {
                                 <ButtonRow selectedMood={happy} setMood={setHappy} />
                             </div>
                         </div>
-                        <div>
+                        <div className="border-b border-violet-300 p-5 md:border-r">
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Energetic</h1>
                             </div>
@@ -267,7 +265,7 @@ function HomePage() {
                                 <ButtonRow selectedMood={energetic} setMood={setEnergetic} />
                             </div>
                         </div>
-                        <div>
+                        <div className="border-b border-violet-300 p-5">
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Calm</h1>
                             </div>
@@ -275,7 +273,7 @@ function HomePage() {
                                 <ButtonRow selectedMood={calm} setMood={setCalm} />
                             </div>
                         </div>
-                        <div>
+                        <div className="border-b border-violet-300 p-5 md:border-b-0 md:border-r">
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Sad</h1>
                             </div>
@@ -283,7 +281,7 @@ function HomePage() {
                                 <ButtonRow selectedMood={sad} setMood={setSad} />
                             </div>
                         </div>
-                        <div>
+                        <div className="border-b border-violet-300 p-5 md:border-b-0 md:border-r">
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Anxious</h1>
                             </div>
@@ -291,7 +289,7 @@ function HomePage() {
                                 <ButtonRow selectedMood={anxious} setMood={setAnxious} />
                             </div>
                         </div>
-                        <div>
+                        <div className="p-5">
                             <div className="flex justify-center">
                                 <h1 className="text-base font-medium md:text-xl lg:text-2xl">Angry</h1>
                             </div>
