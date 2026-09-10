@@ -1,6 +1,7 @@
 import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { API_URL } from "../config";
+import { AudioLines } from "lucide-react";
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -71,8 +72,9 @@ function RegisterPage() {
     return (
         <main className="flex min-h-screen w-full items-center justify-center px-4 py-8 md:px-8 lg:px-12">
             <section className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-md md:p-8 lg:max-w-lg lg:p-9">
-                <Link to="/" className="text-sm font-semibold text-violet-700 underline md:text-base">
-                    Back to Vibe Mixer
+                <Link to="/" className="flex items-center gap-2 text-violet-950">
+                    <AudioLines className="h-7 w-7" />
+                    <span className="text-xl font-bold">Vibe Mixer</span>
                 </Link>
 
                 <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">Register</h1>

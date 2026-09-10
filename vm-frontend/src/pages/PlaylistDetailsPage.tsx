@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import type { GeneratedPlaylistData } from '../types/playlist';
 import PopupDialog from '../components/PopupDialog';
 import { API_URL } from '../config';
+import { AudioLines } from 'lucide-react';
 
 function PlaylistDetailsPage() {
     const { playlistId } = useParams();
@@ -165,8 +166,9 @@ function PlaylistDetailsPage() {
         
         <main className="max-w-5xl lg:max-w-7xl mx-auto p-2 md:p-6">
             <div className="flex justify-center mt-4 md:mt-8">
-                <Link to="/">
-                <h1 className="text-xl italic underline font-medium md:text-2xl">Vibe Mixer</h1>
+                <Link to="/" className="flex items-center gap-2 text-violet-950">
+                    <AudioLines className="h-7 w-7" />
+                    <span className="text-xl font-bold">Vibe Mixer</span>
                 </Link>
             </div>
             <Link

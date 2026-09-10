@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import type { SavedPlaylist } from "../types/playlist";
 import { API_URL } from "../config";
+import { AudioLines } from "lucide-react";
 
 function MyPlaylistsPage() {
     const [playlists, setPlaylists] = useState<SavedPlaylist[]>([]);
@@ -49,8 +50,9 @@ function MyPlaylistsPage() {
     return (
         <main className="min-h-screen w-full px-4 py-6 md:px-8 lg:px-12">
             <div className="flex justify-center mt-4 md:mt-8">
-                <Link to="/">
-                    <h1 className="inline-block text-xl mb-4 italic underline font-medium md:text-2xl md:mb-6">Vibe Mixer</h1>
+                <Link to="/" className="mb-4 flex items-center gap-2 text-violet-950 md:mb-6">
+                    <AudioLines className="h-7 w-7" />
+                    <span className="text-xl font-bold">Vibe Mixer</span>
                 </Link>
             </div>
             <div className="mx-auto w-full max-w-5xl rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:p-8 lg:max-w-6xl lg:p-9">

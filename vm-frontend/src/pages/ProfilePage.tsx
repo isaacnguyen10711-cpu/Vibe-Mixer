@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import PopupDialog from "../components/PopupDialog";
 import { API_URL } from "../config";
+import { AudioLines } from "lucide-react";
 
 function ProfilePage() {
     const [username, setUsername] = useState("Not set yet");
@@ -114,9 +115,10 @@ function ProfilePage() {
                 <section className="w-full max-w-sm rounded-2xl border-2 border-violet-300 bg-white/75 p-6 shadow-lg md:max-w-md md:p-8 lg:max-w-lg lg:p-9">
                     <Link
                         to="/"
-                        className="text-sm font-semibold text-violet-700 underline md:text-base lg:text-lg"
+                        className="flex items-center gap-2 text-violet-950"
                     >
-                        Back to Vibe Mixer
+                        <AudioLines className="h-7 w-7" />
+                        <span className="text-xl font-bold">Vibe Mixer</span>
                     </Link>
 
                     <h1 className="mt-6 text-2xl font-bold md:text-3xl lg:text-4xl">
