@@ -144,7 +144,7 @@ function ProfilePage() {
                                 <button
                                     type="button"
                                     onClick={handleSaveUsername}
-                                    className="mt-2 text-sm text-violet-700 px-4 py-2 hover:cursor-pointer hover:text-violet-800 md:text-base lg:text-lg"
+                                    className="mt-2 px-4 py-2 text-sm text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:text-violet-800 md:text-base lg:text-lg"
                                 >
                                     Save
                                 </button> 
@@ -159,7 +159,7 @@ function ProfilePage() {
                             <button
                                 type="button"
                                 onClick={toggleUsernameEditable}
-                                className="mt-2 text-sm text-violet-700 px-4 py-2 hover:cursor-pointer hover:text-violet-800 md:text-base lg:text-lg"
+                                className="mt-2 px-4 py-2 text-sm text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:text-violet-800 md:text-base lg:text-lg"
                             >
                                 Edit
                             </button>
@@ -183,7 +183,7 @@ function ProfilePage() {
                                     <button
                                         type="button"
                                         onClick={handleSaveEmail}
-                                        className="mt-2 px-4 py-2 text-sm text-violet-700 hover:cursor-pointer hover:text-violet-800 md:text-base lg:text-lg"
+                                        className="mt-2 px-4 py-2 text-sm text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:text-violet-800 md:text-base lg:text-lg"
                                     >
                                         Save
                                     </button>
@@ -196,7 +196,7 @@ function ProfilePage() {
                                     <button
                                         type="button"
                                         onClick={toggleEmailEditable}
-                                        className="mt-2 px-4 py-2 text-sm text-violet-700 hover:cursor-pointer hover:text-violet-800 md:text-base lg:text-lg"
+                                        className="mt-2 px-4 py-2 text-sm text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:text-violet-800 md:text-base lg:text-lg"
                                     >
                                         Edit
                                     </button>

@@ -213,7 +213,7 @@ function PlaylistDetailsPage() {
                                     type="button"
                                     onClick={handleCancel}
                                     disabled={isSaving}
-                                    className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 hover:cursor-pointer hover:bg-violet-100 disabled:cursor-not-allowed disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
+                                    className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-100 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
                                 >
                                     Cancel
                                 </button>
@@ -221,7 +221,7 @@ function PlaylistDetailsPage() {
                                     type="button"
                                     onClick={handleSave}
                                     disabled={isSaving}
-                                    className="rounded-lg border-2 border-violet-700 bg-violet-600 px-4 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-violet-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
+                                    className="rounded-lg border-2 border-violet-700 bg-violet-600 px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-700 active:scale-95 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
                                 >
                                     {isSaving ? "Saving..." : "Save"}
                                 </button>
@@ -231,7 +231,7 @@ function PlaylistDetailsPage() {
                                 <button
                                     type="button"
                                     onClick={() => setIsEditing(true)}
-                                    className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 hover:cursor-pointer hover:bg-violet-100 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
+                                    className="rounded-lg border-2 border-violet-600 bg-white px-4 py-2 text-sm font-semibold text-violet-700 transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-100 active:scale-95 md:px-5 md:text-base lg:px-6 lg:text-lg"
                                 >
                                     Edit Playlist
                                 </button>
@@ -239,7 +239,7 @@ function PlaylistDetailsPage() {
                                     type="button"
                                     onClick={openDeletePopup}
                                     disabled={isDeleting}
-                                    className="rounded-lg  bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:cursor-pointer hover:bg-red-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
+                                    className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-red-700 active:scale-95 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-50 md:px-5 md:text-base lg:px-6 lg:text-lg"
                                 >
                                     {isDeleting ? "Deleting..." : "Delete Playlist"}
                                 </button>
