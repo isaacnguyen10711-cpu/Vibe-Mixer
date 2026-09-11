@@ -21,6 +21,7 @@ class Songs(SQLModel, table=True):
     playlist: "Playlist" = Relationship(back_populates="songs")
     
 class GeneratedSong(SQLModel):
+    video_id: str | None = Field(default=None, max_length=70)
     title: str
     artist: str
     description: str | None = Field(default=None, max_length=255)

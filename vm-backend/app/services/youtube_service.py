@@ -48,7 +48,6 @@ async def search_youtube_video(search_query: str) -> dict:
         raise ValueError(f"Unable to find video for query: {search_query}.")
 
     return {
-        'video_id': video_id,
         'youtube_url': youtube_url,
         'description': description, 
         'thumbnail_url': thumbnail_url,
