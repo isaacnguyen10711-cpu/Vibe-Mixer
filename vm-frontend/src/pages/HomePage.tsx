@@ -320,6 +320,16 @@ function HomePage() {
                     </div>
                 </>
             )}
+
+            {/* Privacy policy */}
+            <footer className="flex justify-center px-4 pt-4">
+                <Link
+                    to="/privacy"
+                    className="text-sm text-violet-700 underline transition duration-300 hover:scale-105 hover:text-violet-950"
+                >
+                    Privacy Policy
+                </Link>
+            </footer>
         </div>
 
     )
