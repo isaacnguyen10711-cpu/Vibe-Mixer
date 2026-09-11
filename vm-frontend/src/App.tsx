@@ -4,6 +4,7 @@ import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
 import MyPlaylistsPage from './pages/MyPlaylistsPage'
 import PlaylistDetailsPage from './pages/PlaylistDetailsPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import { Route, Routes } from 'react-router'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/my-playlists" element={<MyPlaylistsPage />} />
       <Route path="/my-playlist/:playlistId" element={<PlaylistDetailsPage />} />
+      <Route path="/privacy" element={<PrivacyPolicyPage />} />
     </Routes>
   </div>
  )
