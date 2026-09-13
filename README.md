@@ -22,9 +22,11 @@ In Development
 
 ## Screenshots
 
-### Mood selection
+### Home Page
 
-![Vibe Mixer home page](vm-frontend/src/assets/demo/HomePage.png)
+![Vibe Mixer hero section home page](vm-frontend/src/assets/demo/HeroSection.png)
+
+![Vibe Mixer mood selection home page](vm-frontend/src/assets/demo/MoodSelectionSection.png)
 
 ### Loading state
 
@@ -83,8 +85,6 @@ In Development
 ## Future Implementations
 
 ### Frontend
-- Add motion and animation effects
-- Add protected routes for authenticated pages
 - Add a custom 404 page
 - Add password reset page
 
@@ -92,9 +92,7 @@ In Development
 - Add password reset and email verification
 - Add pagination for saved playlists
 - Improve API error handling and validation
-- Add rate limiting for logging in and OpenAI and YouTube API requests
 - Containerize the application with Docker
-- Deploy the API and PostgreSQL database
 
 ## Project Structure
 
