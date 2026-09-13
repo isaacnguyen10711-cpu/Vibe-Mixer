@@ -74,10 +74,10 @@ function GeneratedPlaylist(props: GeneratedPlaylistProps) {
         )}
 
         <div className="mx-3 mb-2 rounded-xl border-2 border-violet-300 bg-white/50 p-3 md:mx-0 md:mb-4 md:p-2 lg:mb-6 lg:p-5">
-            <h2 className="text-base font-bold md:text-lg lg:text-xl">
+            <h2 className="text-lg text-violet-950 font-bold md:text-xl lg:text-2xl">
                 {props.playlist.name}
             </h2>
-            <p className="mt-1 max-w-3xl text-xs md:text-sm lg:mt-2 lg:text-base">
+            <p className="mt-1 max-w-3xl text-violet-950 text-xs md:text-sm lg:mt-2 lg:text-base">
                 {props.playlist.description}
             </p>
 

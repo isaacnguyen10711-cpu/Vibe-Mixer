@@ -215,11 +215,11 @@ function HomePage() {
 
                 <div className="flex justify-center md:justify-end">
                     <div className="flex min-h-[24rem] w-full max-w-sm flex-col items-center justify-center rounded-3xl border border-white/20 bg-violet-950 p-6 text-center text-white shadow-xl shadow-violet-900/20 transition duration-500 hover:-translate-y-2 hover:scale-105 hover:shadow-2xl md:min-h-[26rem] md:max-w-md md:p-8 lg:min-h-[34rem] lg:max-w-lg lg:p-10">
-                        <div className="flex h-36 w-36 items-center justify-center rounded-full border-8 border-violet-300 bg-white text-violet-950 transition duration-500 hover:scale-105 md:h-48 md:w-48 lg:h-56 lg:w-56">
+                        <div className="flex h-36 w-36 items-center justify-center rounded-full border-8 border-violet-300 bg-white text-violet-950 animate-scale-up-down md:h-48 md:w-48 lg:h-56 lg:w-56">
                             <AudioLines className="h-16 w-16 md:h-24 md:w-24 lg:h-28 lg:w-28" />
                         </div>
                         <p className="mt-6 text-2xl font-semibold md:mt-8 md:text-3xl lg:mt-10">Today’s mix</p>
-                        <p className="mt-2 text-sm text-violet-200 md:mt-3 md:text-base lg:text-lg">12 songs picked for this mood.</p>
+                        <p className="mt-2 text-sm text-violet-200 md:mt-3 md:text-base lg:text-lg">Every feeling deserves the right soundtrack .</p>
                     </div>
                 </div>
                 <p className="text-center text-sm font-medium text-violet-700 md:col-span-2">
