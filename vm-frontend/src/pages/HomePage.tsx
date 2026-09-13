@@ -222,7 +222,7 @@ function HomePage() {
                         <p className="mt-2 text-sm text-violet-200 md:mt-3 md:text-base lg:text-lg">Every feeling deserves the right soundtrack .</p>
                     </div>
                 </div>
-                <p className="text-center text-sm font-medium text-violet-700 md:col-span-2">
+                <p className="text-center text-sm animate-bounce font-medium text-violet-700 md:col-span-2">
                     Choose your mood below ↓
                 </p>
             </section>
