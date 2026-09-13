@@ -51,14 +51,14 @@ function LoginPage() {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("token_type", data.token_type);
             navigate("/");
-        } 
+        }
         catch (loginError) {
             setError(
                 loginError instanceof Error
                     ? loginError.message
                     : "Login failed. Please try again."
             );
-        } 
+        }
         finally {
             setLoading(false);
         }
@@ -121,7 +121,12 @@ function LoginPage() {
                         disabled={loading}
                         className="w-full rounded-lg bg-violet-600 px-4 py-3 text-sm font-semibold text-white transition duration-300 hover:cursor-pointer hover:scale-105 hover:bg-violet-700 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:opacity-60 md:px-5 md:text-base lg:py-4"
                     >
-                        {loading ? "Logging in..." : "Log in"}
+                        <span className="inline-flex items-center">
+                            {loading ? "Logging in " : "Log in"}
+                            {loading && (
+                                <div className="ml-2 h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                            )}
+                        </span>
                     </button>
                     <Link to="/register" className="block text-center text-sm text-violet-600 hover:underline md:text-base lg:text-base">
                         Don't have an account? Sign up
