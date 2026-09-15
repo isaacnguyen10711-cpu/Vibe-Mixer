@@ -8,8 +8,8 @@ class UserRegistrationRequest(SQLModel):
 
 class UserResponse(SQLModel):
     id: int
-    username: str | None
-    email: str
+    username: str | None = Field(max_length=50)
+    email: str = Field(max_length=100)
     created_at: datetime
 
 
