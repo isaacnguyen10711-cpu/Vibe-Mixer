@@ -5,6 +5,7 @@ Vibe Mixer is a full-stack web application that generates music playlists based 
 ## Status
 
 In Development
+[Visit Vibe Mixer](https://vibe-mixer-iota.vercel.app/)
 
 ## Features
 
