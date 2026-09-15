@@ -6,7 +6,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from typing import Annotated
 from app.dependencies import DatabaseSession
 from app.models.user import User
-from app.dtos.user import UserRegistrationRequest, UserResponse, TokenResponse
+from app.dtos.user_dto import UserRegistrationRequest, UserResponse, TokenResponse
 from sqlmodel import select
 from app.services.authentication_service import create_access_token
 

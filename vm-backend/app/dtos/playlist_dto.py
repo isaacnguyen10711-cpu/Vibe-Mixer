@@ -1,6 +1,6 @@
 from datetime import datetime
 from sqlmodel import SQLModel, Field
-from app.dtos.songs import GeneratedSong
+from app.dtos.songs_dto import GeneratedSong
 
 #For generated playlist response from OpenAI
 class GeneratedPlaylist(SQLModel):

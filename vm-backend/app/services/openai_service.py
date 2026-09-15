@@ -1,7 +1,7 @@
 from openai import AsyncOpenAI
 from app.config import settings
-from app.dtos.mood_entry import MoodEntryRequest
-from app.dtos.playlist import GeneratedPlaylist
+from app.dtos.mood_entry_dto import MoodEntryRequest
+from app.dtos.playlist_dto import GeneratedPlaylist
 
 client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
