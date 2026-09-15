@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from app.dependencies import AuthorizedUser, DatabaseSession
-from app.models.user import User, UserResponse, UserUpdateRequest
+from app.models.user import User
+from app.dtos.user import UserResponse, UserUpdateRequest
 
 router = APIRouter(
     prefix="/users",

@@ -1,8 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from app.dependencies import DatabaseSession, AuthorizedUser
 from app.models.songs import Songs
-from app.models.playlist import Playlist, GeneratedPlaylist
-from app.models.songs import GeneratedSong
+from app.models.playlist import Playlist
 from sqlmodel import select
 
 router = APIRouter(

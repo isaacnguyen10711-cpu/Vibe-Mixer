@@ -16,6 +16,3 @@ class MoodEntryRequest(SQLModel):
     sad: int = Field(default=1, ge=1, le=5)
     angry: int = Field(default=1, ge=1, le=5)
     music_market: MusicMarket = MusicMarket.USUK
-
-
-    

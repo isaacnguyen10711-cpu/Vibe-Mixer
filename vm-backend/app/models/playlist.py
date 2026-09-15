@@ -1,7 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import ClassVar
 from datetime import UTC, datetime
-from app.models.songs import GeneratedSong
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -18,23 +17,4 @@ class Playlist (SQLModel, table=True):
     description: str | None = Field(default=None, max_length=255)
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
     user: "User" = Relationship(back_populates="playlists")
-    songs: list["Songs"] = Relationship(back_populates="playlist") 
-    
-#For generated playlist response from OpenAI
-class GeneratedPlaylist(SQLModel):
-    name: str
-    description: str
-    songs: list[GeneratedSong]
-
-#For playlist response from the database to return in user profile
-class PlaylistResponse(SQLModel):
-    id: int
-    name: str
-    description: str | None
-    created_at: datetime
-
-
-class PlaylistUpdateRequest(SQLModel):
-    name: str
-    description: str 
-    
+    songs: list["Songs"] = Relationship(back_populates="playlist")

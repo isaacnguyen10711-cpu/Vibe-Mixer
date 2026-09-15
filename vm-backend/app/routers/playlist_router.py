@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException, Query, Request
 from app.dependencies import DatabaseSession, AuthorizedUser
-from app.models.mood_entry import MoodEntryRequest
+from app.dtos.mood_entry import MoodEntryRequest
 from app.models.songs import Songs
-from app.models.playlist import Playlist, GeneratedPlaylist, PlaylistUpdateRequest
+from app.models.playlist import Playlist
+from app.dtos.playlist import GeneratedPlaylist, PlaylistUpdateRequest
 from sqlmodel import select
 from sqlalchemy.orm import selectinload
 from app.services.openai_service import generate_playlist_with_OpenAI
